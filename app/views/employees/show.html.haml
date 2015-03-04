@@ -1,0 +1,14 @@
+%h2 Details about #{@employee.name}
+
+%ul#details
+  %li
+    Name :
+    = @employee.name
+  %li
+    Salary :
+    = @employee.salary
+
+  
+  = link_to "Edit info" , edit_employee_path(@employee)
+  = link_to 'Back to employee list' , employees_path
+  = link_to "Delete" , employee_path(@employee) , :method => :delete

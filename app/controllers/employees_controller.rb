@@ -1,7 +1,9 @@
 class EmployeesController < ApplicationController
 
   def create
-    Employee.create(employee_params) ##Invoke user_params methods
+    @employee = Employee.create!(employee_params) ##Invoke user_params methods
+    flash[:notice] = "#{@employee.name} was successfully added."
+    redirect_to employees_path
   end
 
   def index
@@ -10,6 +12,31 @@ class EmployeesController < ApplicationController
 
   def show
     id = params[:id]
+    @employee = Employee.find(id)
+    #Render app/views/movies/show.html.haml by def
+  end
+
+  def new
+    #Will render 'new' template
+  end
+
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @employee = Employee.find params[:id]
+    @employee.update_attributes!(employee_params)
+    flash[:notice] = "#{@employee.name} was successfully updated."
+    #flash[:notice] = params[:employee]
+    redirect_to employee_path(@employee)
+  end
+
+  def destroy
+    @employee = Employee.find(params[:id])
+    @employee.destroy
+    flash[:notice] = "Employee '#{@employee.name}' was deleted"
+    redirect_to employees_path
   end
 
   private
