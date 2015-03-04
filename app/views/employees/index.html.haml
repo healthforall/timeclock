@@ -1,0 +1,12 @@
+%h1 All Employees
+%table#employees
+  %thead
+    %tr
+      %th Name
+      %th Salary
+    %tbody
+      - @employees.each do |employee|
+        %tr
+          %td= employee.name
+          %td= employee.salary
+          %td= link_to "More about #{employee.name}" , employee_path(employee)
