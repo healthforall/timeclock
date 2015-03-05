@@ -1,10 +1,5 @@
 %h2 Edits Employee Information
 
 = form_tag employee_path(@employee), :method => :put do
-  = label :employee , :name, 'Name'
-  = text_field :employee, :name
-
-  = label :employee , :salary, 'Salary'
-  = text_field :employee, :salary
-
-  = submit_tag "Save Changes"
+  = render :partial => 'employee_form'
+  = submit_tag 'Save Changes'

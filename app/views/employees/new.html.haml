@@ -1,10 +1,5 @@
 %h2 Add new Employee
 = form_tag employees_path, :method => :post do
-  = label :employee , :name, 'Name'
-  = text_field :employee, :name
 
-  = label :employee , :salary, 'Salary'
-  = text_field :employee, :salary
-
-
+  = render :partial => 'employee_form'
   = submit_tag 'Save Changes'

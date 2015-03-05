@@ -1,9 +1,14 @@
 class EmployeesController < ApplicationController
 
   def create
-    @employee = Employee.create!(employee_params) ##Invoke user_params methods
-    flash[:notice] = "#{@employee.name} was successfully added."
-    redirect_to employees_path
+    @employee = Employee.new(employee_params) ##Invoke user_params methods
+    if @employee.save
+      flash[:notice] = "#{@employee.name} was successfully added."
+      redirect_to employees_path
+    else
+      render 'new'
+    end
+
   end
 
   def index
@@ -17,6 +22,7 @@ class EmployeesController < ApplicationController
   end
 
   def new
+    @employee = Employee.new
     #Will render 'new' template
   end
 
@@ -26,10 +32,12 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find params[:id]
-    @employee.update_attributes!(employee_params)
-    flash[:notice] = "#{@employee.name} was successfully updated."
-    #flash[:notice] = params[:employee]
-    redirect_to employee_path(@employee)
+    if @employee.update_attributes(employee_params)
+      flash[:notice] = "#{@employee.name} was successfully updated."
+      redirect_to employee_path(@employee)
+    else
+      render 'edit'
+    end
   end
 
   def destroy

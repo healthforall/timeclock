@@ -5,9 +5,5 @@
       %th Name
       %th Salary
     %tbody
-      - @employees.each do |employee|
-        %tr
-          %td= employee.name
-          %td= employee.salary
-          %td= link_to "More about #{employee.name}" , employee_path(employee)
-= link_to "Add a new employee", new_employee_path
+      = render :partial => 'employee' , :collection=>@employees
+= link_to 'Add a new employee', new_employee_path
