@@ -1,7 +1,14 @@
 Timeclock::Application.routes.draw do
 
+  get 'sessions/new'
+
   resources :employees
   root :to => redirect('/employees')
+
+  get 'auth/gmail/callback' => 'sessions#create'
+  post 'logout' => 'sessions#destroy'
+  get 'auth/failure'=> 'sessions#failure'
+
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

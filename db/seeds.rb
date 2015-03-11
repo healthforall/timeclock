@@ -8,9 +8,9 @@
 
 
 
-team = [{:name =>'Zach' , :salary => '0'} ,  {:name =>'Elizabeth' , :salary => '0'},
-           {:name =>'Jon' , :salary => '0'}  ,  {:name =>'Michael' , :salary => '0'},
-           {:name =>'Garret' , :salary => '0'} ,{:name =>'Steven' , :salary => '0'}]
+team = [{:name =>'Zach'   , :email => "brownzach125@gmail.com" } ,   {:name =>'Elizabeth' , :email => "brownzach125@gmail.com"},
+           {:name =>'Jon' ,  :email => "brownzach125@gmail.com"}  ,  {:name =>'Michael'   , :email => "brownzach125@gmail.com"},
+           {:name =>'Garret'  , :email => "brownzach125@gmail.com"} ,{:name =>'Steven'    , :email => "brownzach125@gmail.com"}]
 
 team.each do |mate|
   Employee.create!(mate)
