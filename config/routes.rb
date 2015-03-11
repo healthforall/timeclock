@@ -1,13 +1,15 @@
 Timeclock::Application.routes.draw do
 
-  get 'sessions/new'
-
   resources :employees
   root :to => redirect('/employees')
 
-  get 'auth/gmail/callback' => 'sessions#create'
+  #
+  get 'auth/:provider/callback' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
+  get  'logout' => 'sessions#logout'
   get 'auth/failure'=> 'sessions#failure'
+
+
 
 end
 

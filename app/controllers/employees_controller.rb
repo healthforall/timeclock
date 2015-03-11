@@ -48,8 +48,6 @@ class EmployeesController < ApplicationController
     redirect_to employees_path
   end
 
-
-
   private
 
   ## Strong Parameters

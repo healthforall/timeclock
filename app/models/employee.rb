@@ -5,10 +5,13 @@ class Employee < ActiveRecord::Base
 
   def self.create_with_omniauth(auth)
     Employee.create!(
-                :name  => auth["info"]["name"],
-                #:email => auth["email"],
+                :name     => auth["info"]["name"],
                 :uid      => auth["uid"],
-                :provider => auth['provider']
+                :email    => auth["info"]["email"]
     )
   end
+
+ # def self.find_by_uid(uid)
+  #  @employee = Employee.find_by_uid(uid)
+  #end
 end

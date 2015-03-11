@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def set_current_user
-      @current_user ||= Employee.find_by_id(session[:user_id])
+      @current_user ||= Employee.find_by_uid(session[:user_id])
       render :partial =>'sessions/login'  and return unless @current_user
-
     end
 end
