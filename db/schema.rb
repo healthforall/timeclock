@@ -11,11 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304002808) do
+ActiveRecord::Schema.define(version: 20150311211229) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
-    t.string "salary"
+    t.string "email"
+    t.string "uid"
   end
+
+  add_index "employees", ["uid"], name: "index_employees_on_uid", unique: true
 
 end

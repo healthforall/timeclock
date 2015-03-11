@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
 
+
   def create
     @employee = Employee.new(employee_params) ##Invoke user_params methods
     if @employee.save
@@ -51,6 +52,6 @@ class EmployeesController < ApplicationController
 
   ## Strong Parameters
   def employee_params
-    params.require(:employee).permit(:name , :salary)
+    params.require(:employee).permit(:name ,:email)
   end
 end
