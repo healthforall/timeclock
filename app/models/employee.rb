@@ -1,17 +1,21 @@
 class Employee < ActiveRecord::Base
   validates :name, :presence =>true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
-  #validates :email, :presence =>true
+  validates :email, :presence =>true
+  validates :email, :uniqueness => true
 
-  def self.create_with_omniauth(auth)
-    Employee.create!(
-                :name     => auth["info"]["name"],
-                :uid      => auth["uid"],
-                :email    => auth["info"]["email"]
-    )
+  def self.create_on_first_login(auth)
+    @employee = Employee.find_by_email(auth['info']['email'])
+    if (@employee)
+      @employee.uid= auth['uid']
+      @employee.save!
+      debugger
+      return @employee
+    else
+      return nil
+    end
+
+
   end
 
- # def self.find_by_uid(uid)
-  #  @employee = Employee.find_by_uid(uid)
-  #end
 end
