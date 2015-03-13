@@ -9,7 +9,6 @@ class Employee < ActiveRecord::Base
     if (@employee)
       @employee.uid= auth['uid']
       @employee.save!
-      debugger
       return @employee
     else
       return nil
