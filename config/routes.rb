@@ -3,7 +3,7 @@ Timeclock::Application.routes.draw do
   resources :employees
   root :to => redirect('/employees')
 
-  #
+  get 'login' =>'sessions#new'
   get 'auth/:provider/callback' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
   get  'logout' => 'sessions#logout'

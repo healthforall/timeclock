@@ -8,10 +8,13 @@
 
 
 
-team = [{:name =>'Zach'   , :email => "brownzach125@gmail.com" } ,   {:name =>'Elizabeth' , :email => "brownzach125@gmail.com"},
-           {:name =>'Jon' ,  :email => "brownzach125@gmail.com"}  ,  {:name =>'Michael'   , :email => "brownzach125@gmail.com"},
-           {:name =>'Garret'  , :email => "brownzach125@gmail.com"} ,{:name =>'Steven'    , :email => "brownzach125@gmail.com"}]
+
+team = [   {:name =>'Zach'   ,  :email => "brownzach125@gmail.com" } ,    {:name =>'Elizabeth' , :email => "eliz@gmail.com"},
+           {:name =>'Jon' ,     :email => "jon@gmail.com"}  ,   {:name =>'Michael'   , :email => "michale@gmail.com"},
+           {:name =>'Garret'  , :email => "garret@gmail.com"} ,    {:name =>'Steven'    , :email => "steven@gmail.com"}]
 
 team.each do |mate|
   Employee.create!(mate)
 end
+
+admin = { :name =>'admin' , }
