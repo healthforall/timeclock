@@ -6,15 +6,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+#Clear the database first
+Employee.all().each do |emp|
+  emp.destroy!()
+end
 
 
 team = [   {:name =>'Zach'   ,  :email => "brownzach125@gmail.com" } ,    {:name =>'Elizabeth' , :email => "eliz@gmail.com"},
            {:name =>'Jon' ,     :email => "jon@gmail.com"}  ,   {:name =>'Michael'   , :email => "michale@gmail.com"},
            {:name =>'Garret'  , :email => "garret@gmail.com"} ,    {:name =>'Steven'    , :email => "steven@gmail.com"}]
 
-team.each do |mate|
-  Employee.create!(mate)
-end
+admin = { :name =>'admin' , :email => 'admit20156@gmail.com' , :admin => true}
+admin = Employee.create!(admin)
 
-admin = { :name =>'admin' , }
+supervisor = { :name =>'Im a supervisor' , :email => 'suadhealth@gmail.com' }
+Employee.create!(supervisor)
+
+team.each do |mate|
+  admin.employees.create!( mate  )
+end
