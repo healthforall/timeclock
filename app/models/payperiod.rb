@@ -5,7 +5,9 @@ class Payperiod < ActiveRecord::Base
   scope :contains_date, lambda { |date|
      Payperiod.where("start_date <= :date AND end_date >= :date" , date: date)[0]
   }
+
   def self.find_payperiod(date)
     Payperiod.where("start_date <= :date AND end_date >= :date" , date: date)[0]
   end
+
 end
