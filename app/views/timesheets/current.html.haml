@@ -1,0 +1,19 @@
+%h1 Welcome to #{@employee.name}'s time sheet!
+%h1 Id of the timesheet #{@timesheet.id}
+
+%table#timesheet
+  %thead
+    %tr
+      %th Date
+      %th In
+      %th Out
+  %tbody
+    - @timesheet.days.each do |day|
+      %tr
+        %td= day.day.strftime("%a:%m:%d")
+      %tr
+        - day.in_and_outs.each do |inandout|
+          %tr
+            %td
+            %td= inandout.in.strftime("%H:%M:%S")
+            %td= inandout.out.strftime("%H:%M:%S")

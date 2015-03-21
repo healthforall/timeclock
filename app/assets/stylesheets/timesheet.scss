@@ -1,0 +1,19 @@
+// Place all the styles related to the timesheet controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table#timesheet {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#timesheet th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#timesheet th, table#timesheet td {
+  padding: 4px;
+  text-align: left;
+}

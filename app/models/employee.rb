@@ -1,8 +1,21 @@
 class Employee < ActiveRecord::Base
+
+  after_initialize :init
+
+
   validates :name, :presence =>true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates :email, :presence =>true
   validates :email, :uniqueness => true
+
+  #The four lines below setup the relationship between employees and supervisors
+  has_many   :ownerships, :class_name => "Supervisor" , :foreign_key => "supervisor_id"
+  has_many   :employees,  :through => :ownerships, :source => :employee
+  has_one    :owner     , :class_name => "Supervisor" , :foreign_key => "employee_id"
+  has_one    :supervisor, :through => :owner, :source => :supervisor
+  #-----------------------------------------------------------
+
+  has_many   :timesheets
 
   def self.create_on_first_login(auth)
     @employee = Employee.find_by_email(auth['info']['email'])
@@ -15,6 +28,10 @@ class Employee < ActiveRecord::Base
     end
 
 
+  end
+
+  def init
+    self.admin ||= false
   end
 
 end

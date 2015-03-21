@@ -19,7 +19,7 @@ class EmployeesController < ApplicationController
   def show
     id = params[:id]
     @employee = Employee.find(id)
-    #Render app/views/movies/show.html.haml by def
+    #Render app/views/movies/current.html.haml by def
   end
 
   def new
