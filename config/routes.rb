@@ -1,6 +1,11 @@
 Timeclock::Application.routes.draw do
 
-  resources :employees
+  resources :employees do
+    resources :timesheets do
+      get 'current'
+    end
+  end
+
   root :to => redirect('/employees')
 
   get 'login' =>'sessions#new'
@@ -8,6 +13,8 @@ Timeclock::Application.routes.draw do
   post 'logout' => 'sessions#destroy'
   get  'logout' => 'sessions#logout'
   get 'auth/failure'=> 'sessions#failure'
+
+
 
 
 
