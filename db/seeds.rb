@@ -15,7 +15,7 @@ Payperiod.all().each do |pay|
   pay.destroy!()
 end
 
-payperiod = {:start_date => DateTime.parse("2015-3-16") , :end_date =>DateTime.parse("2015-3-31")}
+payperiod = {:start_date => DateTime.parse("2015-3-16 10:00:00") , :end_date =>DateTime.parse("2015-3-31 10:00:00")}
 payperiod = Payperiod.create!(payperiod)
 
 team = [   {:name =>'Zach'   , :email => "brownzach125@gmail.com" } ,    {:name =>'Elizabeth' , :email => "bookworm920@gmail.com"},
@@ -39,7 +39,7 @@ shifts = [ { in: DateTime.parse( 'March 20th 2015 08:00:00 AM') , out: DateTime.
 zach = Employee.find_by_name("Zach")
 time = zach.timesheets.create!()
 shifts.each do |shift|
-  time.days.find_by_date(shift[:in])[0].in_and_outs.create!(shift)
+  #time.days.find_by_date(shift[:in])[0].in_and_outs.create!(shift)
 end
 
 

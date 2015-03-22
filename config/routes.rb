@@ -14,7 +14,9 @@ Timeclock::Application.routes.draw do
   get  'logout' => 'sessions#logout'
   get 'auth/failure'=> 'sessions#failure'
 
+  get 'employees/main/:id' => 'employees#main'
 
+  post 'employees/clockin/:clockingin' => 'employees#clockin'
 
 
 

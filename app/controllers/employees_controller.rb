@@ -12,6 +12,13 @@ class EmployeesController < ApplicationController
 
   end
 
+  def clockin
+    clockin = params[:clockingin]
+    @employee = Employee.find_by_uid(session[:user_uid])
+    @employee.clock_in(clockin)
+    render(:partial => 'checkinout') if request.xhr?
+  end
+
   def index
     @employees = Employee.all
   end
