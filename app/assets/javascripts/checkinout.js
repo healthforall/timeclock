@@ -5,7 +5,9 @@ function ClockInOut(){
 
 }
 
-$( document ).ready(function() {
+var ready;
+
+ready = function() {
     $("#clockout").hide();
     $("#clockin").click(function() {
         $("#clockin").hide();
@@ -17,7 +19,7 @@ $( document ).ready(function() {
         $("#clockin").show();
         ClockInOut.sendClockInOutMessage(false);
     });
-});
+};
 
 ClockInOut.sendClockInOutMessage = function(checkin){
     $.ajax({type: 'POST',
@@ -26,3 +28,6 @@ ClockInOut.sendClockInOutMessage = function(checkin){
             success: function(data, requestStatus, xhrObj){},
             error: function (xhrObj, textStatus, exception) {}})
 };
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
