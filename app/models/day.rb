@@ -8,8 +8,8 @@ class Day < ActiveRecord::Base
   }
 
   scope      :find_by_date , lambda  { |date|
-                               date = DateTime.parse(Date.parse(date.to_s).to_s)
-                               Day.where("day = :date" , date: date)
-                           }
+    date = DateTime.parse(Date.parse(date.to_s).to_s)
+    Day.where("day = :date" , date: date)
+  }
 
 end
