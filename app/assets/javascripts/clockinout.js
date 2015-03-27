@@ -29,5 +29,13 @@ ClockInOut.sendClockInOutMessage = function(checkin){
             error: function (xhrObj, textStatus, exception) {}})
 };
 
+ClockInOut.getInsAndOuts = function(){
+    $.ajax({type: 'GET',
+        url: "/employees/clockin/"+checkin,
+        timeout: 5000,
+        success: function(data, requestStatus, xhrObj){},
+        error: function (xhrObj, textStatus, exception) {}})
+};
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
