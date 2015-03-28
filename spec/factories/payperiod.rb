@@ -1,5 +1,6 @@
 FactoryGirl.define do
 
+  #This needs to be improved
   factory :payperiod do
     start_date do
       DateTime.parse("2015-3-1 10:00:00")
