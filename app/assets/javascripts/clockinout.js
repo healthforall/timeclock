@@ -7,8 +7,19 @@ function ClockInOut(){
 
 var ready;
 
-ready = function() {
-    $("#clockout").hide();
+ClockInOut.ready = function() {
+    console.log("HI");
+    if(true)
+        $("#clockout").css("display" , "block");
+    if ($('#clockinquestionmark').text() == "true"){
+        $("#clockin").css("display" , "none");
+        $("#clockout").css("display" , "block");
+    }
+    else {
+        //alert($('#inorout').text());
+        $("#clockout").css("display" , "none");
+        $("#clockin").css("display" , "block");
+    }
     $("#clockin").click(function() {
         $("#clockin").hide();
         $("#clockout").show();
@@ -37,5 +48,5 @@ ClockInOut.getInsAndOuts = function(){
         error: function (xhrObj, textStatus, exception) {}})
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).ready(ClockInOut.ready);
+$(document).on('page:load', ClockInOut.ready);

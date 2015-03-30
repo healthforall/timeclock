@@ -22,11 +22,10 @@ Given /I am logged in/ do
 end
 
 Given /^(?:|I )am clocked (.+)$/ do |clockin_status|
-  #create an employee that is checked in or out
   if clockin_status == 'clockin'
     @employee.clock_in(true)
-  else
-    @employee.clock_in(false)
+  #else
+    #@employee.clock_in(false)
   end
 end
 
@@ -35,10 +34,18 @@ When /^(?:|I )navigate to my (.+)$/ do |page_name|
 end
 
 Then /^(?:|I )should (\S*)\s*see the (\S+) (\S+)$/ do |should_see, element_name, element_type|
-  if should_see
-    print page.html
-    expect(page).to have_selector('#clockin' , visible: true)
-  else
-    page.find(".#{element_type}s .#{element_type}[id='#{element_name}']", :visible => false)
-  end
+  #print page.html
+  #page.find(".button" , match: :first)
+  #page.find(:css ,"#clockin").click()
+  page.find_button("Clock in")
+  #page.document.synchronize do
+    #if (should_see != "not")
+      #print page.html
+      #click_on "Clock in"
+      #expect(page).to have_selector( "#" + "#{element_name}" , visible: true)
+    #else
+      #page.find(".#{element_type}s .#{element_type}[id='#{element_name}']", :visible => false)
+      #expect(page).to have_selector( "#" + "#{element_name}" , visible: false)
+    #end
+  #end
 end

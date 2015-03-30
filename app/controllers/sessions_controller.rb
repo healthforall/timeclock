@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def fakelogin
-    session[:uid] = params[:uid]
+    session[:user_uid] = params[:uid]
     redirect_to "/"
   end
 end
