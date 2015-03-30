@@ -3,10 +3,10 @@
 
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
 //TODO A lot of the rendering of the tiemsheet should be pushed into partials
-%script{:src => "/public/javascripts/application.js"}
+//%script{:src => "/public/javascripts/application.js"}
 %br
-%button{:id => "clockin" , :style => "display: none" , :class => "ll"} Clock In
-%button{:id => "clockout"  , :style => "display:none", :class =>"ll" } Clock Out
+%button{:id => "clockin" , :style => "display: block" , :class => "ll", :onclick => 'ClockInOut.click_in();'} Clock In
+%button{:id => "clockout"  , :style => "display:none", :class =>"ll" , :onclick => 'ClockInOut.click_out();'} Clock Out
 %table#timesheet
   %thead
     %tr

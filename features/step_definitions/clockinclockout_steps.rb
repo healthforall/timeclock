@@ -37,8 +37,12 @@ Then /^(?:|I )should (\S*)\s*see the (\S+) (\S+)$/ do |should_see, element_name,
   #print page.html
   #page.find(".button" , match: :first)
   #page.find(:css ,"#clockin").click()
-  page.find_button("Clock in")
-  #page.document.synchronize do
+  page.document.synchronize do
+    print page.html
+    page.find_button("Clock In").click()
+    print page.html
+    page.find_button("Clock Out").click()
+  end
     #if (should_see != "not")
       #print page.html
       #click_on "Clock in"
