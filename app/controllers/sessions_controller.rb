@@ -25,4 +25,9 @@ class SessionsController < ApplicationController
     flash[:notice] = 'Logged out successfully.'
     redirect_to "/login"
   end
+
+  def fakelogin
+    session[:uid] = params[:uid]
+    redirect_to "/"
+  end
 end

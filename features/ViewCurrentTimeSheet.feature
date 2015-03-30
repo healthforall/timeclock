@@ -1,9 +1,10 @@
-Feature: Clock In and Out
+Feature: ViewCurrentTimeSheet
   In order to keep track of work hours
   As an employee
-  I want to clock in and out
+  I want to see my current timesheet
 
   Scenario: Go to page when not checked in
+    Given I am logged in
     Given I am clocked out
     When I navigate to my current timesheet
     Then I should see the clockin button

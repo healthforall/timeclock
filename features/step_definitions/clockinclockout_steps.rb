@@ -11,9 +11,18 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+def employee
+  @employee = FactoryGirl.create(:employee)
+  #session['uid'] = @employee.uid
+end
+
+Given /I am logged in/ do
+  employee
+  visit "fakelogin/#{employee.uid}"
+end
+
 Given /^(?:|I )am clocked (.+)$/ do |clockin_status|
   #create an employee that is checked in or out
-  @employee = Employee.new(:name => 'test', :uid => '12345', :email => 'test@example.com')
   if clockin_status == 'clockin'
     @employee.clock_in(true)
   else
@@ -27,7 +36,8 @@ end
 
 Then /^(?:|I )should (\S*)\s*see the (\S+) (\S+)$/ do |should_see, element_name, element_type|
   if should_see
-    page.find(".#{element_type}s .#{element_type}[id='#{element_name}']", :visible => true)
+    print page.html
+    expect(page).to have_selector('#clockin' , visible: true)
   else
     page.find(".#{element_type}s .#{element_type}[id='#{element_name}']", :visible => false)
   end

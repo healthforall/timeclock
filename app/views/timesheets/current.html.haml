@@ -2,10 +2,12 @@
 %h1 Id of the timesheet #{@timesheet.id}
 
 //%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"}
+
+//TODO A lot of the rendering of the tiemsheet should be pushed into partials
 %script{:src => "/public/javascripts/application.js"}
 %br
-%button{:id => "clockin"} Check In
-%button{:id => "clockout"} Check Out
+%button{:id => "clockin"} Clock In
+%button{:id => "clockout"} Clock Out
 %table#timesheet
   %thead
     %tr
