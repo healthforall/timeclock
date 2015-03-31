@@ -20,7 +20,12 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @employees = Employee.all
+    if @current_user.admin
+      @employees = Employee.all
+    else
+      flash[:notice] = "You are not an administrator!"
+      redirect_to  welcome_index_path
+    end
   end
 
   def show
@@ -29,7 +34,7 @@ class EmployeesController < ApplicationController
     if (@employee.id == @current_user.id || @current_user.admin)
     else
       flash[:notice] = "Underlings not allowed to view other employees!"
-      redirect_to employees_path
+      redirect_to  welcome_index_path
     end
   end
 
@@ -38,7 +43,7 @@ class EmployeesController < ApplicationController
       @employee = Employee.new
     else
       flash[:notice] = "You may not create a new employee!!!"
-      redirect_to employees_path
+      redirect_to  welcome_index_path
     end
   end
 
@@ -47,7 +52,7 @@ class EmployeesController < ApplicationController
       @employee = Employee.find(params[:id])
     else
       flash[:notice] = "You are not an admin!"
-      redirect_to employees_path
+      redirect_to  welcome_index_path
     end
   end
 

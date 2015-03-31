@@ -5,7 +5,11 @@ class SessionsController < ApplicationController
     user= Employee.find_by_uid( auth["uid"] ) || Employee.create_on_first_login(auth)
     if ( user )
       session[:user_uid] = user.uid
-      redirect_to  employee_path(user)
+      if user.admin
+        redirect_to  employee_path(user)
+      else
+        redirect_to  welcome_index_path(user)
+      end
     else
       flash[:notice] =  auth['info']['email'] + " is not registered to an employee "
       redirect_to '/login'

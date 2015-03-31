@@ -1,0 +1,10 @@
+%h1 Employee View
+= render :partial => '/sessions/login'
+
+//%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"}
+%script{:src => "/public/javascripts/application.js"}
+%br
+%button{:id => "clockin"} Check In
+%button{:id => "clockout"} Check Out
+
+%h2 Hours for current pay period:
