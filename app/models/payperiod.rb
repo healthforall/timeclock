@@ -7,7 +7,7 @@ class Payperiod < ActiveRecord::Base
   }
 
   def self.find_payperiod(date)
-    payperiod = Payperiod.where("start_date <= :date AND end_date >= :date" , date: date)[0]
+    payperiod = Payperiod.where("start_date <= :date AND end_date >= :date" , date: date + 5.hours)[0]
     if (payperiod)
       return payperiod
     else
