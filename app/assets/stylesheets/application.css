@@ -41,7 +41,6 @@ h1{
     font-style: italic;
     display: block;
     width: 100%;
-    border-bottom: 1px solid DarkSlateGrey;
 
 }
 
@@ -59,7 +58,6 @@ table#employees {
     margin: 10px;
     border-collapse: collapse;
     width: 100%;
-    border-bottom: 2px solid black;
 }
 
 table#employees th {
