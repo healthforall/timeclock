@@ -13,6 +13,14 @@ class Timesheet < ActiveRecord::Base
    }
 
 
+  def clockin?
+    iN = false
+    self.days.each do |day|
+      iN ||= day.clockin?
+    end
+    return iN
+  end
+
   def init
     #If a timesheet is created without a payperiod assume it is for the current period
     self.payperiod ||= Payperiod.find_payperiod(Date.today())

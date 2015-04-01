@@ -11,6 +11,7 @@ Feature: ViewCurrentTimeSheet
     Then I should not see the clockout button
 
   Scenario: Go to page when checked in
+    Given I am logged in
     Given I am clocked in
     When I navigate to my current timesheet
     Then I should see the clockout button
