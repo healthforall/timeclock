@@ -3,7 +3,7 @@ class Day < ActiveRecord::Base
   has_many   :in_and_outs
 
   scope      :current , lambda {
-    date = DateTime.parse(Date.today().to_s) + 5.hours
+    date = DateTime.parse(Date.today().to_s)
     Day.where("day = :date" , date: date)
   }
 

@@ -6,7 +6,9 @@ class TimesheetsController < ApplicationController
 
   def current
     @employee  = Employee.find_by_id(params[:employee_id])
-    current_date = Date.today()
-    @timesheet = @employee.timesheets.current[0] || @employee.timesheets.create!()
+    @timesheet = @employee.timesheets.current[0]
+    if(!@timesheet)
+      @timesheet = @employee.timesheets.create!()
+    end
   end
 end

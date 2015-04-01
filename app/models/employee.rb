@@ -19,6 +19,7 @@ class Employee < ActiveRecord::Base
 
 
   def clockin?
+    #debugger
     self.timesheets.current[0].clockin?
   end
 

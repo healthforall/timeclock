@@ -6,6 +6,8 @@ gem 'haml'
 group :develpment, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'cucumber-rails'
+  gem 'selenium-webdriver'
+  #gem  'capybara-webkit'
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'factory_girl_rails'

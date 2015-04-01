@@ -13,7 +13,7 @@ module NavigationHelpers
       when /^(.+)$/
         path_components = $1.split(/\s+/).reverse
         if path_components.length >= 2
-          "employees/#{employee.id}/#{path_components[0]}s/1/#{path_components[1]}"
+          "/employees/#{employee.id}/#{path_components[0]}s/1/#{path_components[1]}"
         end
       # Add more mappings here.
       # Here is an example that pulls values out of the Regexp:

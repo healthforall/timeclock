@@ -6,38 +6,30 @@ function ClockInOut(){
 }
 
 var ready;
-
+ClockInOut.checkedin = false;
 ClockInOut.ready = function() {
-    console.log("HI");
-    if(true)
-        $("#clockout").css("display" , "block");
+
     if ($('#clockinquestionmark').text() == "true"){
-        $("#clockin").css("display" , "none");
-        $("#clockout").css("display" , "block");
+        ClockInOut.checkedin = true;
+        $("#clockin").text("Clock Out");
     }
     else {
-        //alert($('#inorout').text());
-        $("#clockout").css("display" , "none");
-        $("#clockin").css("display" , "block");
+        ClockInOut.checkedin = false;
+        $("#clockin").text("Clock In");
     }
     $("#clockin").click(function() {
-        $("#clockin").hide();
-        $("#clockout").show();
-        ClockInOut.sendClockInOutMessage(true);
+        ClockInOut.sendClockInOutMessage(!ClockInOut.checkedin);
     })
-    $("#clockout").click(function() {
-        $("#clockout").hide();
-        $("#clockin").show();
-        ClockInOut.sendClockInOutMessage(false);
-    });
 };
+
 
 ClockInOut.sendClockInOutMessage = function(checkin){
     $.ajax({type: 'POST',
             url: "/employees/clockin/"+checkin,
             timeout: 5000,
-            success: function(data, requestStatus, xhrObj){},
-            error: function (xhrObj, textStatus, exception) {}})
+            success: function(data, requestStatus, xhrObj){ ClockInOut.toggle();
+            },
+            error: function (xhrObj, textStatus, exception) { alert("Failure occurred when sending message to server.")}})
 };
 
 ClockInOut.getInsAndOuts = function(){
@@ -47,6 +39,17 @@ ClockInOut.getInsAndOuts = function(){
         success: function(data, requestStatus, xhrObj){},
         error: function (xhrObj, textStatus, exception) {}})
 };
+
+ClockInOut.toggle = function(){
+   if (ClockInOut.checkedin) {
+        $("#clockin").text("Clock In");
+        ClockInOut.checkedin = false;
+    }
+    else{
+       $("#clockin").text("Clock Out");
+       ClockInOut.checkedin = true;
+    }
+}
 
 $(document).ready(ClockInOut.ready);
 $(document).on('page:load', ClockInOut.ready);

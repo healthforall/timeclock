@@ -20,7 +20,6 @@ Timeclock::Application.routes.draw do
 
   get  'fakelogin/:uid' => 'sessions#fakelogin'
 
-
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
