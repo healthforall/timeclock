@@ -20,5 +20,5 @@
         - day.in_and_outs.each do |inandout|
           %tr
             %td
-            %td= inandout.in.strftime("%H:%M:%S")
-            %td= inandout.out.strftime("%H:%M:%S") unless !inandout.out
+            %td= (inandout.in  - 5.hours).strftime("%H:%M:%S") #should be based off of client time
+            %td= (inandout.out - 5.hours).strftime("%H:%M:%S") unless !inandout.out

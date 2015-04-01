@@ -25,7 +25,7 @@ class Payperiod < ActiveRecord::Base
     end
 
     start_date = (date - ( date.day.day - days[0].day ))
-    end_date   = (date + ( days[1].day - date.day.day ))
+    end_date   = (date + ( days[1].day - date.day.day )) + 23.hours + 59.minutes
 
     Payperiod.create!( :start_date => start_date , :end_date => end_date)
   end
