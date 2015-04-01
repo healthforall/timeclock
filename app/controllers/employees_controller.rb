@@ -20,22 +20,40 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @employees = Employee.all
+    if @current_user.admin
+      @employees = Employee.all
+    else
+      flash[:notice] = "You are not an administrator!"
+      redirect_to  welcome_index_path
+    end
   end
 
   def show
     id = params[:id]
     @employee = Employee.find(id)
-    #Render app/views/movies/current.html.haml by def
+    if (@employee.id == @current_user.id || @current_user.admin)
+    else
+      flash[:notice] = "Underlings not allowed to view other employees!"
+      redirect_to  welcome_index_path
+    end
   end
 
   def new
-    @employee = Employee.new
-    #Will render 'new' template
+    if @current_user.admin
+      @employee = Employee.new
+    else
+      flash[:notice] = "You may not create a new employee!!!"
+      redirect_to  welcome_index_path
+    end
   end
 
   def edit
-    @employee = Employee.find(params[:id])
+    if @current_user.admin == true
+      @employee = Employee.find(params[:id])
+    else
+      flash[:notice] = "You are not an admin!"
+      redirect_to  welcome_index_path
+    end
   end
 
   def update
@@ -50,8 +68,12 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee = Employee.find(params[:id])
-    @employee.destroy
-    flash[:notice] = "Employee '#{@employee.name}' was deleted"
+    if @current_user.admin && @employee.uid != @current_user.uid
+      flash[:notice] = "Employee '#{@employee.name}' was deleted."
+      @employee.destroy
+    else
+      flash[:notice] = "You are not an administrator or you tried to delete yourself."
+    end
     redirect_to employees_path
   end
 

@@ -1,5 +1,7 @@
 Timeclock::Application.routes.draw do
 
+  get 'welcome/index'
+
   resources :employees do
     resources :timesheets do
       get 'current'

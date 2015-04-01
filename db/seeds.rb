@@ -20,7 +20,7 @@ payperiod = Payperiod.create!(payperiod)
 
 team = [   {:name =>'Zach'   , :email => "brownzach125@gmail.com" } ,    {:name =>'Elizabeth' , :email => "bookworm920@gmail.com"},
            {:name =>'Jon'    , :email => "jtgoen@gmail.com"}           ,    {:name =>'Michael'   , :email => "md.stephens9@gmail.com"},
-           {:name =>'Garret' , :email => "swamp.fox076@gmail.com"}  ,    {:name =>'Steven'    , :email => "steven@gmail.com"},]
+           {:name =>'Garret' , :email => "swamp.fox076@gmail.com"}  ,    {:name =>'Steven'    , :email => "redynsnevets@gmail.com", :admin => true},]
 
 admin = { :name =>'admin' , :email => 'admit20156@gmail.com' , :admin => true}
 admin = Employee.create!(admin)
