@@ -18,7 +18,7 @@ Timeclock::Application.routes.draw do
 
   post 'employees/clockin/:clockingin' => 'employees#clockin'
 
-
+  get  'fakelogin/:uid' => 'sessions#fakelogin'
 
 end
 

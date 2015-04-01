@@ -13,9 +13,17 @@ class Timesheet < ActiveRecord::Base
    }
 
 
+  def clockin?
+    iN = false
+    self.days.each do |day|
+      iN ||= day.clockin?
+    end
+    return iN
+  end
+
   def init
     #If a timesheet is created without a payperiod assume it is for the current period
-    self.payperiod_id ||= Payperiod.find_payperiod(Date.today()).id
+    self.payperiod ||= Payperiod.find_payperiod(Date.today())
   end
 
   def make_days
@@ -24,7 +32,7 @@ class Timesheet < ActiveRecord::Base
       return
     end
 
-    payperiod  = Payperiod.find_by_id(self.payperiod_id)
+    payperiod  = self.payperiod
     start_date = payperiod.start_date
     end_date   = payperiod.end_date
     dates = (start_date.to_date..end_date).map{ |date| date}

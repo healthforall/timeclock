@@ -1,11 +1,11 @@
 %h1 Welcome to #{@employee.name}'s time sheet!
 %h1 Id of the timesheet #{@timesheet.id}
 
-//%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"}
-%script{:src => "/public/javascripts/application.js"}
+%div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
+//TODO A lot of the rendering of the tiemsheet should be pushed into partials
+//%script{:src => "/public/javascripts/application.js"}
 %br
-%button{:id => "clockin"} Check In
-%button{:id => "clockout"} Check Out
+%button{:id => "clockin" , :style => "display: block" } Clock In
 %table#timesheet
   %thead
     %tr
@@ -20,5 +20,5 @@
         - day.in_and_outs.each do |inandout|
           %tr
             %td
-            %td= inandout.in.strftime("%H:%M:%S")
-            %td= inandout.out.strftime("%H:%M:%S") unless !inandout.out
+            %td= (inandout.in  - 5.hours).strftime("%H:%M:%S") #should be based off of client time
+            %td= (inandout.out - 5.hours).strftime("%H:%M:%S") unless !inandout.out

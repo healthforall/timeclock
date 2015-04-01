@@ -17,6 +17,12 @@ class Employee < ActiveRecord::Base
 
   has_many   :timesheets
 
+
+  def clockin?
+    #debugger
+    self.timesheets.current[0].clockin?
+  end
+
   def self.create_on_first_login(auth)
     @employee = Employee.find_by_email(auth['info']['email'])
     if (@employee)

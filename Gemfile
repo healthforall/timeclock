@@ -6,7 +6,10 @@ gem 'haml'
 group :develpment, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'cucumber-rails'
+  gem 'selenium-webdriver'
+  #gem  'capybara-webkit'
   gem 'database_cleaner'
+  gem 'factory_girl'
   gem 'factory_girl_rails'
 end
 
@@ -60,6 +63,16 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+end
+
+group :test do
+  #gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions
+  #gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'faker'            # generates names, email addresses, and other placeholders for factories
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
+  gem 'guard-rspec'      # watches your app and tests and runs specs for you automatically when it detects changes
 end
 
 

@@ -38,10 +38,9 @@ a{
 h1{
     color: maroon;
     font-size: 150%;
-    font-style:italic;
+    font-style: italic;
     display: block;
-    width:100%
-    border-bottom: 1px solid DarkSlateGrey;
+    width: 100%;
 
 }
 
@@ -51,7 +50,7 @@ h1.title{
     background-color: orange;
     color :white;
     border-bottom: 4px solid gold;
-    font-size:2em;
+    font-size: 2em;
     font-style: normal;
 }
 
@@ -59,8 +58,8 @@ table#employees {
     margin: 10px;
     border-collapse: collapse;
     width: 100%;
-    border-bottom: 2px solid black;
 }
+
 table#employees th {
     border: 2px solid white;
     font-weight: bold;
