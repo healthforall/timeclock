@@ -11,49 +11,38 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-emp = FactoryGirl.create(:employee , :uid =>1002, :email => "hibt@dom.com")
-
-#def employee
- # @employee = FactoryGirl.create(:employee)
- # @employee.save
- # return @employee
+#emp = FactoryGirl.create(:employee)
+#emp.save
+def employee
+ @employee = FactoryGirl.create(:employee)
+ @employee.save
+ return @employee
   #session['uid'] = @employee.uid
-#end
-
-Given /I am logged in/ do
-  visit "/fakelogin/#{emp.uid}"
 end
 
-Given /^(?:|I )am clocked (.+)$/ do |clockin_status|
-  if clockin_status == 'clockin'
-    emp.clock_in(true)
-  #else
-    #@employee.clock_in(false)
-  end
+Given /I am logged in/ do
+  employee
+  visit "/fakelogin/#{@employee.uid}"
+end
+
+Given /^(?:|I )am clocked in/ do
+    @employee.clock_in("true")
+    expect(@employee.clockin?).to eq(true)
+end
+
+Given /^(?:|I )am clocked out/ do
+
 end
 
 When /^(?:|I )navigate to my (.+)$/ do |page_name|
-  visit path_to(page_name, emp)
+  visit path_to(page_name, @employee)
 end
 
-Then /^(?:|I )should (\S*)\s*see the (\S+) (\S+)$/ do |should_see, element_name, element_type|
-  #print page.html
-  #page.find(".button" , match: :first)
-  #page.find(:css ,"#clockin").click()
-  #page.document.synchronize do
-  #print page.html
-  page.find_button("Clock In").click()
-  print page.html
-  page.find_button("Clock Out")
-  #page.find_button("Clock Out").click()
-  #end
-    #if (should_see != "not")
-      #print page.html
-      #click_on "Clock in"
-      #expect(page).to have_selector( "#" + "#{element_name}" , visible: true)
-    #else
-      #page.find(".#{element_type}s .#{element_type}[id='#{element_name}']", :visible => false)
-      #expect(page).to have_selector( "#" + "#{element_name}" , visible: false)
-    #end
-  #end
+Then(/^I should see the Clock In button$/) do
+  expect(page.find_button("Clock In").text).to eq("Clock In")
 end
+
+Then(/^I should see the Clock Out button$/) do
+  expect(page.find_button("Clock Out").text).to eq("Clock Out")
+end
+

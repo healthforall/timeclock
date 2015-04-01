@@ -14,6 +14,7 @@ class Day < ActiveRecord::Base
 
 
   def clockin?
+    #debugger
     if(self.in_and_outs.find_dangling_in[0])
       return true
     else
