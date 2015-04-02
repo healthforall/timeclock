@@ -1,11 +1,12 @@
-%h1 Welcome to #{@employee.name}'s time sheet!
-%h1 Id of the timesheet #{@timesheet.id}
+%h1 #{@employee.name}'s time sheet!
+%h1 For payperiod #{@timesheet.payperiod.start_date} to #{@timesheet.payperiod.end_date}
 
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
 //TODO A lot of the rendering of the tiemsheet should be pushed into partials
-//%script{:src => "/public/javascripts/application.js"}
+%h1 Total: #{@timesheet.totalHours}
 %br
-%button{:id => "clockin" , :style => "display: block" } Clock In
+  -if @employee.uid == session[:user_uid]
+    %button{:id => "clockin" , :style => "display: block" } Clock In
 %table#timesheet
   %thead
     %tr
@@ -20,5 +21,5 @@
         - day.in_and_outs.each do |inandout|
           %tr
             %td
-            %td= (inandout.in  - 5.hours).strftime("%H:%M:%S") #should be based off of client time
-            %td= (inandout.out - 5.hours).strftime("%H:%M:%S") unless !inandout.out
+            %td= (inandout.in  - 5.hours).strftime("%H:%M") #should be based off of client time
+            %td= (inandout.out - 5.hours).strftime("%H:%M") unless !inandout.out

@@ -7,7 +7,8 @@ class Payperiod < ActiveRecord::Base
   }
 
   def self.find_payperiod(date)
-    payperiod = Payperiod.where("start_date <= :date AND end_date >= :date" , date: date + 5.hours)[0]
+    date = Date.parse(date.to_s)
+    payperiod = Payperiod.where("start_date <= :date AND end_date >= :date" , date: date)[0]
     if (payperiod)
       return payperiod
     else
@@ -25,7 +26,7 @@ class Payperiod < ActiveRecord::Base
     end
 
     start_date = (date - ( date.day.day - days[0].day ))
-    end_date   = (date + ( days[1].day - date.day.day )) + 23.hours + 59.minutes
+    end_date   = (date + ( days[1].day - date.day.day ))
 
     Payperiod.create!( :start_date => start_date , :end_date => end_date)
   end

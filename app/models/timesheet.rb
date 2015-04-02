@@ -5,13 +5,26 @@ class Timesheet < ActiveRecord::Base
 
   after_initialize :init
   after_create    :make_days
-
   scope :current, lambda {
       date = Date.today()
       payperiod = Payperiod.find_payperiod(date)
       timesheets = Timesheet.where("payperiod_id = :id" , :id => payperiod.id)
    }
 
+
+  def totalHours
+    value = 0.0
+    days.each do |day|
+      day.in_and_outs.each do |shift|
+        if (shift.in and shift.out)
+          diff = Time.diff(shift.out , shift.in)
+          value += diff[:hour]
+          value += (diff[:minute] / 60.0)
+        end
+      end
+    end
+    return value
+  end
 
   def clockin?
     iN = false

@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     if ( user )
       session[:user_uid] = user.uid
       if user.admin
-        redirect_to  employee_path(user)
+        redirect_to  employees_path()
       else
-        redirect_to  welcome_index_path(user)
+        redirect_to  "/employees/#{user.id}/timesheets/1/current"
       end
     else
       flash[:notice] =  auth['info']['email'] + " is not registered to an employee "

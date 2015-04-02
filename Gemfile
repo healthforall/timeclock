@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # use Haml for templates
 gem 'haml'
 
+#To make time calculaitons easier
+gem 'time_diff'
+
 group :develpment, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'cucumber-rails'

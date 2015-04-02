@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
       @employees = Employee.all
     else
       flash[:notice] = "You are not an administrator!"
-      redirect_to  welcome_index_path
+      redirect_to "/employees/#{@current_user.id}/timesheets/1/current"
     end
   end
 
@@ -33,8 +33,8 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(id)
     if (@employee.id == @current_user.id || @current_user.admin)
     else
-      flash[:notice] = "Underlings not allowed to view other employees!"
-      redirect_to  welcome_index_path
+      flash[:notice] = "You do not have permission to view this page"
+      redirect_to  "/employees/#{@employee.id}/timesheets/1/current"
     end
   end
 
@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
       @employee = Employee.new
     else
       flash[:notice] = "You may not create a new employee!!!"
-      redirect_to  welcome_index_path
+      redirect_to  "/employees/#{@current_user.id}/timesheets/1/current"
     end
   end
 
@@ -52,7 +52,7 @@ class EmployeesController < ApplicationController
       @employee = Employee.find(params[:id])
     else
       flash[:notice] = "You are not an admin!"
-      redirect_to  welcome_index_path
+      redirect_to  "/employees/#{@current_user.id}/timesheets/1/current"
     end
   end
 

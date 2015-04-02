@@ -27,7 +27,9 @@ ClockInOut.sendClockInOutMessage = function(checkin){
     $.ajax({type: 'POST',
             url: "/employees/clockin/"+checkin,
             timeout: 5000,
-            success: function(data, requestStatus, xhrObj){ ClockInOut.toggle();
+            success: function(data, requestStatus, xhrObj){
+                location.reload(); //TODO THIS IS ENIFICENT
+                //ClockInOut.toggle();
             },
             error: function (xhrObj, textStatus, exception) { alert("Failure occurred when sending message to server.")}})
 };

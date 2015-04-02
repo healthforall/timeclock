@@ -1,6 +1,6 @@
 Timeclock::Application.routes.draw do
 
-  get 'welcome/index'
+  #get 'welcome/index'
 
   resources :employees do
     resources :timesheets do
@@ -8,7 +8,7 @@ Timeclock::Application.routes.draw do
     end
   end
 
-  root :to => redirect('/employees')
+  root :to => redirect('/login')
 
   get 'login' =>'sessions#new'
   get 'auth/:provider/callback' => 'sessions#create'
@@ -20,7 +20,7 @@ Timeclock::Application.routes.draw do
 
   post 'employees/clockin/:clockingin' => 'employees#clockin'
 
-  get  'fakelogin/:uid' => 'sessions#fakelogin'
+  get  'fakelogin/:uid' => 'sessions#fakelogin' #this is for capybara testing purposes and should be deleted upon deployment
 
 end
 

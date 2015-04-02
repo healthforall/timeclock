@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320211157) do
+ActiveRecord::Schema.define(version: 20150402034154) do
 
   create_table "days", force: :cascade do |t|
     t.datetime "day"
@@ -34,8 +34,15 @@ ActiveRecord::Schema.define(version: 20150320211157) do
   end
 
   create_table "payperiods", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "supervisors", force: :cascade do |t|
