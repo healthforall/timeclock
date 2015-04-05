@@ -1,6 +1,7 @@
 require 'rspec'
+require 'spec_helper'
 
-describe 'EmployeeController' do
+describe EmployeesController do
 
   it 'should do something' do
 

@@ -71,6 +71,7 @@ end
 group :test do
   #gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions
+  gem 'cucumber-rails', :require => false
   #gem 'database_cleaner' # to clear Cucumber's test database between runs
   gem 'faker'            # generates names, email addresses, and other placeholders for factories
   gem 'capybara'         # lets Cucumber pretend to be a web browser

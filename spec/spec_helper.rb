@@ -23,6 +23,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 
 require 'factory_girl_rails'
+require 'capybara/rspec'
 
 RSpec.configure do |config|
 
