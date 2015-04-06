@@ -1,13 +1,15 @@
 FactoryGirl.define do
+# creates a pay period that starts up to 8 days before today and ends up to 8 days after today
 
-  #This needs to be improved
-  factory :payperiod do
-    start_date do
-      DateTime.parse("2015-3-1 10:00:00")
-    end
+  factory :payperiod do |f|
+    f.start_date {Faker::Date.backward(8)}
+    f.end_date {Faker::Date.forward(8)}
+    #start_date do
+     # DateTime.parse("2015-3-1 10:00:00")
+    #end
 
-    end_date do
-      DateTime.parse("2015-3-16 10:00:00")
-    end
+    #end_date do
+     # DateTime.parse("2015-3-16 10:00:00")
+    #end
   end
 end
