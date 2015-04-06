@@ -8,10 +8,8 @@ gem 'time_diff'
 
 group :develpment, :test do
   gem "rspec-rails", ">= 2.0.1"
-  gem 'cucumber-rails'
   gem 'selenium-webdriver'
   #gem  'capybara-webkit'
-  gem 'database_cleaner'
   gem 'factory_girl'
   gem 'factory_girl_rails'
 end
@@ -69,9 +67,9 @@ group :development, :test do
 end
 
 group :test do
-  #gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions
-  #gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
   gem 'faker'            # generates names, email addresses, and other placeholders for factories
   gem 'capybara'         # lets Cucumber pretend to be a web browser
   gem 'launchy'          # a useful debugging aid for user stories

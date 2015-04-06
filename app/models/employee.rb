@@ -32,8 +32,6 @@ class Employee < ActiveRecord::Base
     else
       return nil
     end
-
-
   end
 
   def clock_in(clockin)

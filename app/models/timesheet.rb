@@ -13,13 +13,13 @@ class Timesheet < ActiveRecord::Base
 
 
   def totalHours
-    value = 0.0
+    value = 0.00
     days.each do |day|
       day.in_and_outs.each do |shift|
         if (shift.in and shift.out)
           diff = Time.diff(shift.out , shift.in)
           value += diff[:hour]
-          value += (diff[:minute] / 60.0)
+          value += (diff[:minute] / 60.00)
         end
       end
     end
