@@ -12,7 +12,7 @@ Feature: Clock In and Out
 
   Scenario: Clock Out
     Given I am logged in
-    And I am clocked out
+    And I am clocked in
     When I navigate to my current timesheet
     And I click the Clock Out button
     Then I should be clocked out
