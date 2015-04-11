@@ -23,7 +23,7 @@ class Timesheet < ActiveRecord::Base
         end
       end
     end
-    return value
+    return value.round(2)
   end
 
   def clockin?

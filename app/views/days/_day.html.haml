@@ -2,10 +2,10 @@
 
 -#If the day is empty
 - if (day.in_and_outs.length == 0)
-  %tr
+  %tr{ :class => 'last_row' }
     %td= day.day.strftime("%a:%m:%d")
     %td
-    %td  +
+    %td +
 - else
   - day.in_and_outs.each_with_index do |inandout , i |
     %tr
