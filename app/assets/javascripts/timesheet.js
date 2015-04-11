@@ -12,6 +12,8 @@ TimeSheet.ready = function(){
 TimeSheet.activateLastRow = function(){
     console.log(this);
     $(this).css('background-color' , 'blue');
+    $("div.table_div").attr('contenteditable' ,'true');
+    console.log($("div.table_div"))
 
 };
 

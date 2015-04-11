@@ -23,3 +23,8 @@ table#timesheet tr.last_row{
   padding: 4px;
   font-size: 10pt;
 }
+
+table#timesheet div.table_div {
+  -contenteditable: true;
+}
+
