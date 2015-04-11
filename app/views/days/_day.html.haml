@@ -1,0 +1,19 @@
+-#A single day in a timsheet_table
+
+-#If the day is empty
+- if (day.in_and_outs.length == 0)
+  %tr
+    %td= day.day.strftime("%a:%m:%d")
+    %td
+    %td  +
+- else
+  - day.in_and_outs.each_with_index do |inandout , i |
+    %tr
+      %td= day.day.strftime("%a:%m:%d") if i == 0
+      %td= (inandout.in  - 5.hours).strftime("%H:%M") #should be based off of client time
+      %td= (inandout.out - 5.hours).strftime("%H:%M") unless !inandout.out
+
+  %tr{ :class => 'last_row'}
+    %td
+    %td
+    %td +

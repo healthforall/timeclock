@@ -5,7 +5,7 @@
 table#timesheet {
   margin: 10px;
   border-collapse: collapse;
-  width: 100%;
+  width: 300px;
   border-bottom: 2px solid black;
 }
 table#timesheet th {
@@ -15,5 +15,10 @@ table#timesheet th {
 }
 table#timesheet th, table#timesheet td {
   padding: 4px;
-  text-align: left;
+  text-align: center;
+  border:1px solid #cddcd9;
+}
+
+table#timesheet tr.last_row{
+  font-size: 5pt;
 }

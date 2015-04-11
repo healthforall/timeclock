@@ -1,0 +1,10 @@
+-#The represenation of a timesheet as a table
+
+%table#timesheet
+  %thead
+    %tr
+      %th Date
+      %th In
+      %th Out
+  %tbody
+    = render :partial => '/days/day' , :collection=>@timesheet.days
