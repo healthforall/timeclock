@@ -7,4 +7,4 @@
   -if @employee.uid == session[:user_uid]
     %button{:id => "clockin" , :style => "display: block" } Clock In
 = render :partial => "timesheet_table"
-
+%button{:id => "submit", :style => "display: none"} Submit Changes

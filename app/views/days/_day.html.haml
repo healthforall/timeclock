@@ -3,26 +3,18 @@
 -#If the day is empty
 - if (day.in_and_outs.length == 0)
   %tr.last_row
+    %td= day.day.strftime("%a:%m:%d")
     %td
-      %div.table_div= day.day.strftime("%a:%m:%d")
     %td
-      %div
-    %td
-      %div
+
 - else
   - day.in_and_outs.each_with_index do |inandout , i |
     %tr
-      %td
-        %div{ :class => 'table_div'}= day.day.strftime("%a:%m:%d") if i == 0
-      %td
-        %div{ :class => 'table_div'}= (inandout.in  - 5.hours).strftime("%H:%M") #should be based off of client time
-      %td
-        %div{ :class => 'table_div'}= (inandout.out - 5.hours).strftime("%H:%M") unless !inandout.out
+      %td= day.day.strftime("%a:%m:%d") if i == 0
+      %td= (inandout.in  - 5.hours).strftime("%H:%M") #should be based off of client time
+      %td= (inandout.out - 5.hours).strftime("%H:%M") unless !inandout.out
 
   %tr.last_row
     %td
-      %div.table_div
     %td
-      %div.table_div
-    %td
-      %div.table_div +
+    %td +
