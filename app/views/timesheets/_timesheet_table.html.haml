@@ -1,10 +1,13 @@
 -#The represenation of a timesheet as a table
-
-%table#timesheet
+- count = start
+- days.each do |day|
+  - day.num = count
+  - count = count + 1
+%table.timesheet
   %thead
     %tr
       %th Date
       %th In
       %th Out
   %tbody
-    = render :partial => '/days/day' , :collection=>@timesheet.days
+    = render :partial => '/days/day'  ,:collection=>days

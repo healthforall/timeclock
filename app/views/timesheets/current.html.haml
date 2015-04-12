@@ -6,5 +6,9 @@
 %br
   -if @employee.uid == session[:user_uid]
     %button{:id => "clockin" , :style => "display: block" } Clock In
-= render :partial => "timesheet_table"
+%div{:style=>"width:500%"}
+  %div.col
+    = render :partial => "timesheet_table", :locals => {:days => @timesheet.days.each_slice( @timesheet.days.length/2).to_a[0] , :start => 1 }
+  %div.col.right
+    = render :partial => "timesheet_table", :locals => {:days => @timesheet.days.each_slice( @timesheet.days.length/2).to_a[1] ,:start => (@timesheet.days.length/2)+1}
 %button{:id => "submit", :style => "display: none"} Submit Changes
