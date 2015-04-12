@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'byebug'
 # use Haml for templates
 gem 'haml'
 #To make time calculaitons easier
@@ -32,7 +33,6 @@ group :develpment, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

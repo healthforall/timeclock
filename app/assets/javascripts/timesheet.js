@@ -16,6 +16,7 @@ TimeSheet.check_charcount = function( elem, e )
 };
 
 TimeSheet.ready = function(){
+    $("#submit").click(TimeSheet.sendChanges);
     $("table.timesheet tr").dblclick(TimeSheet.doubleClickRow);
     $("td").attr('contenteditable' ,'false');
     $("table.timesheet").find("tbody tr").click(function(e){
@@ -86,6 +87,14 @@ TimeSheet.createNewRow = function(item){
     var nums = [];
     if(prevrow){
         nums = $(prevrow).attr('class').match(/\d+/g);
+        /* This might be the direction to go in to prevent more than one empty row
+        cols = $(prevrow).find("td");
+        if( $(cols[1]).text() =='' && $(cols[2]).text() == '')
+        {
+
+        }
+
+        */
         if( nums[0] != day)
         {
             nums[0] = day;
@@ -110,13 +119,49 @@ TimeSheet.doubleClickRow = function(){
     if( $(this).attr("class").indexOf("last_row") > -1)
         TimeSheet.createNewRow(this);
 
-
 };
 
 TimeSheet.changed = function(change ,e ){
-    if(e != 0 && e !=1 && e != 2 && change)
-     $("#submit").css('display' , 'block')
+    if(e != 0 && e !=1 && e != 2 && change) {
+        $("#submit").css('display', 'block');
+    }
+
 };
+
+TimeSheet.sendChanges = function(){
+    var entries = $("tbody tr:not(tr.last_row)");
+    var numdays    = $("tbody tr.last_row").length;
+    console.log(entries);
+    var days = {};
+    var timesheet = {};
+    for ( var i =0; i < numdays; i ++)
+    {
+     days[i] = [];
+    }
+
+    for ( var i =0; i < entries.length; i++)
+    {
+        var entry = $(entries[i]);
+        var nums  = $(entry).attr("class").match(/\d+/g);;
+        var day   = nums[0];
+        var data  = $(entry).find("td");
+        var inandout = { "in" : $(data).text() , "out" : $(data).text()}
+        if( inandout['in'] || inandout['out'])
+            days[day].push(inandout)
+    }
+    timesheet['days'] = days;
+    $.ajax({
+        type: 'POST',
+        data: timesheet,
+        dataType: 'json',
+        url: document.location.href + "/update",
+        timeout: 5000,
+        success: function(data, requestStatus, xhrObj){
+            //location.reload(); //TODO THIS IS ENIFICENT
+        },
+        error: function (xhrObj, textStatus, exception) { alert("Failure occurred when sending message to server.")}})
+};
+
 
 $(document).ready(TimeSheet.ready);
 $(document).on('page:load', TimeSheet.ready);

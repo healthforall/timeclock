@@ -5,6 +5,7 @@ Timeclock::Application.routes.draw do
   resources :employees do
     resources :timesheets do
       get 'current'
+      post 'update'
     end
   end
 
