@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String"><%= @employee.name %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Pay Period Start</Data></Cell>
+        <Cell><Data ss:Type="String"><%= @timesheet.payperiod.start_date %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Pay Period End</Data></Cell>
+        <Cell><Data ss:Type="String"><%= @timesheet.payperiod.end_date %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">In</Data></Cell>
+        <Cell><Data ss:Type="String">Out</Data></Cell>
+      </Row>
+      <% @timesheet.days.each do |day| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= day.day.strftime("%a:%m:%d") %></Data></Cell>
+      <% if not day.in_and_outs.empty? %>
+      <% day.in_and_outs.each_with_index do |inandout, index| %>
+      <% if index == 0 %>
+        <Cell><Data ss:Type="String"><%= (inandout.in - 5.hours).strftime("%H:%M") %></Data></Cell>
+        <% if inandout.out %>
+        <Cell><Data ss:Type="String"><%= (inandout.out - 5.hours).strftime("%H:%M") %></Data></Cell>
+        <% end %>
+      </Row>
+      <% else %>
+      <Row>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"><%= (inandout.in - 5.hours).strftime("%H:%M") %></Data></Cell>
+        <% if inandout.out %>
+        <Cell><Data ss:Type="String"><%= (inandout.out - 5.hours).strftime("%H:%M") %></Data></Cell>
+        <% end %>
+      </Row>
+      <% end %>
+      <% end %>
+      <% else %>
+      </Row>
+      <% end %>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

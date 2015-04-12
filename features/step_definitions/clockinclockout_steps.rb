@@ -34,6 +34,10 @@ Given(/^(?:|I )am clocked out/) do
 
 end
 
+Given /I am on (.+)$/ do |page_name|
+  visit path_to(page_name, @employee)
+end
+
 When(/^(?:|I )navigate to my (.+)$/) do |page_name|
   visit path_to(page_name, @employee)
 end

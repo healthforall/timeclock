@@ -10,5 +10,9 @@ class TimesheetsController < ApplicationController
     if(!@timesheet)
       @timesheet = @employee.timesheets.create!()
     end
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 end

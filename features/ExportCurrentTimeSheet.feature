@@ -6,5 +6,6 @@ Feature: ExportCurrentTimeSheet
 
   Scenario: Export as Excel Document
     Given I am logged in
-    When I click the export button
-    Then I should get a download with the filename "timesheet.xls"
+    Given I am on current timesheet
+    When I click the Export Timesheet link
+    Then I should get a download with the filename "current.xls"
