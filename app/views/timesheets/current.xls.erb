@@ -4,42 +4,59 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Styles>
+    <Style ss:ID="Dates">
+      <Interior ss:Color="#4BACC6" ss:Pattern="Solid"/>
+    </Style>
+    <Style ss:ID="Headers">
+      <Interior ss:Color="#C0504D" ss:Pattern="Solid"/>
+    </Style>
+    <Style ss:ID="Info">
+      <Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+    </Style>
+  </Styles>
   <Worksheet ss:Name="Sheet1">
     <Table>
+      <ss:Column ss:width="100"/>
+      <ss:Column ss:width="100"/>
+      <ss:Column ss:width="100"/>
       <Row>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell ss:StyleID="Info"><Data ss:Type="String">Name</Data></Cell>
         <Cell><Data ss:Type="String"><%= @employee.name %></Data></Cell>
       </Row>
       <Row>
-        <Cell><Data ss:Type="String">Pay Period Start</Data></Cell>
+        <Cell ss:StyleID="Info"><Data ss:Type="String">Pay Period Start</Data></Cell>
         <Cell><Data ss:Type="String"><%= @timesheet.payperiod.start_date %></Data></Cell>
       </Row>
       <Row>
-        <Cell><Data ss:Type="String">Pay Period End</Data></Cell>
+        <Cell ss:StyleID="Info"><Data ss:Type="String">Pay Period End</Data></Cell>
         <Cell><Data ss:Type="String"><%= @timesheet.payperiod.end_date %></Data></Cell>
       </Row>
       <Row>
-        <Cell><Data ss:Type="String">Date</Data></Cell>
-        <Cell><Data ss:Type="String">In</Data></Cell>
-        <Cell><Data ss:Type="String">Out</Data></Cell>
+        <Cell ss:StyleID="Headers"><Data ss:Type="String">Date</Data></Cell>
+        <Cell ss:StyleID="Headers"><Data ss:Type="String">In</Data></Cell>
+        <Cell ss:StyleID="Headers"><Data ss:Type="String">Out</Data></Cell>
+        <Cell ss:StyleID="Headers"><Data ss:Type="String">Hours</Data></Cell>
       </Row>
       <% @timesheet.days.each do |day| %>
       <Row>
-        <Cell><Data ss:Type="String"><%= day.day.strftime("%a:%m:%d") %></Data></Cell>
+        <Cell ss:StyleID="Dates"><Data ss:Type="String"><%= day.day.strftime("%a:%m:%d") %></Data></Cell>
       <% if not day.in_and_outs.empty? %>
       <% day.in_and_outs.each_with_index do |inandout, index| %>
       <% if index == 0 %>
         <Cell><Data ss:Type="String"><%= (inandout.in - 5.hours).strftime("%H:%M") %></Data></Cell>
         <% if inandout.out %>
         <Cell><Data ss:Type="String"><%= (inandout.out - 5.hours).strftime("%H:%M") %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= ((inandout.out.to_time - inandout.in.to_time)/1.hour).round(2) %></Data></Cell>
         <% end %>
       </Row>
       <% else %>
       <Row>
-        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell ss:StyleID="Dates"><Data ss:Type="String"></Data></Cell>
         <Cell><Data ss:Type="String"><%= (inandout.in - 5.hours).strftime("%H:%M") %></Data></Cell>
         <% if inandout.out %>
         <Cell><Data ss:Type="String"><%= (inandout.out - 5.hours).strftime("%H:%M") %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= ((inandout.out.to_time - inandout.in.to_time)/1.hour).round(2) %></Data></Cell>
         <% end %>
       </Row>
       <% end %>
