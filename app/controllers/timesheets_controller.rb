@@ -1,10 +1,6 @@
 class TimesheetsController < ApplicationController
   def show
-    @employee  = Employee.find_by_id(params[:employee_id])
-    @timesheet = Timesheet.find_by_id(params[:id])
-  end
-
-  def current
+    @current = true;
     @employee  = Employee.find_by_id(params[:employee_id])
     @timesheet = @employee.timesheets.current[0]
     if(!@timesheet)
@@ -15,4 +11,20 @@ class TimesheetsController < ApplicationController
       format.xls
     end
   end
+
+  def current
+    @employee  = Employee.find_by_id(params[:employee_id])
+    @timesheet = @employee.timesheets.current[0]
+    if(!@timesheet)
+      @timesheet = @employee.timesheets.create!()
+    end
+    redirect_to "/employees/#{@employee.id}/timesheets/#{@timesheet.id}"
+  end
+
+  def update
+    render(:partial => 'editresponse') if request.xhr?
+    print params
+  end
+
 end
+

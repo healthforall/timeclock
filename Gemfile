@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "omniauth-google-oauth2"
 
 
-group :develpment, :test do
+group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'selenium-webdriver'
   gem 'factory_girl'
