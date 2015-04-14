@@ -8,7 +8,7 @@ class Timesheet < ActiveRecord::Base
   scope :current, lambda {
       date = Date.today()
       payperiod = Payperiod.find_payperiod(date)
-      timesheets = Timesheet.where("payperiod_id = :id" , :id => payperiod.id)
+      timesheets = Timesheet.where("payperiod_id = :id" , :id => payperiod.id).includes(:days)
    }
 
 
@@ -23,7 +23,7 @@ class Timesheet < ActiveRecord::Base
         end
       end
     end
-    return value
+    return value.round(2)
   end
 
   def clockin?

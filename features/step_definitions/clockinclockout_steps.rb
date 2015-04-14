@@ -11,13 +11,10 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-#emp = FactoryGirl.create(:employee)
-#emp.save
 def employee
  @employee = FactoryGirl.create(:employee)
  @employee.save
  return @employee
-  #session['uid'] = @employee.uid
 end
 
 Given(/I am logged in/) do

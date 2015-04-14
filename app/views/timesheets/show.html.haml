@@ -1,0 +1,16 @@
+%h1 #{@employee.name}'s time sheet!
+%h1 For payperiod #{@timesheet.payperiod.start_date} to #{@timesheet.payperiod.end_date}
+
+%div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
+%h1 Total: #{@timesheet.totalHours}
+%br
+  -if @employee.uid == session[:user_uid]
+    %button{:id => "clockin" , :style => "display: inline" } Clock In
+    %div{:style=> "display: inline; position: absolute; left: 360px"}
+      = link_to 'Export Timesheet', employee_timesheet_current_path(@employee, timesheet_id: 1, format: "xls"), :id => "export"
+%div{:style=>"width:500%"}
+  %div.col
+    = render :partial => "timesheet_table", :locals => {:days => @timesheet.days.each_slice( @timesheet.days.length/2).to_a[0] , :start => 1 }
+  %div.col.right
+    = render :partial => "timesheet_table", :locals => {:days => @timesheet.days.each_slice( @timesheet.days.length/2).to_a[1] ,:start => (@timesheet.days.length/2)+1}
+%button{:id => "submit", :style => "display: block"} Submit Changes

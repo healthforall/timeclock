@@ -2,18 +2,41 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table#timesheet {
+table.timesheet {
   margin: 10px;
   border-collapse: collapse;
-  width: 100%;
   border-bottom: 2px solid black;
+  resize: none;
 }
-table#timesheet th {
+table.timesheet th {
   border: 2px solid white;
   font-weight: bold;
   background-color: wheat;
 }
-table#timesheet th, table#timesheet td {
+table.timesheet th, table.timesheet td {
   padding: 4px;
-  text-align: left;
+  text-align: center;
+  border:1px solid #cddcd9;
+  resize: none;
+  max-width: 100px;
+
 }
+
+table.timesheet tr.last_row{
+  padding: 4px;
+  font-size: 10pt;
+}
+
+
+div.col{
+  display: inline;
+  float: left;
+  width: 20%;
+}
+
+
+div.col.right{
+  position: absolute;
+  left: 300px;
+}
+

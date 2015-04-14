@@ -2,6 +2,7 @@ class Day < ActiveRecord::Base
   belongs_to :timesheet
   has_many   :in_and_outs
 
+  attr_accessor :num
   scope      :current , lambda {
     date = DateTime.parse(Date.today().to_s)
     Day.where("day = :date" , date: date)
