@@ -10,4 +10,8 @@ FactoryGirl.define do
       create(:timesheet, employee: employee)
     end
   end
+
+  factory :invalid_employee, parent: :employee do |f|
+    f.name nil
+  end
 end

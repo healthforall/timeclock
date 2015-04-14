@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
 
 
+  # POST create
   def create
     @employee = Employee.new(employee_params) ##Invoke user_params methods
     if @employee.save
@@ -9,7 +10,6 @@ class EmployeesController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def clockin
@@ -19,6 +19,7 @@ class EmployeesController < ApplicationController
     render(:partial => 'clockinout') if request.xhr?
   end
 
+  # GET #index
   def index
     if @current_user.admin
       @employees = Employee.all
@@ -28,6 +29,7 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # GET #show
   def show
     id = params[:id]
     @employee = Employee.find(id)
@@ -38,6 +40,7 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # GET #new
   def new
     if @current_user.admin
       @employee = Employee.new
@@ -47,6 +50,7 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # GET #edit
   def edit
     if @current_user.admin == true
       @employee = Employee.find(params[:id])
