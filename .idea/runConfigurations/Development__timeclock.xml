@@ -7,7 +7,10 @@
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-    <envs />
+    <envs>
+      <env name="CLIENT_ID" value="51200442618-ekft15s176iipio9b2jhdvvo09d71eal.apps.googleusercontent.com" />
+      <env name="CLIENT_SECRET" value="klZss5vxUepEsll9wWQX9k80" />
+    </envs>
     <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
     <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
