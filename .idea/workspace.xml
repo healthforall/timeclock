@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2fd89d9-ceac-4482-9e11-65e8a245d34c" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/timesheets/current.xls.erb" afterPath="$PROJECT_DIR$/app/views/timesheets/show.xls.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Development__timeclock.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Development__timeclock.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/timeclock.iml" afterPath="$PROJECT_DIR$/.idea/timeclock.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/timesheets_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/timesheets_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="timeclock.iws" />
@@ -600,7 +594,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427953005667</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed export Timesheet&#10;">
+      <created>1429051983397</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1429051983397</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -688,7 +688,8 @@
     </option>
     <MESSAGE value="Adding Factory Girl, she needs to do more but its a start" />
     <MESSAGE value="Get off the master branch.&#10;And check heroku for errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get off the master branch.&#10;And check heroku for errors" />
+    <MESSAGE value="Fixed export Timesheet&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed export Timesheet&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
