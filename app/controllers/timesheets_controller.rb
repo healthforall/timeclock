@@ -19,8 +19,8 @@ class TimesheetsController < ApplicationController
       @timesheet = @employee.timesheets.create!()
     end
     respond_to do |format|
-      format.html { redirect_to "/employees/#{@employee.id}/timesheets/#{@timesheet.id}?format=html"}
-      format.xls { redirect_to "/employees/#{@employee.id}/timesheets/#{@timesheet.id}" + ".xls?format=xls" }
+      format.html { redirect_to  "/employees/#{@employee.id}/timesheets/#{@timesheet.id}?format=html"}
+      format.xls  { redirect_to  "/employees/#{@employee.id}/timesheets/#{@timesheet.id}" + ".xls?format=xls" }
     end
   end
 
