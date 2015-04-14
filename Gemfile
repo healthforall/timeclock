@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # use Haml for templates
 gem 'haml'
 
-#use xls for exporting timehseets as excell
-gem 'xls'
-
 #To make time calculaitons easier
 gem 'time_diff'
 
