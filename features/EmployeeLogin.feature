@@ -5,8 +5,17 @@ Feature: Employee Login
   So that I can use the site.
 
   Scenario: Successful Login
-    Given I am on the login page
+    Given CLIENT_ID and CLIENT_SECRET are set
+    And I am currently on the login page
     When I follow "Log in with your gmail account"
     And I enter my email and password
     And I follow "Sign in"
     Then I should be on my current timesheet page
+	
+  Scenario: Failed Login
+    Given CLIENT_ID and CLIENT_SECRET are set
+    And I am currently on the login page
+    When I follow "Log in with your gmail account"
+    And I enter a wrong email and password
+    And I follow "Sign in"
+    Then I should be on the login page
