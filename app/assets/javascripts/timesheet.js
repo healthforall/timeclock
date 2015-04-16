@@ -131,7 +131,6 @@ TimeSheet.changed = function(change ,e ){
 TimeSheet.sendChanges = function(){
     var entries = $("tbody tr:not(tr.last_row)");
     var numdays    = $("tbody tr.last_row").length;
-    console.log(entries);
     var days = {};
     var timesheet = {};
     for ( var i =0; i < numdays; i ++)
@@ -152,14 +151,18 @@ TimeSheet.sendChanges = function(){
     timesheet['days'] = days;
     $.ajax({
         type: 'POST',
-        data: timesheet,
+        //data: JSON.stringify(timesheet),
+        data: "{ \"hi\" : \"hi\"}",
+        contentType: "application/json; charset=utf-8",
         dataType: 'json',
+        //beforeSend: function (xhr) {
+        //    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        //},
         url: document.location.href + "/update",
         timeout: 5000,
-        success: function(data, requestStatus, xhrObj){
-            //location.reload(); //TODO THIS IS ENIFICENT
-        },
-        error: function (xhrObj, textStatus, exception) { alert("Failure occurred when sending message to server.")}})
+        success: function(data, requestStatus, xhrObj)  { console.log(data);  } ,
+        error: function (xhrObj, textStatus, exception) { console.log(textStatus); }
+        });
 };
 
 

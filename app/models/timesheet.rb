@@ -48,7 +48,7 @@ class Timesheet < ActiveRecord::Base
     payperiod  = self.payperiod
     start_date = payperiod.start_date
     end_date   = payperiod.end_date
-    dates = (start_date.to_date..end_date).map{ |date| date}
+    dates = (start_date.to_date..(end_date+ 1.day)).map{ |date| date}
     dates.each do |day|
       self.days.create!(day: day)
     end

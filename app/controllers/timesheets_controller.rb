@@ -1,3 +1,5 @@
+require 'json'
+
 class TimesheetsController < ApplicationController
   def show
     @current = true;
@@ -25,8 +27,16 @@ class TimesheetsController < ApplicationController
   end
 
   def update
-    render(:partial => 'editresponse') if request.xhr?
-    print params
+    hash = ActiveSupport::JSON.decode(request.body.read) #WTF I don't know why I had to resort to this
+
+    #print params
+    #This currently takes the timesheet at face value
+    #print params[:days]
+    debugger
+    @timesheet = Timesheet.all()[0]
+    #print JSON.parse()
+    render json: @timesheet
+    #end
   end
 
 end

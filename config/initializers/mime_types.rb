@@ -4,3 +4,6 @@
 # Mime::Type.register "text/richtext", :rtf
 
 Mime::Type.register "applications/xls", :xls
+
+Mime::Type.register "applications/json", :json
+

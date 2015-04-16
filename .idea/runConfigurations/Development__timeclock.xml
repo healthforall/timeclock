@@ -9,7 +9,7 @@
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <envs>
       <env name="CLIENT_ID" value="51200442618-ekft15s176iipio9b2jhdvvo09d71eal.apps.googleusercontent.com" />
-      <env name="CLIENT_SECRET" value="klZss5vxUepEsll9wWQX9k80" />
+      <env name="CLIENT_SECRET" value="gxeQZuKh4AKEzC8Ajkff5krT" />
     </envs>
     <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
