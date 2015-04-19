@@ -4,12 +4,11 @@ class Day < ActiveRecord::Base
 
   attr_accessor :num
   scope      :current , lambda {
-    date = DateTime.parse(Date.today().to_s)
+    date = Date.today()
     Day.where("day = :date" , date: date)
   }
 
   scope      :find_by_date , lambda  { |date|
-    date = DateTime.parse(Date.parse(date.to_s).to_s)
     Day.where("day = :date" , date: date)
   }
 
@@ -20,6 +19,10 @@ class Day < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def print
+    self.day.strftime("%a/%m/%d")
   end
 
 end

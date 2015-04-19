@@ -8,6 +8,19 @@ class TimesheetsController < ApplicationController
     if(!@timesheet)
       @timesheet = @employee.timesheets.create!()
     end
+
+    payperiod = @timesheet.payperiod
+    @start_date = payperiod.start_date
+    @end_date   = payperiod.end_date
+    halves = @timesheet.halves
+    @first_week  = halves[0]
+    @second_week = halves[1]
+
+    @name = @employee.name
+    @uid  = @employee.uid
+
+    @total_hours = @timesheet.totalHours
+
     respond_to do |format|
       format.html
       format.xls

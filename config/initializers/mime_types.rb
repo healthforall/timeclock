@@ -5,5 +5,5 @@
 
 Mime::Type.register "applications/xls", :xls
 
-Mime::Type.register "applications/json", :json
+#Mime::Type.register "applications/json", :json
 
