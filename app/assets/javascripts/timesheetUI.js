@@ -7,7 +7,7 @@ TimeSheet = function(){
 
 TimeSheet.check_charcount = function( elem, e )
 {
-    if(e.which != 8 && $(elem).text().length > 4)
+    if( !TimeSheet.acceptableKeys(e.which) && $(elem).text().length > 7)
     {
         e.preventDefault();
         return false;
@@ -15,8 +15,23 @@ TimeSheet.check_charcount = function( elem, e )
     return true;
 };
 
+TimeSheet.acceptableKeys = function(e){
+   if( e == 8 ||
+       e == 37 || e == 38 ||
+       e == 39 || e == 40 )
+        return true
+    else
+        return false;
+};
+
+TimeSheet.submitChanges = function(){
+
+    TimeSheetCom.sendChanges();
+    $("#submit").css("display" , "none");
+};
+
 TimeSheet.ready = function(){
-    $("#submit").click(TimeSheet.sendChanges);
+    $("#submit").click(TimeSheet.submitChanges);
     $("table.timesheet tr").dblclick(TimeSheet.doubleClickRow);
     $("td").attr('contenteditable' ,'false');
     $("table.timesheet").find("tbody tr").click(function(e){
@@ -127,44 +142,6 @@ TimeSheet.changed = function(change ,e ){
     }
 
 };
-
-TimeSheet.sendChanges = function(){
-    var entries = $("tbody tr:not(tr.last_row)");
-    var numdays    = $("tbody tr.last_row").length;
-    var days = {};
-    var timesheet = {};
-    for ( var i =0; i < numdays; i ++)
-    {
-     days[i] = [];
-    }
-
-    for ( var i =0; i < entries.length; i++)
-    {
-        var entry = $(entries[i]);
-        var nums  = $(entry).attr("class").match(/\d+/g);;
-        var day   = nums[0];
-        var data  = $(entry).find("td");
-        var inandout = { "in" : $(data).text() , "out" : $(data).text()}
-        if( inandout['in'] || inandout['out'])
-            days[day].push(inandout)
-    }
-    timesheet['days'] = days;
-    $.ajax({
-        type: 'POST',
-        //data: JSON.stringify(timesheet),
-        data: "{ \"hi\" : \"hi\"}",
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        //beforeSend: function (xhr) {
-        //    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-        //},
-        url: document.location.href + "/update",
-        timeout: 5000,
-        success: function(data, requestStatus, xhrObj)  { console.log(data);  } ,
-        error: function (xhrObj, textStatus, exception) { console.log(textStatus); }
-        });
-};
-
 
 $(document).ready(TimeSheet.ready);
 $(document).on('page:load', TimeSheet.ready);

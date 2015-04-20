@@ -1,0 +1,5 @@
+%div{:style=>"width:500%"}
+  %div.col
+    = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1 }
+  %div.col.right
+    = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle}

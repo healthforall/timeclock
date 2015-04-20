@@ -8,6 +8,7 @@ class Payperiod < ActiveRecord::Base
      Payperiod.where("start_date <= :date AND end_date >= :date" , date: date)[0]
   }
 
+
   #
   def self.find_payperiod(date)
     date = Date.parse(date.to_s)

@@ -34,22 +34,25 @@ class TimesheetsController < ApplicationController
       @timesheet = @employee.timesheets.create!()
     end
     respond_to do |format|
-      format.html { redirect_to  "/employees/#{@employee.id}/timesheets/#{@timesheet.id}?format=html"}
+      format.html { redirect_to  "/employees/#{@employee.id}/timesheets/#{@timesheet.id}"}
       format.xls  { redirect_to  "/employees/#{@employee.id}/timesheets/#{@timesheet.id}" + ".xls?format=xls" }
     end
   end
 
   def update
-    hash = ActiveSupport::JSON.decode(request.body.read) #WTF I don't know why I had to resort to this
-
-    #print params
-    #This currently takes the timesheet at face value
-    #print params[:days]
-    debugger
-    @timesheet = Timesheet.all()[0]
-    #print JSON.parse()
-    render json: @timesheet
-    #end
+    @payperiod = Payperiod.find_payperiod(Date.today)
+    @employee  = Employee.find_by_uid(session[:user_uid])
+    @newtimesheet = ActiveSupport::JSON.decode(request.body.read) #WTF I don't know why I had to resort to this
+    @timesheet = Timesheet.verifyAndCreate(@newtimesheet , @employee , @payperiod)
+    if( @timesheet)
+      @employee.timesheets.current[0].destroy
+      @timesheet.save
+      halves = @timesheet.halves
+      middle = @timesheet.days.length / 2
+      render(:partial => 'timesheet' , :locals => { :first_week => halves[0] , :second_week => halves[1] , :middle => middle })
+    else
+      render(:partial => 'badedit')
+    end
   end
 
 end

@@ -4,7 +4,7 @@ class Timesheet < ActiveRecord::Base
   has_many   :days
 
   after_initialize :init
-  after_create    :make_days
+  after_create    { |t| t.make_days (false) }
   scope :current, lambda {
       date = Date.today()
       payperiod = Payperiod.find_payperiod(date)
@@ -39,18 +39,18 @@ class Timesheet < ActiveRecord::Base
     self.payperiod ||= Payperiod.find_payperiod(Date.today())
   end
 
-  def make_days
+  def make_days( build )
     #Create all the days of a timesheet if they don't exist yet
     if (!self.days.blank?)
       return
     end
-
     payperiod  = self.payperiod
     start_date = payperiod.start_date
     end_date   = payperiod.end_date
     dates = (start_date.to_date..(end_date )).map{ |date| date}
     dates.each do |day|
-      self.days.create!(day: day)
+      self.days.build(day: day) if build
+      self.days.create(day: day ) unless build
     end
 
   end
@@ -60,5 +60,23 @@ class Timesheet < ActiveRecord::Base
     length = self.days.length
     self.days.partition { i += 1; i< length / 2}
   end
+
+  def self.verifyAndCreate( days, employee , payperiod)
+    @timesheet = employee.timesheets.build(  :payperiod=> payperiod)
+    @timesheet.make_days(true)
+    days = days["days"]
+    days.each_with_index  do | day , i|
+      inandouts = day[1]
+      inandouts.each do |inandout|
+        day = @timesheet.days[i]
+        inandout['in'] = DateTime.parse( day.day.to_s + " " + inandout['in']) + 5.hours unless inandout['in'] == ''
+        inandout['out'] = DateTime.parse( day.day.to_s + " " + inandout['out']) + 5.hours unless inandout['out'] == ''
+        inandout['out'] = nil if inandout['out'] == ''
+        @timesheet.days[i].in_and_outs.build( :in => inandout['in'] , :out => inandout['out'])
+      end
+    end
+    return @timesheet
+  end
+
 
 end
