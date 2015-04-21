@@ -36,10 +36,10 @@ class Employee < ActiveRecord::Base
 
   def clock_in(clockin)
     if clockin == "true"
-      self.timesheets.current[0].days.current[0].in_and_outs.create!(:in => DateTime.now())
+      self.timesheets.current[0].days.current[0].in_and_outs.create!(:in_time => DateTime.now())
     elsif clockin == "false"
       inandout = self.timesheets.current[0].days.current[0].in_and_outs.find_dangling_in[0]
-      inandout.out = DateTime.now() if inandout
+      inandout.out_time = DateTime.now() if inandout
       inandout.save! if inandout
     end
   end

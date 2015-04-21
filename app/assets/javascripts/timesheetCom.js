@@ -41,8 +41,9 @@ TimeSheetCom.sendChanges = function(){
 };
 
 TimeSheetCom.success = function( data , requestStatus, xhrObj){
-    document.getElementById("timesheet").innerHTML = data;
-    TimeSheet.ready();
+    //document.getElementById("timesheet").innerHTML = data;
+    //TimeSheet.ready();
+    location.reload();
 };
 
 TimeSheetCom.error = function( xhrObj, textStatus , exception){

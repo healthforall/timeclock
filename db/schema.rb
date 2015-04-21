@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420035102) do
+ActiveRecord::Schema.define(version: 20150421213027) do
 
   create_table "days", force: :cascade do |t|
     t.date    "day"
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 20150420035102) do
 
   create_table "in_and_outs", force: :cascade do |t|
     t.integer  "day_id"
-    t.datetime "in"
-    t.datetime "out"
+    t.datetime "in_time"
+    t.datetime "out_time"
   end
 
-  add_index "in_and_outs", ["in"], name: "index_in_and_outs_on_in"
+  add_index "in_and_outs", ["in_time"], name: "index_in_and_outs_on_in_time"
 
   create_table "payperiods", force: :cascade do |t|
     t.date "start_date"

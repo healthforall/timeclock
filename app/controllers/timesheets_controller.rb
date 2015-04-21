@@ -47,9 +47,10 @@ class TimesheetsController < ApplicationController
     if( @timesheet)
       @employee.timesheets.current[0].destroy
       @timesheet.save
-      halves = @timesheet.halves
-      middle = @timesheet.days.length / 2
-      render(:partial => 'timesheet' , :locals => { :first_week => halves[0] , :second_week => halves[1] , :middle => middle })
+      #halves = @timesheet.halves
+      #middle = @timesheet.days.length / 2
+      #render(:partial => 'timesheet' , :locals => { :first_week => halves[0] , :second_week => halves[1] , :middle => middle })
+      render :partial => 'goodedit'
     else
       render(:partial => 'badedit')
     end

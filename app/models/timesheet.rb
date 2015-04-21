@@ -16,8 +16,8 @@ class Timesheet < ActiveRecord::Base
     value = 0.00
     days.each do |day|
       day.in_and_outs.each do |shift|
-        if (shift.in and shift.out)
-          diff = Time.diff(shift.out , shift.in)
+        if (shift.in_time and shift.out_time)
+          diff = Time.diff(shift.out_time , shift.in_time)
           value += diff[:hour]
           value += (diff[:minute] / 60.00)
         end
@@ -72,7 +72,7 @@ class Timesheet < ActiveRecord::Base
         inandout['in'] = DateTime.parse( day.day.to_s + " " + inandout['in']) + 5.hours unless inandout['in'] == ''
         inandout['out'] = DateTime.parse( day.day.to_s + " " + inandout['out']) + 5.hours unless inandout['out'] == ''
         inandout['out'] = nil if inandout['out'] == ''
-        @timesheet.days[i].in_and_outs.build( :in => inandout['in'] , :out => inandout['out'])
+        @timesheet.days[i].in_and_outs.build( :in_time => inandout['in'] , :out_time => inandout['out'])
       end
     end
     return @timesheet
