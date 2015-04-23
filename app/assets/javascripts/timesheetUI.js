@@ -25,9 +25,34 @@ TimeSheet.acceptableKeys = function(e){
 };
 
 TimeSheet.submitChanges = function(){
-
-    TimeSheetCom.sendChanges();
-    $("#submit").css("display" , "none");
+    var badtime = false;
+    var entries = $('tbody tr:not(tr.last_row)');
+    for (var i=0; i < entries.length; ++i){
+        var data  = $(entries[i]).find("td");
+        var inandout = {
+            "in" : new Date(Date.parse("2015/1/1 "+$(data[1]).text())),
+            "out" : new Date(Date.parse("2015/1/1 "+$(data[2]).text()))};
+        if (inandout.in > inandout.out || $(data[1]).text() == '')
+        {
+            if ($(data[2]).text() != '') {
+                $(data[1]).css("background-color", "#F26D89");
+            }
+            if ($(data[1]).text() != ''){
+                $(data[2]).css("background-color", "#F26D89");
+            }
+            badtime = true;
+        }
+        else{
+            $(entries[i]).css("background-color", "");
+        }
+    }
+    if (!badtime){
+        TimeSheetCom.sendChanges();
+        $("#submit").css("display" , "none");
+    }
+    else{
+        alert("There were time conflicts or missing fields (marked in red). Please fix these issues and resubmit.");
+    }
 };
 
 TimeSheet.ready = function(){

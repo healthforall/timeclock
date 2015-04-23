@@ -22,7 +22,7 @@ class Day < ActiveRecord::Base
   end
 
   def print
-    self.day.strftime("%a/%m/%d")
+    self.day.strftime("%a: %m/%d")
   end
 
 end
