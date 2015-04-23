@@ -12,7 +12,7 @@ Timeclock::Application.routes.draw do
   end
 
   root :to => redirect('/login')
-
+  get 'employees/:eid/payperiods/:pid' => 'timesheets#select'
   get 'login' =>'sessions#new'
   get 'auth/:provider/callback' => 'sessions#create'
   post 'logout' => 'sessions#destroy'

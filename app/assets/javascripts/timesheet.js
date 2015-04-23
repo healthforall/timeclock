@@ -165,6 +165,15 @@ TimeSheet.sendChanges = function(){
         });
 };
 
+TimeSheet.changePeriod = function() {
+  var path = window.location.pathname;
+  path = path.substring(0,path.length - 13);
+  path += "/payperiods/";
+  path += document.getElementById("periodSelector").value;
+  path += "?format=html";
+  window.location.href = path;
+}
+
 
 $(document).ready(TimeSheet.ready);
 $(document).on('page:load', TimeSheet.ready);

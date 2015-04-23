@@ -34,7 +34,9 @@ class Payperiod < ActiveRecord::Base
     Payperiod.create!( :start_date => start_date , :end_date => end_date)
   end
 
-
+  def self.all_payperiods()
+    return Payperiod.all
+  end
 
 
 end

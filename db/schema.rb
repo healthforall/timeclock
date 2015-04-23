@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416034746) do
+ActiveRecord::Schema.define(version: 20150402034154) do
 
   create_table "days", force: :cascade do |t|
-    t.date    "day"
-    t.integer "timesheet_id"
+    t.datetime "day"
+    t.integer  "timesheet_id"
   end
 
   create_table "employees", force: :cascade do |t|
