@@ -14,7 +14,6 @@ class TimesheetsController < ApplicationController
     if(!@timesheet)
       @timesheet = @employee.timesheets.create!()
     end
-    debugger
 
     payperiod = @timesheet.payperiod
     @start_date = payperiod.start_date
@@ -61,7 +60,6 @@ class TimesheetsController < ApplicationController
   def select
     @employee = Employee.find_by_id(params[:eid])
     payperiod = Payperiod.find_by_id(params[:pid])
-    debugger
     @timesheet = @employee.timesheets.where("payperiod_id = ?", payperiod)[0]
     if(!@timesheet)
       @timesheet = @employee.timesheets.create!(payperiod: payperiod)
