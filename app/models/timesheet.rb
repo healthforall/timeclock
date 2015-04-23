@@ -27,11 +27,11 @@ class Timesheet < ActiveRecord::Base
   end
 
   def clockin?
-    iN = false
-    self.days.each do |day|
-      iN ||= day.clockin?
-    end
-    return iN
+    #iN = false
+    #self.days.each do |day|
+    #  iN ||= day.clockin?
+    #end
+    return self.days.current[0].clockin?
   end
 
   def init

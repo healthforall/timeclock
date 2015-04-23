@@ -10,4 +10,4 @@
       = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, timesheet_id: 1, format: "xls"), :id => "export"
 %div#timesheet
   = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
-%button{:id => "submit", :style => "display: block"} Submit Changes
+%button{:id => "submit", :style => "display: none"} Submit Changes

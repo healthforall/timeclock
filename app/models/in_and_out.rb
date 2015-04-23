@@ -4,6 +4,9 @@ class InAndOut < ActiveRecord::Base
                InAndOut.where(:out_time => nil)
    }
 
+
+
+
   @@format = "%l:%M %p"
   def print_in
     (self.in_time  - 5.hours).strftime(@@format) unless !self.in_time
