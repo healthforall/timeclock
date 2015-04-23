@@ -5,7 +5,10 @@
 %h1 Total: #{@total_hours}
 %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
   -@payperiods.reverse_each do |p|
-    %option{:value => p.id} #{p.start_date}
+    -if p.start_date == @start_date
+      %option{:value => p.id, :selected => "selected"} #{p.start_date}
+    -else
+      %option{:value => p.id} #{p.start_date}
 %br
   -if @uid == session[:user_uid]
     %button{:id => "clockin" , :style => "display: inline" } Clock In
