@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Authorization
 gem "omniauth-google-oauth2"
+# Hide mailers data
+gem "figaro"
 
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"

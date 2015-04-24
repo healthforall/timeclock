@@ -33,6 +33,7 @@ class EmployeesController < ApplicationController
   def show
     id = params[:id]
     @employee = Employee.find(id)
+    #flash[:notice] = "#{@current_user.email}..."
     if (@employee.id == @current_user.id || @current_user.admin)
     else
       flash[:notice] = "You do not have permission to view this page"
@@ -44,6 +45,7 @@ class EmployeesController < ApplicationController
   def new
     if @current_user.admin
       @employee = Employee.new
+      AdminMailer.admin_email(@current_user).deliver_now
     else
       flash[:notice] = "You may not create a new employee!!!"
       redirect_to  "/employees/#{@current_user.id}/timesheets/1/current"
