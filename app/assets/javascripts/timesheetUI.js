@@ -7,7 +7,7 @@ TimeSheet = function(){
 
 TimeSheet.check_charcount = function( elem, e )
 {
-    if( !TimeSheet.acceptableKeys(e.which) && $(elem).text().length > 7)
+    if( ( (!TimeSheet.acceptableKeys(e.which)) && $(elem).text().length > 8)   )
     {
         e.preventDefault();
         return false;
@@ -16,7 +16,7 @@ TimeSheet.check_charcount = function( elem, e )
 };
 
 TimeSheet.acceptableKeys = function(e){
-   if( e == 8 ||
+    if( e == 8 ||
        e == 37 || e == 38 ||
        e == 39 || e == 40 )
         return true
@@ -26,25 +26,25 @@ TimeSheet.acceptableKeys = function(e){
 
 TimeSheet.submitChanges = function(){
     var badtime = false;
-    var entries = $('tbody tr');
+    var entries = $("table.vblu tbody tr")
     var day = undefined;
     var firstDanglingIn = true;
-    var firstDanglinInLoc = undefined
+    var firstDanglinInLoc = undefined;
     for (var i=0; i < entries.length; ++i){
         var data  = $(entries[i]).find("td");
-        if( $(data[0]).text() != "")
-            day = $(data[0]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/"
+        if( $(data[1]).text() != "")
+            day = $(data[1]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/"
 
         var inandout = {
-            "in" : new Date(Date.parse( day +$(data[1]).text())),
-            "out" : new Date(Date.parse(day +$(data[2]).text()))};
-        if (inandout.in > inandout.out || $(data[1]).text() == '' || $(data[2]).text() == '') //Detect Errors
+            "in" : new Date(Date.parse( day +$(data[2]).text())),
+            "out" : new Date(Date.parse(day +$(data[3]).text()))};
+        if (inandout.in > inandout.out || $(data[2]).text() == '' || $(data[3]).text() == '') //Detect Errors
         {
             //Lonely In
-            if ($(data[1]).text() != ''){
+            if ($(data[2]).text() != ''){
                 if((((new Date(day)).getDate()) == new Date(Date.now()).getDate() && firstDanglingIn)) {
                     firstDanglingIn = false;
-                    firstDanglinInLoc = data[2];
+                    firstDanglinInLoc = data[3];
                 }
                 else
                 {
@@ -53,15 +53,16 @@ TimeSheet.submitChanges = function(){
                         $(firstDanglinInLoc).toggleClass("error");
                     }
                     else {
-                        $(data[2]).toggleClass('error')
+                        $(data[3]).toggleClass('error')
+                        $(data[4]).toggleClass('error')
                     }
                     badtime = true;
                 }
 
             }
             //Danglin Out
-            if ($(data[2]).text() != '') {
-                $(data[1]).toggleClass('error')
+            if ($(data[3]).text() != '') {
+                $(data[2]).toggleClass('error')
                 badtime = true;
             }
         }
@@ -80,16 +81,16 @@ TimeSheet.submitChanges = function(){
 
 TimeSheet.ready = function(){
     $("#submit").click(TimeSheet.submitChanges);
-    $("table.timesheet tr").dblclick(TimeSheet.doubleClickRow);
-    $("table.timesheet").find("tbody tr").click(function(e){
+    $("table.vblu tr").dblclick(TimeSheet.doubleClickRow);
+    $("table.vblu").find("tbody tr").click(function(e){
        var row = this;
        TimeSheet.showDeleteButton(row);
     });
-    $("table.timesheet").find("tbody tr").mouseleave(function(e){
+    $("table.vblu").find("tbody tr").mouseleave(function(e){
         var row = this;
         TimeSheet.hideDeleteButton(row);
     });
-    $('td').keydown(function(e){
+    $("td[contenteditable = 'true']").keydown(function(e){
         var elem = this;
         var change = TimeSheet.check_charcount(elem , e);
         TimeSheet.changed(change , e);
@@ -112,10 +113,10 @@ TimeSheet.deleteRow = function(type){
     if(type == '')
         return;
     var row = $("."+type);
-    var col = $(row).find("td")[0];
+    var col = $(row).find("td")[1];
     if($(col).text() != '') {
         var next = $(row).next()[0];
-        $($(next).find("td")[0]).text( $(col).text() );
+        $($(next).find("td")[1]).text( $(col).text() );
     }
     var afters = $("." + type).next()
     var day = type.match(/\d+/g)[0];
@@ -168,7 +169,7 @@ TimeSheet.createNewRow = function(item){
         nums = [day , 0];
     }
     var newrow  = $(item).clone(true);
-    $($(newrow).find("td")[0]).text("");
+    $($(newrow).find("td")[1]).text("");
     $(item).after($(newrow));
     $(item).attr("class" , "Day" + nums[0] + "Row"+ (parseInt(nums[1])+1));
 };

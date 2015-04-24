@@ -12,8 +12,8 @@
   -if @uid == session[:user_uid]
     -if @current
       %button{:id => "clockin" , :style => "display: inline" } Clock In
-    %div{:style=> "display: inline; position: absolute; left: 360px"}
+    %div{:style=> "display: inline;"}
       = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :id => "export"
-%div#timesheet
+%div
   = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
 %button{:id => "submit", :style => "display: none"} Submit Changes

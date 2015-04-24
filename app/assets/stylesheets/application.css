@@ -15,7 +15,6 @@
  *= require_self
  */
 
-
 html, body {
     margin: 0;
     padding: 0;
@@ -26,7 +25,7 @@ html, body {
 
 div#main{
     width: calc(100% - 24em);
-    padding: 0 12em 0 12 em;
+    padding: 0 12em;
 }
 a{
     background:transparent;
@@ -261,6 +260,11 @@ table.vblu .leftf {
 table.vblu .rightf {
   background-image: url(/assets/vblu_09.gif);
 }
+
+table.vblu td.error{
+    background-color: #F26D89;
+}
+
 
 table.vblu .edgeleft{
   border-right: 0;

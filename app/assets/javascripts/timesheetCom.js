@@ -4,8 +4,8 @@ TimeSheetCom = function(){
 
 
 TimeSheetCom.getTimeSheet = function(){
-    var entries = $("tbody tr");
-    var numdays    = $("tbody tr.last_row").length;
+    var entries = $("table.vblu tbody tr")
+    var numdays    = $("table.vblu tbody tr.last_row").length;
     var days = {};
     var timesheet = {};
     for ( var i =0; i < numdays; i ++) {
@@ -18,7 +18,7 @@ TimeSheetCom.getTimeSheet = function(){
         var nums  = $(entry).attr("class").match(/\d+/g);;
         var day   = parseInt(nums[0]) -1;
         var data  = $(entry).find("td");
-        var inandout = { "in" : $(data[1]).text() , "out" : $(data[2]).text()}
+        var inandout = { "in" : $(data[2]).text() , "out" : $(data[3]).text()}
         if( inandout['in'] || inandout['out'])
             days[day].push(inandout)
     }
