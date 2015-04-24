@@ -7,7 +7,7 @@ Timeclock::Application.routes.draw do
       get 'current'
       get 'show'
       post 'update'
-      
+
     end
   end
 

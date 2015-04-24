@@ -24,7 +24,7 @@ describe Timesheet do
     daycount = 0
     @timesheet.days.each do |day|
       daycount += 1
-      day.in_and_outs << InAndOut.create( :in => DateTime.parse(day.day.to_s) , :out =>DateTime.parse(day.day.to_s) + 1.hours + 30.minutes)
+      day.in_and_outs << InAndOut.create( :in_time => DateTime.parse(day.day.to_s) , :out_time =>DateTime.parse(day.day.to_s) + 1.hours + 30.minutes)
     end
 
     expect(@timesheet.totalHours).to eq(daycount + daycount/2)
@@ -32,7 +32,7 @@ describe Timesheet do
 
   it "checks if there is a lingering check in" do
     @timesheet = FactoryGirl.create(:timesheet)
-    @timesheet.days[0].in_and_outs << InAndOut.create( :in => DateTime.now() )
+    @timesheet.days[0].in_and_outs << InAndOut.create( :in_time => DateTime.now() )
     expect(@timesheet.clockin?).to eq(true)
     @timesheet.days[0].in_and_outs[0].out= DateTime.now() + 5.hours
     expect(@timesheet.clockin?).to eq(false)
