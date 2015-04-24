@@ -183,20 +183,20 @@ table.page {
 }
 
 table.page .lefth {
-  background-image: url(/assets/top-L.gif);
+  background-image: url(top-L.gif);
 }
 
 table.page .righth {
-  background-image: url(/assets/top-R.gif);
+  background-image: url(top-R.gif);
 }
 
 table.page .leftf {
-  background-image: url(/assets/bottom-L.gif);
+  background-image: url(bottom-L.gif);
   height: 11px;
 }
 
 table.page .rightf {
-  background-image: url(/assets/bottom-R.gif);
+  background-image: url(/bottom-R.gif);
   height: 11px;
 }
 
@@ -246,19 +246,19 @@ table.vblu .lefth, table.vblu .righth, table.vblu .leftf, table.vblu .rightf, ta
 }
 
 table.vblu .lefth {
-  background-image: url(/assets/vblu_01.gif);
+  background-image: url(vblu_01.gif);
 }
 
 table.vblu .righth {
-  background-image: url(/assets/vblu_03.gif);
+  background-image: url(vblu_03.gif);
 }
 
 table.vblu .leftf {
-  background-image: url(/assets/vblu_07.gif);
+  background-image: url(vblu_07.gif);
 }
 
 table.vblu .rightf {
-  background-image: url(/assets/vblu_09.gif);
+  background-image: url(vblu_09.gif);
 }
 
 table.vblu td.error{
