@@ -4,7 +4,7 @@ TimeSheetCom = function(){
 
 
 TimeSheetCom.getTimeSheet = function(){
-    var entries = $("tbody tr:not(tr.last_row)");
+    var entries = $("tbody tr");
     var numdays    = $("tbody tr.last_row").length;
     var days = {};
     var timesheet = {};
@@ -33,7 +33,7 @@ TimeSheetCom.sendChanges = function(){
     $.ajax({
         type: 'POST',
         data: JSON.stringify(timesheet),
-        url: document.location.pathname + "/update",
+        url: document.location.pathname.replace("show" , "update"),
         timeout: 5000,
         success: function(data, requestStatus, xhrObj)  { TimeSheetCom.success( data, requestStatus, xhrObj);  } ,
         error: function (xhrObj, textStatus, exception) { TimeSheetCom.error(xhrObj , textStatus, exception); }

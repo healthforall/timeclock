@@ -27,6 +27,10 @@ table.timesheet tr.last_row{
   font-size: 10pt;
 }
 
+table.timesheet td.error {
+  background-color: #F26D89;
+}
+
 
 div.col{
   display: inline;
@@ -34,9 +38,9 @@ div.col{
   width: 20%;
 }
 
-
 div.col.right{
   position: absolute;
   left: 300px;
+  width: 100%;
 }
 

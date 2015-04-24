@@ -47,7 +47,7 @@
         <Cell><Data ss:Type="String"><%= (inandout.in_time - 5.hours).strftime("%H:%M") %></Data></Cell>
         <% if inandout.out_time %>
         <Cell><Data ss:Type="String"><%= (inandout.out_time - 5.hours).strftime("%H:%M") %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= ((inandout.out.to_time - inandout.in.to_time)/1.hour).round(2) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= ((inandout.out_time.to_time - inandout.in_time.to_time)/1.hour).round(2) %></Data></Cell>
         <% end %>
       </Row>
       <% else %>
@@ -56,7 +56,7 @@
         <Cell><Data ss:Type="String"><%= (inandout.in_time - 5.hours).strftime("%H:%M") %></Data></Cell>
         <% if inandout.out_time %>
         <Cell><Data ss:Type="String"><%= (inandout.out_time - 5.hours).strftime("%H:%M") %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= ((inandout.out_time.to_time - inandout.in.to_time)/1.hour).round(2) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= ((inandout.out_time.to_time - inandout.in_time.to_time)/1.hour).round(2) %></Data></Cell>
         <% end %>
       </Row>
       <% end %>

@@ -26,21 +26,44 @@ TimeSheet.acceptableKeys = function(e){
 
 TimeSheet.submitChanges = function(){
     var badtime = false;
-    var entries = $('tbody tr:not(tr.last_row)');
+    var entries = $('tbody tr');
+    var day = undefined;
+    var firstDanglingIn = true;
+    var firstDanglinInLoc = undefined
     for (var i=0; i < entries.length; ++i){
         var data  = $(entries[i]).find("td");
+        if( $(data[0]).text() != "")
+            day = $(data[0]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/"
+
         var inandout = {
-            "in" : new Date(Date.parse("2015/1/1 "+$(data[1]).text())),
-            "out" : new Date(Date.parse("2015/1/1 "+$(data[2]).text()))};
-        if (inandout.in > inandout.out || $(data[1]).text() == '')
+            "in" : new Date(Date.parse( day +$(data[1]).text())),
+            "out" : new Date(Date.parse(day +$(data[2]).text()))};
+        if (inandout.in > inandout.out || $(data[1]).text() == '' || $(data[2]).text() == '') //Detect Errors
         {
-            if ($(data[2]).text() != '') {
-                $(data[1]).css("background-color", "#F26D89");
-            }
+            //Lonely In
             if ($(data[1]).text() != ''){
-                $(data[2]).css("background-color", "#F26D89");
+                if((((new Date(day)).getDate()) == new Date(Date.now()).getDate() && firstDanglingIn)) {
+                    firstDanglingIn = false;
+                    firstDanglinInLoc = data[2];
+                }
+                else
+                {
+                    if( ((new Date(day)).getDate()) == new Date(Date.now()).getDate() )
+                    {
+                        $(firstDanglinInLoc).toggleClass("error");
+                    }
+                    else {
+                        $(data[2]).toggleClass('error')
+                    }
+                    badtime = true;
+                }
+
             }
-            badtime = true;
+            //Danglin Out
+            if ($(data[2]).text() != '') {
+                $(data[1]).toggleClass('error')
+                badtime = true;
+            }
         }
         else{
             $(entries[i]).css("background-color", "");
@@ -58,7 +81,6 @@ TimeSheet.submitChanges = function(){
 TimeSheet.ready = function(){
     $("#submit").click(TimeSheet.submitChanges);
     $("table.timesheet tr").dblclick(TimeSheet.doubleClickRow);
-    $("td").attr('contenteditable' ,'false');
     $("table.timesheet").find("tbody tr").click(function(e){
        var row = this;
        TimeSheet.showDeleteButton(row);
@@ -79,7 +101,7 @@ TimeSheet.showDeleteButton = function(row){
     var rowid = $(row).attr("class");
     if($("#delete").length == 0) {
         var r = $('<input type="button" id ="delete" value="delete""/>');
-        $(r).click(function(){TimeSheet.deleteRow(rowid);});
+        $(r).click(function(){TimeSheet.deleteRow(rowid); TimeSheet.changed(true)});
         var col = row.insertCell(-1);
         $(col).append(r);
     }
@@ -153,8 +175,8 @@ TimeSheet.createNewRow = function(item){
 
 TimeSheet.doubleClickRow = function(){
     var childs = $(this).find('td');
-    $(childs[1]).attr('contenteditable', 'true');
-    $(childs[2]).attr('contenteditable', 'true');
+    //$(childs[1]).attr('contenteditable', 'true');
+    //$(childs[2]).attr('contenteditable', 'true');
 
     if( $(this).attr("class").indexOf("last_row") > -1)
         TimeSheet.createNewRow(this);
