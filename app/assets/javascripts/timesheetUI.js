@@ -190,6 +190,15 @@ TimeSheet.changed = function(change ,e ){
 
 };
 
+
+TimeSheet.changePeriod = function() {
+    var regexp = /\/employees\/\d+/gi;
+    var path = window.location.pathname.match(regexp)[0] + "/payperiods/";
+    path += document.getElementById("periodSelector").value;
+    window.location.href = path;
+}
+
+
 $(document).ready(TimeSheet.ready);
 $(document).on('page:load', TimeSheet.ready);
 

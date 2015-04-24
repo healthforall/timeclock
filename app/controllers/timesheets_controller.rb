@@ -2,11 +2,14 @@ require 'json'
 
 class TimesheetsController < ApplicationController
   def show
-    @current = true;
+    @current = false
     @employee  = Employee.find_by_id(params[:employee_id])
     @payperiods = Payperiod.all
     @timesheet = Timesheet.find_by_id(params[:timesheet_id])
     payperiod = @timesheet.payperiod
+    if( Payperiod.find_payperiod(Date.today()) == payperiod )
+      @current = true
+    end
     @start_date = payperiod.start_date
     @end_date   = payperiod.end_date
     halves = @timesheet.halves
@@ -57,8 +60,8 @@ class TimesheetsController < ApplicationController
       @timesheet = @employee.timesheets.create!(payperiod: payperiod)
     end
     respond_to do |format|
-      format.html { redirect_to "/employees/#{@employee.id}/timesheets/#{@timesheet.id}"}
-      format.xls  { redirect_to "/employees/#{@employee.id}/timesheets/#{@timesheet.id}" + ".xls?format=xls" }
+      format.html { redirect_to  employee_timesheet_show_path(@employee, @timesheet) }
+      format.xls  { redirect_to  employee_timesheet_show_path(@employee, @timesheet, format: "xls") }
     end
   end
 
