@@ -1,21 +1,26 @@
--#A single day in a timesheet_table
+-#A single day in a timsheet_table
 -#If the day is empty
 - if (day.in_and_outs.length == 0)
   %tr.last_row{ :class =>"Day#{day.num}"}
-    %td= day.print
-    %td{contenteditable: 'true'}
-    %td{contenteditable: 'true'}
-
+    %td.edgeleft
+    %td.nolborder= day.print
+    %td
+    %td.norborder
+    %td.edgeright
 - else
   - count = 0
   - day.in_and_outs.order("in_time , out_time").each_with_index do |inandout , i |
     -count = count + 1
     %tr{:class => "Day#{day.num}Row#{count}" }
-      %td= day.print if i == 0
-      %td{:id => "Day#{day.num}In#{count}"  ,contenteditable: 'true'}= inandout.print_in
-      %td{:id => "Day#{day.num}Out#{count}" ,contenteditable: 'true'}= inandout.print_out
-
+      %td.edgeleft
+      %td.nolborder= day.print if i == 0
+      %td{:id => "Day#{day.num}In#{count}" ,contenteditable: 'true'}= inandout..print_in #should be based off of client time
+      %td.norborder{:id => "Day#{day.num}Out#{count}" ,contenteditable: 'true'}= inandout.print_out unless !inandout.out
+      %td.edgeright
+      
   %tr.last_row{ :class =>"Day#{day.num}"}
-    %td
-    %td{contenteditable: 'true'}
-    %td{contenteditable: 'true'}
+    %td.edgeleft
+    %td.nolborder
+    %td{contenteditable: 'true'} 
+    %td.norborder{contenteditable: 'true'} +
+    %td.edgeright

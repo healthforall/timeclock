@@ -3,11 +3,20 @@
 - days.each do |day|
   - day.num = count
   - count = count + 1
-%table.timesheet
+%table.vblu
   %thead
     %tr
-      %th Date
+      %th.lefth
+      %th.nolborder Date
       %th In
-      %th Out
+      %th.norborder Out
+      %th.righth
   %tbody
     = render :partial => '/days/day'  ,:collection=>days
+  %tfoot
+    %tr
+      %td.leftf
+      %td.noborder
+      %td.noborder
+      %td.noborder
+      %td.rightf

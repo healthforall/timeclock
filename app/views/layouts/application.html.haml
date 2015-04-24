@@ -12,5 +12,24 @@
       #notice.message=  flash[:notice]
     -elsif flash[:warning]
       #warning.message= flash[:warning]
-    #main
-      = yield
+    %table.page
+      %thead
+        %tr
+          %th.lefth       
+          %th.white
+            %img{:src => '/assets/logo_website.jpg', :width => '213', :height => '70'}
+          %th.righth
+      %tbody
+        %tr.blank
+          %td.blank
+        %tr
+          %td.white
+          %td.white
+            #main
+            = yield
+          %td.white
+      %tfoot
+        %tr
+          %td.leftf
+          %td.white
+          %td.rightf
