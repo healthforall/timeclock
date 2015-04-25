@@ -2,6 +2,7 @@
 %h1 For payperiod #{@start_date} to #{@end_date}
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
 %h1 Total: #{@total_hours}
+= render :partial => '/sessions/login'
 %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
   -@payperiods.reverse_each do |p|
     -if p.start_date == @start_date

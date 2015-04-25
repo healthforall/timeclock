@@ -182,23 +182,6 @@ table.page {
   text-align: left;
 }
 
-table.page .lefth {
-  background-image: url(top-L.gif);
-}
-
-table.page .righth {
-  background-image: url(top-R.gif);
-}
-
-table.page .leftf {
-  background-image: url(bottom-L.gif);
-  height: 11px;
-}
-
-table.page .rightf {
-  background-image: url(/bottom-R.gif);
-  height: 11px;
-}
 
 table.page .white{
   background-color: white;
@@ -243,22 +226,6 @@ table.vblu .lefth, table.vblu .righth, table.vblu .leftf, table.vblu .rightf, ta
   background-color: transparent;
   padding: 0;
   width: 11px;
-}
-
-table.vblu .lefth {
-  background-image: url(vblu_01.gif);
-}
-
-table.vblu .righth {
-  background-image: url(vblu_03.gif);
-}
-
-table.vblu .leftf {
-  background-image: url(vblu_07.gif);
-}
-
-table.vblu .rightf {
-  background-image: url(vblu_09.gif);
 }
 
 table.vblu td.error{
