@@ -1,14 +1,13 @@
-%h1 #{@name}'s time sheet!
-%h1 For payperiod #{@start_date} to #{@end_date}
+%h1 #{@name}
+%h1 #{@payperiod.print}
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
-%h1 Total: #{@total_hours}
-= render :partial => '/sessions/login'
+%h1 Total: #{@total_hours} hours
 %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
   -@payperiods.reverse_each do |p|
     -if p.start_date == @start_date
-      %option{:value => p.id, :selected => "selected"} #{p.start_date}
+      %option{:value => p.id, :selected => "selected"} #{p.print}
     -else
-      %option{:value => p.id} #{p.start_date}
+      %option{:value => p.id} #{p.print}
 %br
   -if @uid == session[:user_uid]
     -if @current

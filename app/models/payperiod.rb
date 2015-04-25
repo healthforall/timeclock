@@ -35,4 +35,12 @@ class Payperiod < ActiveRecord::Base
     Payperiod.create!( :start_date => start_date , :end_date => end_date)
   end
 
+  def print()
+    word = self.start_date.strftime("%B %d - ") + self.end_date.strftime("%d, %Y")
+  end
+
+  def self.all_cache
+    self.all
+  end
+
 end

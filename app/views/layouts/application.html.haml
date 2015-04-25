@@ -32,4 +32,9 @@
         %tr
           %td.leftf
           %td.white
+            -if @current_user
+              %div{style: "float:right;"}= render :partial => '/sessions/logout'
           %td.rightf
+
+
+

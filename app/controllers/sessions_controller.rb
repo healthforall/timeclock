@@ -17,17 +17,17 @@ class SessionsController < ApplicationController
   end
 
   def logout
-
+    session.delete(:user_uid)
+    flash[:notice] = 'Logged out successfully.'
+    redirect_to "/login"
   end
 
   def new
     render "sessions/login"
   end
 
-  def destroy
-    session.delete(:user_uid)
-    flash[:notice] = 'Logged out successfully.'
-    redirect_to "/login"
+  def destroy # should probbaly die
+
   end
 
   def fakelogin

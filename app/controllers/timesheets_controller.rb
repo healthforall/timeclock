@@ -4,14 +4,14 @@ class TimesheetsController < ApplicationController
   def show
     @current = false
     @employee  = Employee.find_by_id(params[:employee_id])
-    @payperiods = Payperiod.all
+    @payperiods = Payperiod.all_cache
     @timesheet = Timesheet.find_by_id(params[:timesheet_id])
-    payperiod = @timesheet.payperiod
-    if( Payperiod.find_payperiod(Date.today()) == payperiod )
+    @payperiod = @timesheet.payperiod
+    if( Payperiod.find_payperiod(Date.today()) == @payperiod )
       @current = true
     end
-    @start_date = payperiod.start_date
-    @end_date   = payperiod.end_date
+    @start_date = @payperiod.start_date
+    @end_date   = @payperiod.end_date
     halves = @timesheet.halves
     @first_week  = halves[0]
     @second_week = halves[1]

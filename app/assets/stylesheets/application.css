@@ -18,11 +18,18 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #E7E7E7;
+    background-color: rgb(0 , 86 , 144);
     font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
 }
 
+table * {
+    text-align :center;
+}
+
+table.vblu {
+    margin: auto;
+}
 div#main{
     width: calc(100% - 24em);
     padding: 0 12em;
@@ -34,9 +41,9 @@ a{
     font-weight:bold;
 }
 h1{
-    color: maroon;
+    color: crimson;
     font-size: 150%;
-    font-style: italic;
+    /*font-style: italic;*/
     display: block;
     width: 100%;
 
@@ -194,7 +201,6 @@ table.page .blank{
 /*vblu - CSS for rounded table with blue header*/
 
 table.vblu {
-  margin: 10px;
   border-collapse: collapse;
   resize: none;
 }

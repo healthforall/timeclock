@@ -2,6 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table.page .lefth {
+  background-image: url( asset-path('top-L.gif') );
+}
+
+table.page .righth {
+  background-image: url( asset-path('top-R.gif') );
+}
+
+table.page .leftf {
+  background-image: url( asset-path('bottom-L.gif' ));
+  height: 11px;
+}
+
+table.page .rightf {
+  background-image: url(asset-path('bottom-R.gif' ));
+  height: 11px;
+}
 
 table.vblu .lefth {
   background-image: url( asset-path('vblu_01.gif' ) );
