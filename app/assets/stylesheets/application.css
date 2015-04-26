@@ -226,20 +226,22 @@ table.page {
     margin: 1em 2em 1em 2em;
 }
 
-.half{
-  width: calc(100%);
-  display: inline-block;
-}
+@media screen, handheld{
 
-table.page .image{
-  height: 1px;
-}
+    .half{
+      width: calc(100%);
+      display: inline-block;
+    }
 
-table.page .blank{
-  height: 0px;
-}
+    table.page .image{
+      height: 1px;
+    }
 
-@media (min-width: 700px){
+    table.page .blank{
+      height: 0px;
+    }
+}
+@media screen and (min-width: 700px), handheld{
     table.page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
@@ -250,7 +252,7 @@ table.page .blank{
       display:inline;
     }
 }
-@media (min-width: 1025px){
+@media screen and (min-width: 1025px){
     table.page {
         width: calc(100% - 40em);
         margin: 1em 20em 1em 20em;
@@ -286,8 +288,6 @@ table.vblu th, table.vblu td {
   padding: 4px;
   text-align: center;
   resize: none;
-  max-width: 100px;
-  min-width: 60px;
 }
 
 table.vblu td {
@@ -310,7 +310,6 @@ table.vblu .lefth, table.vblu .righth, table.vblu .leftf, table.vblu .rightf, ta
   background-color: transparent;
   padding: 0;
   width: 11px;
-  min-width: 0px;
 }
 
 table.vblu td.error{
