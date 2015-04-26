@@ -18,7 +18,7 @@
       %thead
         %tr
           %th.lefth       
-          %th.white
+          %th.white{:style => 'text-align: left'}
             %img{:src => image_path('logo_website.jpg' ) , :width => '213', :height => '70'}
           %th.righth
       %tbody
@@ -35,13 +35,14 @@
           %td.white
             #main
             = yield
+            
+            -if @current_user
+              %div{style: "float:right;"}= render :partial => '/sessions/logout'
           %td.white
       %tfoot
         %tr
           %td.leftf
           %td.white
-            -if @current_user
-              %div{style: "float:right;"}= render :partial => '/sessions/logout'
           %td.rightf
 
 

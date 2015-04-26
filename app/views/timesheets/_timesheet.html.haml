@@ -1,6 +1,9 @@
 
-%div
+%div.full_timesheet
   %div.half
     = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1 }
   %div.half
     = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle}
+    
+%div.mobile_timesheet
+  = render :partial => "timesheet_table", :locals => {:days => first_week + second_week, :start => 1 }

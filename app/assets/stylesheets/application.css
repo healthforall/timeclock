@@ -227,6 +227,15 @@ table.page {
 }
 
 @media screen, handheld{
+    
+    
+    .mobile_timesheet{
+        display: inline;
+    }
+    
+    .full_timesheet{
+        display: none;
+    }
 
     .half{
       width: calc(100%);
@@ -242,6 +251,15 @@ table.page {
     }
 }
 @media screen and (min-width: 700px), handheld{
+
+    .mobile_timesheet{
+        display: none;
+    }
+    
+    .full_timesheet{
+        display: inline;
+    }
+    
     table.page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
@@ -253,9 +271,18 @@ table.page {
     }
 }
 @media screen and (min-width: 1025px){
+
+    .mobile_timesheet{
+        display: none;
+    }
+    
+    .full_timesheet{
+        display: inline;
+    }
     table.page {
+        max-width: 975px;
         width: calc(100% - 40em);
-        margin: 1em 20em 1em 20em;
+        margin: 1em auto 1em auto;
     }
     
     .half{
