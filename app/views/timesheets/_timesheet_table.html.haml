@@ -4,7 +4,7 @@
   - day.num = count
   - count = count + 1
 %table.vblu
-  %thead
+  %thead.tshead
     %tr
       %th.lefth
       %th.nolborder Date
@@ -13,7 +13,7 @@
       %th.righth
   %tbody
     = render :partial => '/days/day'  ,:collection=>days
-  %tfoot
+  %tfoot.tsfoot
     %tr
       %td.leftf
       %td.noborder
