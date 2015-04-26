@@ -81,24 +81,30 @@ TimeSheet.submitChanges = function(){
 
 TimeSheet.ready = function(){
     $("#submit").click(TimeSheet.submitChanges);
-    //$("table.vblu tr").dblclick(TimeSheet.doubleClickRow);
     $.contextMenu({
         selector: 'table.vblu tr',
         callback: function(key) {
+            if (key == 'delete'){
+                TimeSheet.deleteRow();
+            }
             TimeSheet.createNewRow(key, this);
         },
         items: {
-            "above": {name: "Add Row Above"},
-            "below": {name: "Add Row Below"}
+            "above": {
+                name: "Add Row Above",
+                callback: function(key){TimeSheet.createNewRow(key, this);}},
+            "below": {
+                name: "Add Row Below",
+                callback: function(key){TimeSheet.createNewRow(key, this);}},
+            "delete": {
+                name: "Delete Row",
+                callback: function(){
+                    TimeSheet.deleteRow($(this).attr("class").split(" ")[0]);
+                    TimeSheet.changed(true);}}
+                /*adding another class to the tr may cause this to break
+                  it's needed because the context menu adds a new class to the selected tr
+                  that causes the type check in delete to fail*/
         }
-    });
-    $("table.vblu").find("tbody tr").click(function(e){
-       var row = this;
-       TimeSheet.showDeleteButton(row);
-    });
-    $("table.vblu").find("tbody tr").mouseleave(function(e){
-        var row = this;
-        TimeSheet.hideDeleteButton(row);
     });
     $("td[contenteditable = 'true']").keydown(function(e){
         var elem = this;
@@ -107,17 +113,6 @@ TimeSheet.ready = function(){
 
     }); //THis is importatnt to me for reasons...
 };
-
-TimeSheet.showDeleteButton = function(row){
-    var rowid = $(row).attr("class");
-    if($("#delete").length == 0) {
-        var r = $('<input type="button" id ="delete" value="delete""/>');
-        $(r).click(function(){TimeSheet.deleteRow(rowid); TimeSheet.changed(true)});
-        var col = row.insertCell(-1);
-        $(col).append(r);
-    }
-};
-
 
 TimeSheet.deleteRow = function(type){
     if(type == '')
@@ -146,12 +141,6 @@ TimeSheet.deleteRow = function(type){
     $(row).remove();
 
 };
-TimeSheet.hideDeleteButton = function(row){
-    if($("#delete").length!=0) {
-        row.deleteCell(-1);
-    }
-
-}
 
 TimeSheet.createNewRow = function(choice, item){
     TimeSheet.hideDeleteButton(item);
@@ -195,16 +184,6 @@ TimeSheet.createNewRow = function(choice, item){
     }
 
     $(item).attr("class" , "Day" + nums[0] + "Row"+ (parseInt(nums[1])+1));
-};
-
-TimeSheet.doubleClickRow = function(){
-    var childs = $(this).find('td');
-    //$(childs[1]).attr('contenteditable', 'true');
-    //$(childs[2]).attr('contenteditable', 'true');
-
-    if( $(this).attr("class").indexOf("last_row") > -1)
-        TimeSheet.createNewRow(this);
-
 };
 
 TimeSheet.changed = function(change ,e ){
