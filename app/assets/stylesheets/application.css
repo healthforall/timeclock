@@ -226,6 +226,15 @@ table.page {
     margin: 1em 2em 1em 2em;
 }
 
+table.page .image{
+      background-color: rgb(0 , 86 , 144);
+}
+
+table.page .blue_bar{
+      height: 5px;
+      background-color: rgb(0 , 86 , 144);
+}
+
 @media screen, handheld{
     
     
@@ -268,6 +277,10 @@ table.page {
     .half{
       width: calc(50%);
       display:inline;
+    }
+    
+    table.page .image{
+      height: 10px;
     }
 }
 @media screen and (min-width: 1025px){
