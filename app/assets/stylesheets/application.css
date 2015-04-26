@@ -18,7 +18,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: rgb(0 , 86 , 144);
+    background-color: #E7E7E7;
+    /*background-color: rgb(0 , 86 , 144);*/
     font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
 }
@@ -32,13 +33,14 @@ table.vblu {
     display: inline-block;
     vertical-align:top;
 }
+
 div#main{
-    width: calc(100% - 24em);
-    padding: 0 12em;
-}
+    }
+
+
 a{
     background:transparent;
-    color: #E60000;
+    color: rgb(0 , 86 , 144);
     text-decoration:underline;
     font-weight:bold;
 }
@@ -58,7 +60,6 @@ h2{
 
 }
 
-
 #notice, #warning {
     background: rosybrown;
     margin: 1em 0;
@@ -70,6 +71,35 @@ form label {
     font-weight: bold;
     color: maroon;
 }
+
+select {
+    color : #E60000;
+    background-color : #F8F8F8;
+    font-weight : bold;
+    border : none;
+    font-size : 1.5em;
+}
+
+button, input[type=submit], .button {
+    color : white;
+    background-color : rgb( 0 , 86 , 144);
+    border-color : transparent;
+    font-weight: bold;
+    font-size: 1em;
+    -webkit-border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.button {
+    padding: 5px;
+}
+
+#submit {
+    font-size: 1.5em;
+}
+
+
 
 /* CONTENT CSS */
 #content{
@@ -155,6 +185,7 @@ form label {
   position: relative;
   text-decoration: none;
   white-space: nowrap;
+  margin: 2em 0 calc(2em - 11px) 0;
 }
 
 .Ndb .tLb {
@@ -190,13 +221,100 @@ table.page {
   text-align: left;
 }
 
+table.page {
+    width: calc(100% - 4em);
+    margin: 1em 2em 1em 2em;
+}
+
+table.page .image{
+      background-color: rgb(0 , 86 , 144);
+}
+
+table.page .blue_bar{
+      height: 5px;
+      background-color: rgb(0 , 86 , 144);
+}
+
+@media screen, handheld{
+    
+    
+    .mobile_timesheet{
+        display: inline;
+    }
+    
+    .full_timesheet{
+        display: none;
+    }
+
+    .half{
+      width: calc(100%);
+      display: inline-block;
+    }
+
+    table.page .image{
+      height: 1px;
+    }
+
+    table.page .blank{
+      height: 0px;
+    }
+}
+@media screen and (min-width: 700px), handheld{
+
+    .mobile_timesheet{
+        display: none;
+    }
+    
+    .full_timesheet{
+        display: inline;
+    }
+    
+    table.page {
+        width: calc(100% - 12em);
+        margin: 1em 6em 1em 6em;
+    }
+    
+    .half{
+      width: calc(50%);
+      display:inline;
+    }
+    
+    table.page .image{
+      height: 10px;
+    }
+}
+@media screen and (min-width: 1025px){
+
+    .mobile_timesheet{
+        display: none;
+    }
+    
+    .full_timesheet{
+        display: inline;
+    }
+    table.page {
+        max-width: 975px;
+        width: calc(100% - 40em);
+        margin: 1em auto 1em auto;
+    }
+    
+    .half{
+      width: calc(50%);
+      display:inline;
+    }
+    
+    table.page .image{
+      height: 125px;
+      background-image: url(image.jpg);
+    }
+    
+    table.page .blank{
+      height: 3px;
+    }
+}
 
 table.page .white{
   background-color: white;
-}
-
-table.page .blank{
-  height: 5px;
 }
 
 /*vblu - CSS for rounded table with blue header*/
@@ -210,7 +328,6 @@ table.vblu th, table.vblu td {
   padding: 4px;
   text-align: center;
   resize: none;
-  max-width: 100px;
 }
 
 table.vblu td {
@@ -268,20 +385,4 @@ table.vblu .noborder{
   border: 0;
 }
 
-select {
-    color : #E60000;
-    background-color : white;
-    font-weight : bold;
-    border : none;
-    font-size : 1.5em;
-}
 
-button {
-    color : white;
-    background-color : rgb( 0 , 86 , 144);
-    border-color : transparent;
-    font-weight: bold;
-    font-size: 2em;
-    -webkit-border-radius: 5px;
-
-}

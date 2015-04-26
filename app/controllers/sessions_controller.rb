@@ -26,8 +26,10 @@ class SessionsController < ApplicationController
     render "sessions/login"
   end
 
-  def destroy # should probbaly die
-
+  def destroy # same as logout above, used by the logout button b/c needed post
+    session.delete(:user_uid)
+    flash[:notice] = 'Logged out successfully.'
+    redirect_to "/login"
   end
 
   def fakelogin
