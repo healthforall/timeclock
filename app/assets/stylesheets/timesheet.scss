@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#clockin {
+  font-size: 2em;
+}
+
 table.page .lefth {
   background-image: url( asset-path('top-L.gif') );
 }

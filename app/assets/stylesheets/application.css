@@ -38,7 +38,7 @@ div#main{
 }
 a{
     background:transparent;
-    color: #E60000;
+    color: rgb(0 , 86 , 144);
     text-decoration:underline;
     font-weight:bold;
 }
@@ -58,7 +58,6 @@ h2{
 
 }
 
-
 #notice, #warning {
     background: rosybrown;
     margin: 1em 0;
@@ -70,6 +69,35 @@ form label {
     font-weight: bold;
     color: maroon;
 }
+
+select {
+    color : #E60000;
+    background-color : #F8F8F8;
+    font-weight : bold;
+    border : none;
+    font-size : 1.5em;
+}
+
+button, input[type=submit], .button {
+    color : white;
+    background-color : rgb( 0 , 86 , 144);
+    border-color : transparent;
+    font-weight: bold;
+    font-size: 1em;
+    -webkit-border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.button {
+    padding: 5px;
+}
+
+#submit {
+    font-size: 1.5em;
+}
+
+
 
 /* CONTENT CSS */
 #content{
@@ -268,20 +296,4 @@ table.vblu .noborder{
   border: 0;
 }
 
-select {
-    color : #E60000;
-    background-color : white;
-    font-weight : bold;
-    border : none;
-    font-size : 1.5em;
-}
 
-button {
-    color : white;
-    background-color : rgb( 0 , 86 , 144);
-    border-color : transparent;
-    font-weight: bold;
-    font-size: 2em;
-    -webkit-border-radius: 5px;
-
-}
