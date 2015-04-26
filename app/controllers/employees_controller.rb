@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-
+  before_action :admin_user,      only: [:edit,:update,:show,:index,:new,:create,:destroy,:edit]
 
   # POST create
   def create
@@ -21,43 +21,23 @@ class EmployeesController < ApplicationController
 
   # GET #index
   def index
-    if @current_user.admin
       @employees = Employee.all
-    else
-      flash[:notice] = "You are not an administrator!"
-      redirect_to "/employees/#{@current_user.id}/timesheets/1/current"
-    end
   end
 
   # GET #show
   def show
     id = params[:id]
     @employee = Employee.find(id)
-    if (@employee.id == @current_user.id || @current_user.admin)
-    else
-      flash[:notice] = "You do not have permission to view this page"
-      redirect_to  "/employees/#{@employee.id}/timesheets/1/current"
-    end
   end
 
   # GET #new
   def new
-    if @current_user.admin
       @employee = Employee.new
-    else
-      flash[:notice] = "You may not create a new employee!!!"
-      redirect_to  "/employees/#{@current_user.id}/timesheets/1/current"
-    end
   end
 
   # GET #edit
   def edit
-    if @current_user.admin == true
       @employee = Employee.find(params[:id])
-    else
-      flash[:notice] = "You are not an admin!"
-      redirect_to  "/employees/#{@current_user.id}/timesheets/1/current"
-    end
   end
 
   def update
@@ -72,11 +52,11 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee = Employee.find(params[:id])
-    if @current_user.admin && @employee.uid != @current_user.uid
+    if @employee.uid != @current_user.uid
       flash[:notice] = "Employee '#{@employee.name}' was deleted."
       @employee.destroy
     else
-      flash[:notice] = "You are not an administrator or you tried to delete yourself."
+      flash[:notice] = "You tried to delete yourself."
     end
     redirect_to employees_path
   end
@@ -86,5 +66,9 @@ class EmployeesController < ApplicationController
   ## Strong Parameters
   def employee_params
     params.require(:employee).permit(:name ,:email)
+  end
+
+  def admin_user
+    redirect_to  "/employees/#{@current_user.id}/timesheets/1/current" unless @current_user.admin?
   end
 end
