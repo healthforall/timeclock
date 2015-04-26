@@ -18,7 +18,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: rgb(0 , 86 , 144);
+    background-color: #E7E7E7;
+    /*background-color: rgb(0 , 86 , 144);*/
     font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
 }
@@ -32,10 +33,11 @@ table.vblu {
     display: inline-block;
     vertical-align:top;
 }
+
 div#main{
-    width: calc(100% - 24em);
-    padding: 0 12em;
-}
+    }
+
+
 a{
     background:transparent;
     color: rgb(0 , 86 , 144);
@@ -183,6 +185,7 @@ a.button {
   position: relative;
   text-decoration: none;
   white-space: nowrap;
+  margin: 2em 0 calc(2em - 11px) 0;
 }
 
 .Ndb .tLb {
@@ -218,13 +221,58 @@ table.page {
   text-align: left;
 }
 
+table.page {
+    width: calc(100% - 4em);
+    margin: 1em 2em 1em 2em;
+}
 
-table.page .white{
-  background-color: white;
+.half{
+  width: calc(100%);
+  display: inline-block;
+}
+
+table.page .image{
+  height: 1px;
 }
 
 table.page .blank{
-  height: 5px;
+  height: 0px;
+}
+
+@media (min-width: 700px){
+    table.page {
+        width: calc(100% - 12em);
+        margin: 1em 6em 1em 6em;
+    }
+    
+    .half{
+      width: calc(50%);
+      display:inline;
+    }
+}
+@media (min-width: 1025px){
+    table.page {
+        width: calc(100% - 40em);
+        margin: 1em 20em 1em 20em;
+    }
+    
+    .half{
+      width: calc(50%);
+      display:inline;
+    }
+    
+    table.page .image{
+      height: 125px;
+      background-image: url(image.jpg);
+    }
+    
+    table.page .blank{
+      height: 3px;
+    }
+}
+
+table.page .white{
+  background-color: white;
 }
 
 /*vblu - CSS for rounded table with blue header*/
@@ -239,6 +287,7 @@ table.vblu th, table.vblu td {
   text-align: center;
   resize: none;
   max-width: 100px;
+  min-width: 60px;
 }
 
 table.vblu td {
@@ -261,6 +310,7 @@ table.vblu .lefth, table.vblu .righth, table.vblu .leftf, table.vblu .rightf, ta
   background-color: transparent;
   padding: 0;
   width: 11px;
+  min-width: 0px;
 }
 
 table.vblu td.error{
