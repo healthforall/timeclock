@@ -29,6 +29,8 @@ table * {
 
 table.vblu {
     margin: auto;
+    display: inline-block;
+    vertical-align:top;
 }
 div#main{
     width: calc(100% - 24em);
@@ -36,28 +38,26 @@ div#main{
 }
 a{
     background:transparent;
-    color: maroon;
+    color: #E60000;
     text-decoration:underline;
     font-weight:bold;
 }
 h1{
-    color: crimson;
-    font-size: 150%;
-    /*font-style: italic;*/
+    color: #E60000;
+    font-size: 2em;
     display: block;
     width: 100%;
 
 }
 
-h1.title{
-    margin:0 0 1em;
-    padding:10px;
-    background-color: orange;
-    color :white;
-    border-bottom: 4px solid gold;
-    font-size: 2em;
-    font-style: normal;
+h2{
+    color: #E60000;
+    font-size: 1.5em;
+    display: block;
+    width: 100%;
+
 }
+
 
 #notice, #warning {
     background: rosybrown;
@@ -103,7 +103,8 @@ form label {
 }
 
 .half{
-  width: calc(50%)
+  width: calc(50%);
+  display:inline
 }
 
 /* GOOGLE BUTTON */
@@ -265,4 +266,22 @@ table.vblu .norborder{
 
 table.vblu .noborder{
   border: 0;
+}
+
+select {
+    color : #E60000;
+    background-color : white;
+    font-weight : bold;
+    border : none;
+    font-size : 1.5em;
+}
+
+button {
+    color : white;
+    background-color : rgb( 0 , 86 , 144);
+    border-color : transparent;
+    font-weight: bold;
+    font-size: 2em;
+    -webkit-border-radius: 5px;
+
 }

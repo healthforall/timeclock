@@ -1,7 +1,9 @@
-%h1 #{@name}
-%h1 #{@payperiod.print}
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
-%h1 Total: #{@total_hours} hours
+-if @uid == session[:user_uid]
+  %div{:style=> "float:right"}
+    = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :id => "export"
+%br
+%h1 #{@name}
 %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
   -@payperiods.reverse_each do |p|
     -if p.start_date == @start_date
@@ -9,11 +11,13 @@
     -else
       %option{:value => p.id} #{p.print}
 %br
-  -if @uid == session[:user_uid]
-    -if @current
-      %button{:id => "clockin" , :style => "display: inline" } Clock In
-    %div{:style=> "display: inline;"}
-      = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :id => "export"
+-if @uid == session[:user_uid]
+  -if @current
+    %br
+    %button{:id => "clockin"  } Clock In
+
+%h2 Total: #{@total_hours} hours
+%br
 %div
   = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
 %button{:id => "submit", :style => "display: none"} Submit Changes

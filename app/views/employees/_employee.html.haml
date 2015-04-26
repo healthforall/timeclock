@@ -1,7 +1,5 @@
 -#A single row of the All Employees table
 %tr
   %td.edgeleft
-  %td.nolborder= employee.name
-  %td= employee.email
-  %td.norborder= link_to "More about #{employee.name}", employee_path(employee)
-  %td.edgeright
+  %td.nolborder= link_to "#{employee.name}", employee_path(employee)
+  %td.edgeright= employee.email

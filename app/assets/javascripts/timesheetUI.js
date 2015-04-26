@@ -186,7 +186,7 @@ TimeSheet.doubleClickRow = function(){
 
 TimeSheet.changed = function(change ,e ){
     if(e != 0 && e !=1 && e != 2 && change) {
-        $("#submit").css('display', 'block');
+        $("#submit").css('display', 'inline-block');
     }
 
 };
