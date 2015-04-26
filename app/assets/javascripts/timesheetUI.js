@@ -81,7 +81,17 @@ TimeSheet.submitChanges = function(){
 
 TimeSheet.ready = function(){
     $("#submit").click(TimeSheet.submitChanges);
-    $("table.vblu tr").dblclick(TimeSheet.doubleClickRow);
+    //$("table.vblu tr").dblclick(TimeSheet.doubleClickRow);
+    $.contextMenu({
+        selector: 'table.vblu tr',
+        callback: function(key) {
+            TimeSheet.createNewRow(key, this);
+        },
+        items: {
+            "above": {name: "Add Row Above"},
+            "below": {name: "Add Row Below"}
+        }
+    });
     $("table.vblu").find("tbody tr").click(function(e){
        var row = this;
        TimeSheet.showDeleteButton(row);
@@ -143,7 +153,7 @@ TimeSheet.hideDeleteButton = function(row){
 
 }
 
-TimeSheet.createNewRow = function(item){
+TimeSheet.createNewRow = function(choice, item){
     TimeSheet.hideDeleteButton(item);
     var day = $(item).attr("class").match(/\d+/g)[0];
     var prevrow = $(item).prev()[0];
@@ -163,14 +173,27 @@ TimeSheet.createNewRow = function(item){
             nums[0] = day;
             nums[1] = 0;
         }
-
     }
     else {
         nums = [day , 0];
     }
     var newrow  = $(item).clone(true);
     $($(newrow).find("td")[1]).text("");
-    $(item).after($(newrow));
+    $(newrow).removeClass("context-menu-active");
+
+    if (choice == 'above'){ //Copy current row's times to a new row below and blank out the current row.
+        $($(newrow).find("td")[2]).text($($(item).find("td")[2]).text());
+        $($(newrow).find("td")[3]).text($($(item).find("td")[3]).text());
+        $($(item).find("td")[2]).text("");
+        $($(item).find("td")[3]).text("");
+        $(item).after($(newrow));
+    }
+    else { //Add a blank row below the current row
+        $($(newrow).find("td")[2]).text("");
+        $($(newrow).find("td")[3]).text("");
+        $(item).after($(newrow));
+    }
+
     $(item).attr("class" , "Day" + nums[0] + "Row"+ (parseInt(nums[1])+1));
 };
 
