@@ -1,7 +1,7 @@
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
 -if @uid == session[:user_uid]
   %div{:style=> "float:right"}
-    = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :id => "export", :class => "button"
+    = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button"
 %br
 %h1 #{@name}
 %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
