@@ -143,7 +143,6 @@ TimeSheet.deleteRow = function(type){
 };
 
 TimeSheet.createNewRow = function(choice, item){
-    TimeSheet.hideDeleteButton(item);
     var day = $(item).attr("class").match(/\d+/g)[0];
     var prevrow = $(item).prev()[0];
     var nums = [];
