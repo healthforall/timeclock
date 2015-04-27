@@ -17,8 +17,8 @@ TimeSheet.check_charcount = function( elem, e )
 
 TimeSheet.acceptableKeys = function(e){
     if( e == 8 ||
-       e == 37 || e == 38 ||
-       e == 39 || e == 40 )
+        e == 37 || e == 38 ||
+        e == 39 || e == 40 )
         return true
     else
         return false;
@@ -99,11 +99,11 @@ TimeSheet.ready = function(){
             "delete": {
                 name: "Delete Row",
                 callback: function(){
-                    TimeSheet.deleteRow($(this).attr("class").split(" ")[0]);
+                    TimeSheet.deleteRow($(this).attr("class"));
                     TimeSheet.changed(true);}}
-                /*adding another class to the tr may cause this to break
-                  it's needed because the context menu adds a new class to the selected tr
-                  that causes the type check in delete to fail*/
+            /*adding another class to the tr may cause this to break
+             it's needed because the context menu adds a new class to the selected tr
+             that causes the type check in delete to fail*/
         }
     });
     $("td[contenteditable = 'true']").keydown(function(e){
@@ -115,15 +115,20 @@ TimeSheet.ready = function(){
 };
 
 TimeSheet.deleteRow = function(type){
-    if(type == '')
+    if(type == '' || type.split(' ')[1] == 'last_row')
         return;
+
+    type = type.split(' ')[0];
     var row = $("."+type);
     var col = $(row).find("td")[1];
+
     if($(col).text() != '') {
         var next = $(row).next()[0];
         $($(next).find("td")[1]).text( $(col).text() );
     }
-    var afters = $("." + type).next()
+
+    var afters = $("." + type).next();
+    alert($(afters).attr("class"));
     var day = type.match(/\d+/g)[0];
     for( var i =0; i < afters.length; i++)
     {
@@ -138,8 +143,8 @@ TimeSheet.deleteRow = function(type){
         }
 
     }
-    $(row).remove();
-
+    //FIXME if had a non-empty td[1], make the next row have one too (get parent and then get next child?)
+    $("."+type+":first").remove();
 };
 
 TimeSheet.createNewRow = function(choice, item){
@@ -149,13 +154,12 @@ TimeSheet.createNewRow = function(choice, item){
     if(prevrow){
         nums = $(prevrow).attr('class').match(/\d+/g);
         /* This might be the direction to go in to prevent more than one empty row
-        cols = $(prevrow).find("td");
-        if( $(cols[1]).text() =='' && $(cols[2]).text() == '')
-        {
+         cols = $(prevrow).find("td");
+         if( $(cols[1]).text() =='' && $(cols[2]).text() == '')
+         {
 
-        }
-
-        */
+         }
+         */
         if( nums[0] != day)
         {
             nums[0] = day;
@@ -203,4 +207,3 @@ TimeSheet.changePeriod = function() {
 
 $(document).ready(TimeSheet.ready);
 $(document).on('page:load', TimeSheet.ready);
-

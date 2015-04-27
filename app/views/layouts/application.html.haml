@@ -16,11 +16,19 @@
       #warning.message= flash[:warning]
     %div#page
       %div#phead      
-        %img.logo{:src => image_path('logo_website.jpg' )}
+        -if @current_user
+          -if @current_user.admin
+            =link_to employees_path do
+              %img.logo{:src => image_path('logo_website.jpg' )}
+          -else
+            =link_to "/employees/#{@current_user.id}/timesheets/1/current" do
+              %img.logo{:src => image_path('logo_website.jpg' )}
+        -else
+          %img.logo{:src => image_path('logo_website.jpg' )}
         -if @current_user
           %div{style: "float:right;"}= render :partial => '/sessions/logout'
       %div#pbanner
       %div#pbody
         #main
-          = yield
+        = yield
       %div#pfoot

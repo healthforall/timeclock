@@ -6860,3 +6860,6 @@ vendor/cache/ruby/2.2.0/specifications/tzinfo-1.2.2.gemspec
 vendor/cache/ruby/2.2.0/specifications/uglifier-2.7.1.gemspec
 vendor/cache/ruby/2.2.0/specifications/web-console-2.1.0.gemspec
 vendor/cache/ruby/2.2.0/specifications/xpath-2.0.0.gemspec
+
+# Ignore application configuration
+/config/application.yml
