@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-
+  before_action :admin_user,      only: [:edit,:update,:show,:index,:new,:create,:destroy,:edit]
 
   # POST create
   def create
@@ -88,5 +88,9 @@ class EmployeesController < ApplicationController
   ## Strong Parameters
   def employee_params
     params.require(:employee).permit(:name ,:email)
+  end
+
+  def admin_user
+    redirect_to  "/employees/#{@current_user.id}/timesheets/1/current" unless @current_user.admin?
   end
 end
