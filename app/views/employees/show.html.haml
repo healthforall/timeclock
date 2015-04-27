@@ -9,10 +9,10 @@
   = @employee.email
   %br
   %br
-
-  = link_to "View employee's current timesheets" , employee_timesheet_current_path(@employee , timesheet_id: 1)
-  %br
-  %br
+  -if !@employee.admin
+    = link_to "View employee's current timesheets" , employee_timesheet_current_path(@employee , timesheet_id: 1)
+    %br
+    %br
   = link_to "Edit info" , edit_employee_path(@employee)
   %br
   %br

@@ -19,7 +19,15 @@
         %tr
           %th.lefth       
           %th.white{:style => 'text-align: left'}
-            %img{:src => image_path('logo_website.jpg' ) , :width => '213', :height => '70'}
+            -if @current_user
+              -if @current_user.admin
+                =link_to employees_path do
+                  %img{:src => image_path('logo_website.jpg' ) , :width => '213', :height => '70'}
+              -else
+                =link_to "/employees/#{@current_user.id}/timesheets/1/current" do
+                  %img{:src => image_path('logo_website.jpg' ) , :width => '213', :height => '70'}
+            -else
+              %img{:src => image_path('logo_website.jpg' ) , :width => '213', :height => '70'}
           %th.righth
       %tbody
         %tr
@@ -41,6 +49,7 @@
             = yield
             
             -if @current_user
+              %br
               %div{style: "float:right;"}= render :partial => '/sessions/logout'
           %td.white
       %tfoot
