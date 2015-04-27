@@ -4,19 +4,15 @@
   - day.num = count
   - count = count + 1
 %table.vblu
-  %thead.tshead
+  %thead
     %tr
-      %th.lefth
-      %th.nolborder Date
+      %th.btopl Date
       %th In
-      %th.norborder Out
-      %th.righth
+      %th.btopr Out
   %tbody
     = render :partial => '/days/day'  ,:collection=>days
-  %tfoot.tsfoot
+  %tfoot
     %tr
-      %td.leftf
-      %td.noborder
-      %td.noborder
-      %td.noborder
-      %td.rightf
+      %td.bbotl
+      %td
+      %td.bbotr

@@ -1,19 +1,16 @@
+%br
 %h1 All Employees
 %table.vblu#index
   %thead
     %tr
-      %th.lefth
-      %th.nolborder Name
-      %th.norborder Email
-      %th.righth
+      %th.btopl Name
+      %th.btopr Email
   %tbody
     = render :partial => 'employee' , :collection=>@employees
   %tfoot
     %tr
-      %td.leftf
-      %td.noborder
-      %td.noborder
-      %td.rightf
+      %td.bbotl
+      %td.bbotr
 %br
 %br
 = link_to 'Add a new employee', new_employee_path, class: "add_employee"

@@ -19,23 +19,14 @@ html, body {
     margin: 0;
     padding: 0;
     /*background-color: #E7E7E7;*/
-    background-color: rgb(0 , 86 , 144);
+    /*background-color: rgb(0 , 86 , 144);*/
+    background-color: rgb(13 , 147 , 198);
     font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
 }
 
-table * {
-    text-align :center;
-}
-
-table.vblu {
-    margin: auto;
-    display: inline-block;
-    vertical-align:top;
-}
-
 div#main{
-    }
+}
 
 
 a{
@@ -99,83 +90,31 @@ a.button {
     font-size: 1.5em;
 }
 
-
-
-/* CONTENT CSS */
-#content{
-	/* padding-bottom = footer margin-top*/
-	padding: 0 .5em 2.8em .5em;
-	margin: 0 auto 0 auto;
-}
-
-/* BASIC CONTENT ELEMENTS */
-.containerrow{
-	/*box model*/
-	width: 100%;
-	min-width: 20em;
-	height: auto;
-	padding: 0;
-	/*positioning*/
-	position: relative;
-}
-
-.col{
-  /*display*/
-  background-color: #282828;
-  text-align: center;
-  text-decoration: none;
-  /*box model*/
-  height: 100%;
-  padding: .5em;
-  margin: .5em;
-  /*positioning*/
-  position: relative;
-}
-
-.half{
-  width: calc(50%);
-  display:inline
-}
-
 /* GOOGLE BUTTON */
 
-.Ndb.isa .Ega {
+#googlebutton #googlelogo {
   background: no-repeat url(//ssl.gstatic.com/s2/oz/images/sprites/signinbutton-094c03c836f9f91d08b943a90778d34e.png) -32px -44px;
   height: 32px;
   width: 32px;
   margin-top: -1px;
-}
-
-.isa .Ega {
-  border-color: #bb3f30;
-}
-
-.Ega {
   border-style: solid;
   border-width: 0;
   display: inline-block;
   vertical-align: top;
-}
-.Ega {
+  border-color: #bb3f30;
   border-right-width: 1px;
 }
 
-.Ndb {
-  font-size: 12px;
-  height: 31px;
-  line-height: 31px;
-}
-
-.isa {
+#googlebutton {
   background-color: #dd4b39;
   color: #fff;
   -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.10);
   box-shadow: 0 1px 0 rgba(0,0,0,0.10);
   -webkit-border-radius: 3px;
   border-radius: 3px;
-}
-
-.Y3d {
+  font-size: 12px;
+  height: 31px;
+  line-height: 31px;
   -webkit-user-select: none;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -188,201 +127,120 @@ a.button {
   margin: 2em 0 calc(2em - 11px) 0;
 }
 
-.Ndb .tLb {
-  padding: 0 20px;
-}
-.isa .tLb {
+#googlebutton #googletext {
   -webkit-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
   display: inline-block;
-}
-
-.tLb {
   display: inline-block;
-}
-
-.isa {
-  background-color: #dd4b39;
-  color: #fff;
-  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.10);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.10);
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  padding: 0 20px;
 }
 
 /*main - CSS for rounded page table*/
-
-table.page {
-  border-collapse: collapse;
-  resize: none;
-  
-  width: calc(100% - 48em);
-  margin: 1em 24em 1em 24em;
-  text-align: left;
+#phead {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: white;
 }
 
-table.page {
-    width: calc(100% - 4em);
-    margin: 1em 2em 1em 2em;
+#pbody {
+    margin:0;
+    background-color: white;
+    text-align: center;
 }
 
-table.page .image{
-      background-color: rgb(0 , 86 , 144);
+#pfoot {
+    height: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: white;
 }
 
-table.page .blue_bar{
-      height: 5px;
-      background-color: rgb(0 , 86 , 144);
+img.logo{
+    margin-left: 12px; /*so you can see the 12px curved edge*/
+    width: 213px;
+    height: 70px;
+}
+
+#pbanner{
+    height: 10px;
+    background-color: rgb(0 , 86 , 144);
 }
 
 @media screen, handheld{
-    
-    
-    .mobile_timesheet{
-        display: inline;
+    #page {
+        width: calc(100% - 2em);
+        margin: 1em 1em 1em 1em;
     }
-    
-    .full_timesheet{
-        display: none;
+    #pbanner{
+        height: 10px;
     }
-
-    .half{
-      width: calc(100%);
-      display: inline-block;
-    }
-
-    table.page .image{
-      height: 1px;
-    }
-
-    table.page .blank{
-      height: 0px;
-    }
+    .half{ width: 100%; }
 }
 @media screen and (min-width: 700px), handheld{
-
-    .mobile_timesheet{
-        display: none;
-    }
-    
-    .full_timesheet{
-        display: inline;
-    }
-    
-    table.page {
+    #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
     }
-    
-    .half{
-      width: calc(50%);
-      display:inline;
-    }
-    
-    table.page .image{
-      height: 10px;
+    .half{ 
+        width: 50%; 
+        display: inline;
     }
 }
 @media screen and (min-width: 1025px){
-
-    .mobile_timesheet{
-        display: none;
-    }
-    
-    .full_timesheet{
-        display: inline;
-    }
-    table.page {
-        max-width: 975px;
+    #page {
+        max-width: 950px;
         width: calc(100% - 40em);
         margin: 1em auto 1em auto;
-    }
-    
-    .half{
-      width: calc(50%);
-      display:inline;
-    }
-    
-    table.page .image{
-      height: 125px;
-      background-image: url(image.jpg);
-    }
-    
-    table.page .blank{
-      height: 3px;
+    }  
+    #pbanner{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 125px;
+        background-image: url(image.jpg);
     }
 }
 
-table.page .white{
-  background-color: white;
-}
-
-/*vblu - CSS for rounded table with blue header*/
+/*vblu - rounded table with blue header*/
 
 table.vblu {
-  border-collapse: collapse;
-  resize: none;
+    border-collapse: collapse;
+    resize: none;
+    margin: auto;
+    display: inline-block;
+    vertical-align:top;
 }
 
 table.vblu th, table.vblu td {
-  padding: 4px;
-  text-align: center;
-  resize: none;
+    padding: 4px;
+    text-align: center;
+    resize: none;
+    border-left: 1px solid #cddcd9;
+    text-align: center;
+    min-width: 5em;
 }
 
 table.vblu td {
-  border: 1px solid #cddcd9;
-  background-color: #F5F5F5;
+    border-top: 1px solid #cddcd9;
+    background-color: #F5F5F5;
+}
+
+table.vblu td:first-child , table.vblu th:first-child{
+    border-left: none;
 }
 
 table.vblu th {
-  border: 0;
-  border-right: 1px solid #cddcd9;
-  border-left: 1px solid #cddcd9;
-  font-weight: bold;
-  color: white;
-  background-color: rgb(0, 86, 144);
+    font-weight: bold;
+    color: white;
+    background-color: rgb(0, 86, 144);
 }
 
-table.vblu .lefth, table.vblu .righth, table.vblu .leftf, table.vblu .rightf, table.page .lefth, table.page .righth, table.page .leftf, table.page .rightf {
-  font-size: 11px;
-  border: 0;
-  background-color: transparent;
-  padding: 0;
-  width: 11px;
-}
+table.vblu th.btopl{ border-top-left-radius: 12px; }
+table.vblu th.btopr{ border-top-right-radius: 12px; }
+table.vblu td.bbotl{ border-bottom-left-radius: 12px; }
+table.vblu td.bbotr{ border-bottom-right-radius: 12px; }
 
 table.vblu td.error{
     background-color: #F26D89;
-}
-
-
-table.vblu .edgeleft{
-  border-right: 0;
-  border-left: 0;
-  min-width: 0px;
-}
-
-table.vblu .edgeright{
-  border-right: 0;
-  border-left: 0;
-  min-width: 0px;
-}
-
-table.vblu .nolborder{
-  padding-right: 12px;
-  border-left: 0;
-  min-width: 38px;
-}
-
-table.vblu .norborder{
-  padding-left: 12px;
-  border-right: 0;
-  min-width: 38px;
-}
-
-table.vblu .noborder{
-  border: 0;
 }
 
 
