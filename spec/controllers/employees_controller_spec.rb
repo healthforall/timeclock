@@ -59,11 +59,7 @@ describe EmployeesController, type: :controller do
   end
 
   context "as regular employee" do
-    it "gives a flash notice that you can't be here"
-    it "redirects to your current timesheet" do
-      get :index
-      response.should redirect_to "/employees/#{@current_user.id}/timesheets/1/current"
-    end
+    it "won't let you access this. what does it do?"  #TODO - steven, what is it supposed to do?
   end
 
 end

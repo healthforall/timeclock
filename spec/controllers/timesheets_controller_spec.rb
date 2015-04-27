@@ -14,5 +14,12 @@ describe TimesheetsController do
     it "shows the current timesheet for the employee" #????
   end
 
+  describe "update" do
+
+  end
+
+  describe "select" do
+
+  end
 
 end
