@@ -1,21 +1,21 @@
-%br
-%div{:style=> "float:left"}
-  = link_to 'Back to employee list' , employees_path, :class => "button"
+%div#headerbar
+  %h1 #{@employee.name}
+%div.menubar
+  %div
+    = link_to 'Back to employee list' , employees_path, :class => "button menu"
+%div.content
+  %div#details
 
-%h2 #{@employee.name}
-
-%div#details
-
-  %strong Email:
-  = @employee.email
-  %br
-  %br
-  -if !@employee.admin
-    = link_to "View employee's current timesheets" , employee_timesheet_current_path(@employee , timesheet_id: 1)
+    %strong Email:
+    = @employee.email
     %br
     %br
-  = link_to "Edit info" , edit_employee_path(@employee)
-  %br
-  %br
+    -if !@employee.admin
+      = link_to "View employee's current timesheets" , employee_timesheet_current_path(@employee , timesheet_id: 1)
+      %br
+      %br
+    = link_to "Edit info" , edit_employee_path(@employee)
+    %br
+    %br
 
-  = link_to "Delete" , employee_path(@employee) , :method => :delete
+    = link_to "Delete" , employee_path(@employee) , :method => :delete

@@ -1,5 +1,6 @@
-%h2 Edit Employee Information
-
+%div#headerbar
+  %h2 Edit Employee Information
+%div.content
 = form_tag employee_path(@employee), :method => :put do
   = render :partial => 'employee_form'
   = submit_tag 'Save Changes'

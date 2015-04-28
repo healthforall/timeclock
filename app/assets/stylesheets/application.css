@@ -35,20 +35,31 @@ a{
     text-decoration:underline;
     font-weight:bold;
 }
+
 h1{
+    margin: 0;
+    background-color: white;
+    float: left;
     color: #E60000;
-    font-size: 2em;
-    display: block;
-    width: 100%;
+    font-size: 3em;
+    display: inline-block;
 
 }
 
 h2{
+    margin: 0;
+    background-color: white;
+    float: right;
     color: #E60000;
-    font-size: 1.5em;
-    display: block;
-    width: 100%;
+    font-size: 2em;
+    display: inline-block;
+}
 
+#logout{
+    position:relative;
+    z-index: 10;
+    float: right;
+    margin: 5px 5px 0 0;
 }
 
 #notice, #warning {
@@ -80,6 +91,31 @@ button, input[type=submit], .button {
     -webkit-border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+}
+
+.button.menu{
+    float: right;
+    display: inline-block;
+    margin: 0px;
+    -webkit-border-radius: 0 0 5px 5px;
+}
+
+div#headerbar{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    border-bottom: 10px solid rgb(0 , 86 , 144);
+}
+
+.menubar{
+    width: calc(100% - 2em);
+    height: auto;
+    display: inline-block;
+    margin: -5px 1em 0 1em;
+}
+
+.content{
+    display: block;
 }
 
 a.button {
@@ -156,6 +192,8 @@ a.button {
 }
 
 img.logo{
+    z-index: ;
+    position:relative;
     margin-left: 12px; /*so you can see the 12px curved edge*/
     width: 213px;
     height: 70px;
@@ -193,10 +231,18 @@ img.logo{
         margin: 1em auto 1em auto;
     }  
     #pbanner{
+        margin-left: 10em;
+        height: 100%;
+        width: calc(100% - 20em);
+        background-image: url(image.jpg);
+    }
+    div#pbannerbar{
+        background-color: rgb(0 , 86 , 144);
+        width: calc(100% + 20em);
         margin-top: 5px;
         margin-bottom: 5px;
+        margin-left: -10em;
         height: 125px;
-        background-image: url(image.jpg);
     }
 }
 

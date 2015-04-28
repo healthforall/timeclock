@@ -1,6 +1,7 @@
-%br
-%h2 Add new Employee
-= form_tag employees_path, :method => :post do
+%div#headerbar
+  %h2 Add new Employee
+%div.content
+  = form_tag employees_path, :method => :post do
 
-  = render :partial => 'employee_form'
-  = submit_tag 'Save Changes'
+    = render :partial => 'employee_form'
+    = submit_tag 'Save Changes'
