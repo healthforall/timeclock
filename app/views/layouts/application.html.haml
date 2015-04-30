@@ -27,8 +27,8 @@
           %img.logo{:src => image_path('logo_website.jpg' )}
         -if @current_user
           %div#logout= render :partial => '/sessions/logout'
-      %div#pbannerbar
-        %div#pbanner
+      %div#pbanner
+        %img#banner{:src => image_path('image.jpg')}
       %div#pbody
         #main
           = yield
