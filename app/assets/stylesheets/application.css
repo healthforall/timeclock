@@ -260,7 +260,7 @@ img.logo{
         margin-left: calc(2em - 3px);
         border-left: 3px solid rgb(0, 86, 144);
     }
-    #clockin{
+    #clockin, #submit, #revert{
         margin: 10px auto 10px auto;
         display: inline-block;
         float: left;

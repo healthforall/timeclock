@@ -18,6 +18,7 @@
     -if @uid == session[:user_uid]
       -if @current
         %button.button{:id => "clockin"} Clock In
+        %button{:id => "submit", :style => "display: none"} Submit Changes
+        %button{:id => "revert", :style => "display: none"} Revert Changes
   %div.container.two-thirds
     = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
-%button{:id => "submit", :style => "display: none"} Submit Changes

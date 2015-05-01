@@ -73,14 +73,23 @@ TimeSheet.submitChanges = function(){
     if (!badtime){
         TimeSheetCom.sendChanges();
         $("#submit").css("display" , "none");
+        $("#revert").css("display" , "none");
     }
     else{
         alert("There were time conflicts or missing fields (marked in red). Please fix these issues and resubmit.");
     }
 };
 
+TimeSheet.revertChanges = function(){
+    location.reload();
+    $("#clockin").css('display', 'inline-block');
+    $("#submit").css('display', 'none');
+    $("#revert").css('display', 'none');
+};
+
 TimeSheet.ready = function(){
     $("#submit").click(TimeSheet.submitChanges);
+    $("#revert").click(TimeSheet.revertChanges);
     $.contextMenu({
         selector: 'table.vblu tr',
         callback: function(key) {
@@ -110,7 +119,6 @@ TimeSheet.ready = function(){
         var elem = this;
         var change = TimeSheet.check_charcount(elem , e);
         TimeSheet.changed(change , e);
-
     }); //THis is importatnt to me for reasons...
 };
 
@@ -135,52 +143,30 @@ TimeSheet.deleteRow = function(row){
 };
 
 TimeSheet.createNewRow = function(choice, item){
-    var day = $(item).attr("class").match(/\d+/g)[0];
-    var prevrow = $(item).prev()[0];
-    var nums = [];
-    if(prevrow){
-        nums = $(prevrow).attr('class').match(/\d+/g);
-        /* This might be the direction to go in to prevent more than one empty row
-         cols = $(prevrow).find("td");
-         if( $(cols[1]).text() =='' && $(cols[2]).text() == '')
-         {
-
-         }
-         */
-        if( nums[0] != day)
-        {
-            nums[0] = day;
-            nums[1] = 0;
-        }
-    }
-    else {
-        nums = [day , 0];
-    }
     var newrow  = $(item).clone(true);
-    $($(newrow).find("td")[1]).text("");
+    $($(newrow).find("td")[0]).text("");
     $(newrow).removeClass("context-menu-active");
 
     if (choice == 'above'){ //Copy current row's times to a new row below and blank out the current row.
+        $($(newrow).find("td")[1]).text($($(item).find("td")[1]).text());
         $($(newrow).find("td")[2]).text($($(item).find("td")[2]).text());
-        $($(newrow).find("td")[3]).text($($(item).find("td")[3]).text());
+        $($(item).find("td")[1]).text("");
         $($(item).find("td")[2]).text("");
-        $($(item).find("td")[3]).text("");
         $(item).after($(newrow));
     }
     else { //Add a blank row below the current row
+        $($(newrow).find("td")[1]).text("");
         $($(newrow).find("td")[2]).text("");
-        $($(newrow).find("td")[3]).text("");
         $(item).after($(newrow));
     }
-
-    $(item).attr("class" , "Day" + nums[0] + "Row"+ (parseInt(nums[1])+1));
 };
 
 TimeSheet.changed = function(change ,e ){
     if(e != 0 && e !=1 && e != 2 && change) {
+        $("#clockin").css('display', 'none');
         $("#submit").css('display', 'inline-block');
+        $("#revert").css('display', 'inline-block');
     }
-
 };
 
 
@@ -189,7 +175,7 @@ TimeSheet.changePeriod = function() {
     var path = window.location.pathname.match(regexp)[0] + "/payperiods/";
     path += document.getElementById("periodSelector").value;
     window.location.href = path;
-}
+};
 
 
 $(document).ready(TimeSheet.ready);
