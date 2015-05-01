@@ -99,8 +99,8 @@ TimeSheet.ready = function(){
             "delete": {
                 name: "Delete Row",
                 callback: function(){
-                    TimeSheet.deleteRow($(this).attr("class"));
-                    TimeSheet.changed(true);}}
+                    TimeSheet.deleteRow(this);
+                    }}
             /*adding another class to the tr may cause this to break
              it's needed because the context menu adds a new class to the selected tr
              that causes the type check in delete to fail*/
@@ -114,36 +114,24 @@ TimeSheet.ready = function(){
     }); //THis is importatnt to me for reasons...
 };
 
-TimeSheet.deleteRow = function(type){
-    if(type == '' || type.split(' ')[1] == 'last_row')
+TimeSheet.deleteRow = function(row){
+    var next = $(row).next()[0];
+
+    //context-menu-active is appended to row's class before delete is called, so need to only check first entry of class
+    if($(row).attr("class").split(" ")[0] != $(next).attr("class")){
+        console.log($(row).attr("class")+" "+$(next).attr("class"));
+        $($(row).find("td")[1]).text('');
+        $($(row).find("td")[2]).text('');
         return;
-
-    type = type.split(' ')[0];
-    var row = $("."+type);
-    var col = $(row).find("td")[1];
-
-    if($(col).text() != '') {
-        var next = $(row).next()[0];
-        $($(next).find("td")[1]).text( $(col).text() );
     }
 
-    var afters = $("." + type).next();
-    var day = type.match(/\d+/g)[0];
-    for( var i =0; i < afters.length; i++)
-    {
-        var nums = $(afters[i]).attr("class").match(/\d+/g);
-        if( nums[0] == day && nums[1] )
-        {
-            $(afters[i]).attr("class" , "Day" + nums[0] +"Row" + (parseInt(nums[1])-1));
-        }
-        else
-        {
-            break;
-        }
-
+    if($($(row).find("td")[0]).text() != '') {
+        $($(next).find("td")[0]).text($($(row).find("td")[0]).text());
     }
+
     //FIXME if had a non-empty td[1], make the next row have one too (get parent and then get next child?)
-    $("."+type+":first").remove();
+    $(row).remove();
+    TimeSheet.changed(true);
 };
 
 TimeSheet.createNewRow = function(choice, item){
