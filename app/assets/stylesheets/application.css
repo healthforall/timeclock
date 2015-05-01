@@ -212,7 +212,7 @@ a.button {
 }
 
 img.logo{
-    z-index: ;
+    z-index: 0;
     position:relative;
     margin-left: 12px; /*so you can see the 12px curved edge*/
     width: 213px;
