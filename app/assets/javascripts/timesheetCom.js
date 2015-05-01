@@ -20,7 +20,7 @@ TimeSheetCom.getTimeSheet = function(){
         var data  = $(entry).find("td");
         var inandout = { "in" : $(data[2]).text() , "out" : $(data[3]).text()}
         if( inandout['in'] || inandout['out'])
-            days[day].push(inandout)
+            days[day].push(inandouaat)
     }
     timesheet['days'] = days;
     console.log(JSON.stringify(timesheet));

@@ -8,8 +8,8 @@
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
     <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <envs>
-      <env name="CLIENT_ID" value="92503809767-0ober85lbg4u5qu3ve459l4qgjsmp0kc.apps.googleusercontent.com" />
-      <env name="CLIENT_SECRET" value="YubckvGPsLLmgMMurCe76Jfi" />
+      <env name="CLIENT_ID" value="51200442618-ekft15s176iipio9b2jhdvvo09d71eal.apps.googleusercontent.com" />
+      <env name="CLIENT_SECRET" value="gxeQZuKh4AKEzC8Ajkff5krT" />
     </envs>
     <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
