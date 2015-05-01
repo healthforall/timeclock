@@ -2,15 +2,14 @@
 %div#headerbar
   %h1 #{@name}
   %h2 Total: #{@total_hours} hours
--if @uid == session[:user_uid]
-  %div.menubar
-    -if @uid == session[:user_uid]
-      -if @current
-        %button.button{:id => "clockin"} Clock In
-    %div
-      = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
+%div.menubar
+  -if @uid == session[:user_uid]
+    -if @current
+      %button.button{:id => "clockin"} Clock In
+  %div
+    = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
 %div.content
-  %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
+  %select{:name => 'pay_period', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
     -@payperiods.reverse_each do |p|
       -if p.start_date == @start_date
         %option{:value => p.id, :selected => "selected"} #{p.print}

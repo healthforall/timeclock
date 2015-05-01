@@ -21,7 +21,8 @@ class EmployeesController < ApplicationController
 
   # GET #index
   def index
-      @employees = Employee.all
+    @employees = Employee.all
+    @payperiods = Payperiod.all_cache
   end
 
   # GET #show

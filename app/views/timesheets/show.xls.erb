@@ -25,12 +25,8 @@
         <Cell><Data ss:Type="String"><%= @employee.name %></Data></Cell>
       </Row>
       <Row>
-        <Cell ss:StyleID="Info"><Data ss:Type="String">Pay Period Start</Data></Cell>
-        <Cell><Data ss:Type="String"><%= @timesheet.payperiod.start_date %></Data></Cell>
-      </Row>
-      <Row>
-        <Cell ss:StyleID="Info"><Data ss:Type="String">Pay Period End</Data></Cell>
-        <Cell><Data ss:Type="String"><%= @timesheet.payperiod.end_date %></Data></Cell>
+        <Cell ss:StyleID="Info"><Data ss:Type="String">Pay Period</Data></Cell>
+        <Cell><Data ss:Type="String"><%= @timesheet.payperiod.print %></Data></Cell>
       </Row>
       <Row>
         <Cell ss:StyleID="Headers"><Data ss:Type="String">Date</Data></Cell>
@@ -40,7 +36,7 @@
       </Row>
       <% @timesheet.days.each do |day| %>
       <Row>
-        <Cell ss:StyleID="Dates"><Data ss:Type="String"><%= day.day.strftime("%a:%m:%d") %></Data></Cell>
+        <Cell ss:StyleID="Dates"><Data ss:Type="String"><%= day.print %></Data></Cell>
       <% if not day.in_and_outs.empty? %>
       <% day.in_and_outs.each_with_index do |inandout, index| %>
       <% if index == 0 %>
