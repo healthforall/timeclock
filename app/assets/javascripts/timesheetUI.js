@@ -32,19 +32,19 @@ TimeSheet.submitChanges = function(){
     var firstDanglinInLoc = undefined;
     for (var i=0; i < entries.length; ++i){
         var data  = $(entries[i]).find("td");
-        if( $(data[1]).text() != "")
-            day = $(data[1]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/"
+        if( $(data[0]).text() != "")
+            day = $(data[0]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/"
 
         var inandout = {
-            "in" : new Date(Date.parse( day +$(data[2]).text())),
-            "out" : new Date(Date.parse(day +$(data[3]).text()))};
-        if (inandout.in > inandout.out || $(data[2]).text() == '' || $(data[3]).text() == '') //Detect Errors
+            "in" : new Date(Date.parse( day +$(data[1]).text())),
+            "out" : new Date(Date.parse(day +$(data[2]).text()))};
+        if (inandout.in > inandout.out || $(data[1]).text() == '' || $(data[2]).text() == '') //Detect Errors
         {
             //Lonely In
-            if ($(data[2]).text() != ''){
+            if ($(data[1]).text() != ''){
                 if((((new Date(day)).getDate()) == new Date(Date.now()).getDate() && firstDanglingIn)) {
                     firstDanglingIn = false;
-                    firstDanglinInLoc = data[3];
+                    firstDanglinInLoc = data[2];
                 }
                 else
                 {
@@ -53,16 +53,16 @@ TimeSheet.submitChanges = function(){
                         $(firstDanglinInLoc).toggleClass("error");
                     }
                     else {
-                        $(data[3]).toggleClass('error')
-                        $(data[4]).toggleClass('error')
+                        $(data[2]).toggleClass('error')
+                        $(data[2]).toggleClass('error')
                     }
                     badtime = true;
                 }
 
             }
             //Danglin Out
-            if ($(data[3]).text() != '') {
-                $(data[2]).toggleClass('error')
+            if ($(data[2]).text() != '') {
+                $(data[1]).toggleClass('error')
                 badtime = true;
             }
         }
@@ -128,7 +128,6 @@ TimeSheet.deleteRow = function(type){
     }
 
     var afters = $("." + type).next();
-    alert($(afters).attr("class"));
     var day = type.match(/\d+/g)[0];
     for( var i =0; i < afters.length; i++)
     {
