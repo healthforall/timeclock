@@ -38,7 +38,6 @@ a{
 
 h1{
     margin: 0;
-    background-color: white;
     float: left;
     color: black;
     font-size: 3em;
@@ -47,7 +46,15 @@ h1{
 
 h2{
     margin: 0;
-    background-color: white;
+    float: left;
+    color: black;
+    font-size: 1.5em;
+    display: block;
+}
+
+p{
+    width: 100%;
+    margin: 1em;
     float: left;
     color: black;
     font-size: 1.5em;

@@ -5,6 +5,8 @@
   -if @uid == session[:user_uid]
     %div.menubar
       %div
+        -if @current_user
+          %div.button.menu= render :partial => '/sessions/logout'
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
 %div#content
   %div.container.third
@@ -14,10 +16,10 @@
           %option{:value => p.id, :selected => "selected"} #{p.print}
         -else
           %option{:value => p.id} #{p.print}
-    %h2 Total: #{@total_hours} hours
     -if @uid == session[:user_uid]
       -if @current
         %button.button{:id => "clockin"} Clock In
   %div.container.two-thirds
     = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
+    %p Total: #{@total_hours} hours
 %button{:id => "submit", :style => "display: none"} Submit Changes
