@@ -1,4 +1,110 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@media screen and (min-width: 700px), handheld{
+
+  table.page .image{
+    height: 125px;
+    background-image: url( asset-path('image.jpg' ));
+  }
+
+  .mobile_timesheet{
+    display: none;
+  }
+
+  .full_timesheet{
+    display: inline;
+  }
+
+  table.page {
+    width: calc(100% - 12em);
+    margin: 1em 6em 1em 6em;
+  }
+
+  .half{
+    width: calc(50%);
+    display:inline;
+  }
+
+  table.page .image{
+    height: 10px;
+  }
+
+
+}
+
+table.page {
+  border-collapse: collapse;
+  resize: none;
+
+  width: calc(100% - 48em);
+  margin: 1em 24em 1em 24em;
+  text-align: left;
+}
+
+table.page {
+  width: calc(100% - 4em);
+  margin: 1em 2em 1em 2em;
+}
+
+table.page .image{
+  background-color: rgb(0 , 86 , 144);
+}
+
+table.page .blue_bar{
+  height: 5px;
+  background-color: rgb(0 , 86 , 144);
+}
+
+@media screen, handheld{
+
+
+  .mobile_timesheet{
+    display: inline;
+  }
+
+  .full_timesheet{
+    display: none;
+  }
+
+  .half{
+    width: calc(100%);
+    display: inline-block;
+  }
+
+  table.page .image{
+    height: 100px;
+  }
+
+  table.page .blank{
+    height: 0px;
+  }
+}
+@media screen and (min-width: 1025px){
+
+  .mobile_timesheet{
+    display: none;
+  }
+
+  .full_timesheet{
+    display: inline;
+  }
+  table.page {
+    max-width: 975px;
+    width: calc(100% - 40em);
+    margin: 1em auto 1em auto;
+  }
+
+  .half{
+    width: calc(50%);
+    display:inline;
+  }
+  table.page .blank{
+    height: 3px;
+  }
+}
+
+table.page .white{
+  background-color: white;
+}
 
