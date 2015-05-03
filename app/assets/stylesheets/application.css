@@ -53,12 +53,12 @@ h2{
 }
 
 p{
+    margin: .5em 0 .5em 0;
     width: 100%;
-    margin: 1em;
     float: left;
     color: black;
     font-size: 1.5em;
-    display: block;
+    display: inline-block;
 }
 
 #logout{
@@ -81,6 +81,7 @@ form label {
 }
 
 #periodSelector{
+    width: 100%;
     float: left;
     display: block;
 }
@@ -112,7 +113,7 @@ button, input[type=submit], .button {
 }
 
 #content{
-    width: 100%;
+    width: calc(100% - 2em);
     height: auto;
     padding: 0 1em 0 1em;
     display: inline-block;
@@ -238,6 +239,12 @@ img.logo{
 }
 
 @media screen, handheld{
+    div#headerbar{
+        width: calc(100% - 2em);
+    }
+    div.menubar{
+        width: calc(100% - 2em);
+    }
     #page {
         width: calc(100% - 2em);
         margin: 1em 1em 1em 1em;
@@ -251,8 +258,24 @@ img.logo{
     .half{ width: 100%; }
     .third{ width: 100%; }
     .two-thirds{ width: 100%; }
+    
+    #clockin, #submit, #revert{
+        margin: 10px auto 10px auto;
+        display: inline-block;
+        float: left;
+        width: 100%;
+        border-radius: .25em;
+        font-size: 3em;
+    }
 }
 @media screen and (min-width: 610px), handheld{
+    div#headerbar{
+        width: calc(60% - 2em);
+    }
+    div.menubar{
+        width: calc(40% - 2em);
+    }
+
     #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
@@ -261,11 +284,11 @@ img.logo{
         width: 100%; 
     }
     .third{
-        width: 15em;
+        width: 16em;
     }
     .two-thirds{ 
         width: calc(100% - 17em);
-        margin-left: calc(2em - 3px);
+        margin-left: calc(1em - 3px);
         border-left: 3px solid rgb(0, 86, 144);
     }
     #clockin, #submit, #revert{
@@ -277,18 +300,19 @@ img.logo{
         font-size: 3em;
     }
 }
-@media screen and (min-width: 820px), handheld{
+@media screen and (min-width: 870px), handheld{
     #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
     }
     .half{ 
-        width: 50%; 
-        display: inline;
+        width: calc(50% - 2px); 
+        display: inline-block;
+        height: auto;
     }
-    .third{ width: calc(100% - 40em); }
+    .third{ width: calc(100% - 42em); }
     .two-thirds{ 
-        width: 38em;
+        width: 40em;
         margin-left: calc( 2em - 3px);
         border-left: 3px solid rgb(0, 86, 144);
     }
@@ -305,7 +329,7 @@ img.logo{
     #page {
         margin-left: auto;
         margin-right: auto;
-        width: 825px;
+        width: 830px;
     }    
     #banner{
         display: inline-block;
@@ -333,7 +357,7 @@ img.logo{
 table.vblu {
     border-collapse: collapse;
     resize: none;
-    margin: auto;
+    margin: 0px 5px 0px 5px;
     display: inline-block;
     vertical-align:top;
 }
@@ -354,8 +378,28 @@ table.vblu tr.evenrow {
 table.vblu tr.oddrow {
     background-color: #F5F5F5;
 }
-table.vblu tr.bottomrow {
-    background-color: rgb(0, 86, 144);
+
+table.vblu  tr:nth-of-type(2n) {
+  background-color: #E6E6E6;
+}
+table.vblu  tr:nth-of-type(2n+1) {
+  background-color: #F5F5F5;
+}
+
+table.vblu tr:first-child  th:first-child{ 
+    border-top-left-radius: 12px;
+}
+
+table.vblu tr:first-child  th:last-child{ 
+    border-top-right-radius: 12px;
+}
+
+table.vblu tr:last-child  td:first-child{ 
+    border-bottom-left-radius: 12px;
+}
+
+table.vblu tr:last-child  td:last-child{ 
+    border-bottom-right-radius: 12px;
 }
 
 table.vblu td:first-child , table.vblu th:first-child{
@@ -367,11 +411,6 @@ table.vblu th {
     color: white;
     background-color: rgb(0, 86, 144);
 }
-
-table.vblu th.btopl{ border-top-left-radius: 12px; }
-table.vblu th.btopr{ border-top-right-radius: 12px; }
-table.vblu td.bbotl{ border-bottom-left-radius: 12px; }
-table.vblu td.bbotr{ border-bottom-right-radius: 12px; }
 
 table.vblu td.error{
     background-color: #F26D89;

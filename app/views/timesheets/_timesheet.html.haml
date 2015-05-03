@@ -1,10 +1,7 @@
-
 %div
   %div.half
-    = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1, :flipcolors => false }
+    %p #{first_week.first.day.strftime("%B %d - ") + first_week.last.day.strftime("%d, %Y")}
+    = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1 }
   %div.half
-    -if (middle % 2 == 0) 
-      = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle, :flipcolors => true}
-    -else
-      = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle, :flipcolors => false}
-    
+    %p #{second_week.first.day.strftime("%B %d - ") + second_week.last.day.strftime("%d, %Y")}
+    = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle }

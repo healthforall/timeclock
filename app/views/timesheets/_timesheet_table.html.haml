@@ -6,16 +6,8 @@
 %table.vblu
   %thead
     %tr
-      %th.btopl Date
+      %th Date
       %th In
-      %th.btopr Out
+      %th Out
   %tbody
-    -if (flipcolors)
-      = render :partial => '/days/day'  ,:collection=>days, :locals => {:flip => 1}
-    -else
-      = render :partial => '/days/day'  ,:collection=>days, :locals => {:flip => 0}
-  %tfoot
-    %tr.bottomrow
-      %td.bbotl
-      %td
-      %td.bbotr
+    = render :partial => '/days/day'  ,:collection=>days
