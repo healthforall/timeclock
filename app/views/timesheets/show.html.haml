@@ -1,13 +1,13 @@
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
 %div#contentheader  
-  %div#headerbar
-    %h1 #{@name}
   -if @uid == session[:user_uid]
     %div.menubar
       %div
         -if @current_user
           %a= render :partial => '/sessions/logout'
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
+  %div#headerbar
+    %h1 Payperiod for #{@name}
 %div#content
   %div.container.third
     %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
