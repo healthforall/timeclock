@@ -52,7 +52,8 @@ class EmployeesController < ApplicationController
     @employee = Employee.find params[:id]
     if @employee.update_attributes(employee_params)
       flash[:notice] = "#{@employee.name} was successfully updated."
-      redirect_to employee_path(@employee)
+      #redirect_to employee_path(@employee)
+      redirect_to employee_timesheet_current_path(@employee , timesheet_id: 1)
     else
       render 'edit'
     end

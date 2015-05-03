@@ -1,8 +1,9 @@
-%div#headerbar
-  %h1 All Employees
-%div.menubar
-  %div
-    = link_to 'Add a new employee', new_employee_path, class: "button menu"
+%div#contentheader  
+  %div.menubar
+    %div
+      = link_to 'Add a new employee', new_employee_path, class: "button menu"
+  %div#headerbar
+    %h1 All Employees
 %div.content
   %table.vblu.employees#index
     %thead

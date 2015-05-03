@@ -1,4 +1,4 @@
 -#A single row of the All Employees table
 %tr
-  %td= link_to "#{employee.name}", employee_path(employee)
+  %td= link_to "#{employee.name}", employee_timesheet_current_path(employee , timesheet_id: 1)
   %td= employee.email

@@ -1,14 +1,15 @@
 %div#clockinquestionmark{ :style => "display :none"}= @employee.clockin?
 %div#contentheader  
-  -if @uid == session[:user_uid]
-    %div.menubar
-      %div
-        -if @current_user
-          %a= render :partial => '/sessions/logout'
+  %div.menubar
+    %a= render :partial => '/sessions/logout'
+    -if @current_user.admin 
+      = link_to 'Back to employee list' , employees_path, :class => "button menu"
+    -if @uid == session[:user_uid]
+      -if @current_user
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
   %div#headerbar
     %h1 Payperiod for #{@name}
-%div#content
+%div.content
   %div.container.third
     %select{:name => 'pay_pariod', :id => "periodSelector", :onchange => "TimeSheet.changePeriod()"}
       -@payperiods.reverse_each do |p|
@@ -21,7 +22,16 @@
         %button.button{:id => "clockin"} Clock In
         %button{:id => "submit", :style => "display: none"} Submit Changes
         %button{:id => "revert", :style => "display: none"} Revert Changes
+    -if @current_user.admin 
+      %p
+        %strong Name:
+        = @employee.name
+      %p
+        %strong Email:
+        = @employee.email
+      %p= link_to "Edit info" , edit_employee_path(@employee)
+      %p= link_to "Delete" , employee_path(@employee) , :method => :delete
   %div.container.two-thirds
     = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
-    %p Total: #{@total_hours} hours
+    %p.right Total: #{@total_hours} hours
 %button{:id => "submit", :style => "display: none"} Submit Changes

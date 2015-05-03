@@ -1,7 +1,7 @@
 %div
   %div.half
-    %p #{first_week.first.day.strftime("%B %d - ") + first_week.last.day.strftime("%d, %Y")}
+    %h3 #{first_week.first.day.strftime("%B %d - ") + first_week.last.day.strftime("%d, %Y")}
     = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1 }
   %div.half
-    %p #{second_week.first.day.strftime("%B %d - ") + second_week.last.day.strftime("%d, %Y")}
+    %h3 #{second_week.first.day.strftime("%B %d - ") + second_week.last.day.strftime("%d, %Y")}
     = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle }

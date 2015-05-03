@@ -52,6 +52,15 @@ h2{
     display: block;
 }
 
+h3{
+    margin: .5em 0 .5em 0;
+    width: 100%;
+    float: left;
+    color: black;
+    font-size: 1.5em;
+    display: inline-block;
+}
+
 p{
     margin: .5em 0 .5em 0;
     width: 100%;
@@ -59,6 +68,11 @@ p{
     color: black;
     font-size: 1.5em;
     display: inline-block;
+    text-align: left;
+}
+
+.right{
+    text-align: right;
 }
 
 #logout{
@@ -74,7 +88,7 @@ p{
     padding: 4px;
 }
 form label {
-    display: block;
+    display: inline;
     line-height: 25px;
     font-weight: bold;
     color: black;
@@ -112,7 +126,7 @@ button, input[type=submit], .button {
     -webkit-border-radius: 0 0 5px 5px;
 }
 
-#content{
+.content{
     width: calc(100% - 2em);
     height: auto;
     padding: 0 1em 0 1em;
@@ -139,10 +153,6 @@ div#headerbar{
     height: auto;
     display: inline-block;
     margin: -0 1em 0 1em;
-}
-
-.content{
-    display: block;
 }
 
 .button {
@@ -249,6 +259,9 @@ img.logo{
         width: calc(100% - 2em);
         margin: 1em 1em 1em 1em;
     }
+    p{
+        font-size: 1.25em;
+    }
     #banner{
         display: none;
     }
@@ -280,14 +293,17 @@ img.logo{
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
     }
+    p{
+        font-size: 1.25em;
+    }
     .half{ 
         width: 100%; 
     }
     .third{
-        width: 16em;
+        width: calc(100% - 22em);
     }
     .two-thirds{ 
-        width: calc(100% - 17em);
+        width: 20em;
         margin-left: calc(1em - 3px);
         border-left: 3px solid rgb(0, 86, 144);
     }
@@ -304,6 +320,9 @@ img.logo{
     #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
+    }
+    p{
+        font-size: 1.5em;
     }
     .half{ 
         width: calc(50% - 2px); 
