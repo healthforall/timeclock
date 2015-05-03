@@ -1,7 +1,10 @@
 
 %div
   %div.half
-    = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1 }
+    = render :partial => "timesheet_table", :locals => {:days => first_week , :start => 1, :flipcolors => false }
   %div.half
-    = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle}
+    -if (middle % 2 == 0) 
+      = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle, :flipcolors => true}
+    -else
+      = render :partial => "timesheet_table", :locals => {:days => second_week ,:start => middle, :flipcolors => false}
     

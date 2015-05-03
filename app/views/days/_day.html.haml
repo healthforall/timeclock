@@ -1,20 +1,40 @@
 -#A single day in a timsheet_table
 -#If the day is empty
 - if (day.in_and_outs.length == 0)
-  %tr{ :class =>"Day#{day.num}"}
-    %td= day.print
-    %td{contenteditable: 'true'}
-    %td{contenteditable: 'true'}
+  - if( (day.num + flip) % 2 == 0)
+    %tr{ :class =>"Day#{day.num} evenrow"}
+      %td= day.print
+      %td{contenteditable: 'true'}
+      %td{contenteditable: 'true'}
+  - else
+    %tr{ :class =>"Day#{day.num} oddrow"}
+      %td= day.print
+      %td{contenteditable: 'true'}
+      %td{contenteditable: 'true'}
 - else
-  - count = 0
-  - day.in_and_outs.order("in_time , out_time").each_with_index do |inandout , i |
-    -count = count + 1
-    %tr{:class => "Day#{day.num}" }
-      %td= day.print if i == 0
-      %td{:id => "Day#{day.num}In#{count}" ,contenteditable: 'true'}= inandout.print_in
-      %td{:id => "Day#{day.num}Out#{count}" ,contenteditable: 'true'}= inandout.print_out
+  - if( (day.num + flip) % 2 == 0)
+    - count = 0
+    - day.in_and_outs.order("in_time , out_time").each_with_index do |inandout , i |
+      -count = count + 1
+      %tr{:class => "Day#{day.num} evenrow" }
+        %td= day.print if i == 0
+        %td{:id => "Day#{day.num}In#{count}" ,contenteditable: 'true'}= inandout.print_in
+        %td{:id => "Day#{day.num}Out#{count}" ,contenteditable: 'true'}= inandout.print_out
       
-  %tr{ :class =>"Day#{day.num}"}
-    %td
-    %td{contenteditable: 'true'} 
-    %td{contenteditable: 'true'}
+    %tr{ :class =>"Day#{day.num} evenrow"}
+      %td
+      %td{contenteditable: 'true'} 
+      %td{contenteditable: 'true'}
+  -else
+    - count = 0
+    - day.in_and_outs.order("in_time , out_time").each_with_index do |inandout , i |
+      -count = count + 1
+      %tr{:class => "Day#{day.num} oddrow" }
+        %td= day.print if i == 0
+        %td{:id => "Day#{day.num}In#{count}" ,contenteditable: 'true'}= inandout.print_in
+        %td{:id => "Day#{day.num}Out#{count}" ,contenteditable: 'true'}= inandout.print_out
+      
+    %tr{ :class =>"Day#{day.num} oddrow"}
+      %td
+      %td{contenteditable: 'true'} 
+      %td{contenteditable: 'true'}

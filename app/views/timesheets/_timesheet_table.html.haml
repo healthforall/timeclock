@@ -10,9 +10,12 @@
       %th In
       %th.btopr Out
   %tbody
-    = render :partial => '/days/day'  ,:collection=>days
+    -if (flipcolors)
+      = render :partial => '/days/day'  ,:collection=>days, :locals => {:flip => 1}
+    -else
+      = render :partial => '/days/day'  ,:collection=>days, :locals => {:flip => 0}
   %tfoot
-    %tr
+    %tr.bottomrow
       %td.bbotl
       %td
       %td.bbotr

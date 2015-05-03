@@ -107,7 +107,7 @@ button, input[type=submit], .button {
 .button.menu{
     float: right;
     display: inline-block;
-    margin: 0px;
+    margin: 0px 0x 0px 5px;
     -webkit-border-radius: 0 0 5px 5px;
 }
 
@@ -144,8 +144,9 @@ div#headerbar{
     display: block;
 }
 
-a.button {
+.button {
     padding: 5px;
+    margin-left: 5px;
 }
 
 #submit {
@@ -346,9 +347,15 @@ table.vblu th, table.vblu td {
     min-width: 5em;
 }
 
-table.vblu td {
-    border-top: 1px solid #cddcd9;
+table.vblu tr.evenrow {
+    background-color: #E6E6E6;
+}
+
+table.vblu tr.oddrow {
     background-color: #F5F5F5;
+}
+table.vblu tr.bottomrow {
+    background-color: rgb(0, 86, 144);
 }
 
 table.vblu td:first-child , table.vblu th:first-child{

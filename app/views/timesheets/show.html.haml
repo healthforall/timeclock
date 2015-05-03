@@ -6,7 +6,7 @@
     %div.menubar
       %div
         -if @current_user
-          %div.button.menu= render :partial => '/sessions/logout'
+          %a= render :partial => '/sessions/logout'
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
 %div#content
   %div.container.third
