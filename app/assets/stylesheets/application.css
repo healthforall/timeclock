@@ -20,7 +20,7 @@ html, body {
     padding: 0;
     /*background-color: #E7E7E7;*/
     /*background-color: rgb(0 , 86 , 144);*/
-    background-color: rgb(13 , 147 , 198);
+    background-color: #000033;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
 }
@@ -38,21 +38,41 @@ a{
 
 h1{
     margin: 0;
-    background-color: white;
     float: left;
-    color: #E60000;
+    color: black;
     font-size: 3em;
-    display: inline-block;
-
+    display: block;
 }
 
 h2{
     margin: 0;
-    background-color: white;
-    float: right;
-    color: #E60000;
-    font-size: 2em;
+    float: left;
+    color: black;
+    font-size: 1.5em;
+    display: block;
+}
+
+h3{
+    margin: .5em 0 .5em 0;
+    width: 100%;
+    float: left;
+    color: black;
+    font-size: 1.5em;
     display: inline-block;
+}
+
+p{
+    margin: .5em 0 .5em 0;
+    width: 100%;
+    float: left;
+    color: black;
+    font-size: 1.5em;
+    display: inline-block;
+    text-align: left;
+}
+
+.right{
+    text-align: right;
 }
 
 #logout{
@@ -68,18 +88,26 @@ h2{
     padding: 4px;
 }
 form label {
-    display: block;
+    display: inline;
     line-height: 25px;
     font-weight: bold;
     color: black;
 }
 
+#periodSelector, #nameSelector{
+    width: 100%;
+    float: left;
+    display: block;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
 select {
-    color : #E60000;
-    background-color : #F8F8F8;
-    font-weight : bold;
-    border : none;
-    font-size : 1.5em;
+    color: black;
+    background-color: #F8F8F8;
+    font-weight: bold;
+    border: 1px solid black;
+    font-size: 1.5em;
 }
 
 button, input[type=submit], .button {
@@ -96,35 +124,51 @@ button, input[type=submit], .button {
 .button.menu{
     float: right;
     display: inline-block;
-    margin: 0px;
+    margin: 0px 0x 0px 5px;
     -webkit-border-radius: 0 0 5px 5px;
 }
 
-div#headerbar{
-    display: inline-block;
-    width: 100%;
+.content{
+    width: calc(100% - 2em);
     height: auto;
-    border-bottom: 10px solid rgb(0 , 86 , 144);
+    padding: 0 1em 0 1em;
+    display: inline-block;
+}
+
+#contentheader{
+    width: 100%;
+    display: inline-block;
+    height: auto;
+}
+
+div#headerbar{
+    float: left;
+    display: inline-block;
+    width: calc(50% - 2em);
+    height: auto;
+    padding: 0 1em 0 1em;
 }
 
 .menubar{
-    width: calc(100% - 2em);
+    float: right;
+    width: calc(50% - 2em);
     height: auto;
     display: inline-block;
-    margin: -5px 1em 0 1em;
+    margin: -0 1em 0 1em;
 }
 
-.content{
-    display: block;
-}
-
-a.button {
+.button {
     padding: 5px;
+    margin-left: 5px;
 }
 
-#submit {
+#submit, #revert{
     font-size: 1.5em;
 }
+#export{
+    font-size: 1em;
+}
+
 
 /* GOOGLE BUTTON */
 
@@ -182,6 +226,7 @@ a.button {
     margin:0;
     background-color: white;
     text-align: center;
+    height: auto;
 }
 
 #pfoot {
@@ -199,51 +244,137 @@ img.logo{
     height: 70px;
 }
 
+.container{
+    display: inline-block;
+    float: left;
+}
+
 #pbanner{
     height: 10px;
     background-color: rgb(0 , 86 , 144);
 }
 
 @media screen, handheld{
+    div#headerbar{
+        width: calc(100% - 2em);
+    }
+    div.menubar{
+        width: calc(100% - 2em);
+    }
     #page {
         width: calc(100% - 2em);
         margin: 1em 1em 1em 1em;
+    }
+    p{
+        font-size: 1.25em;
+    }
+    #banner{
+        display: none;
     }
     #pbanner{
         height: 10px;
     }
     .half{ width: 100%; }
+    .third{ width: 100%; }
+    .two-thirds{ width: 100%; }
+    
+    #clockin, #submit, #revert, #export{
+        margin: 10px auto 10px auto;
+        display: inline-block;
+        float: left;
+        width: 100%;
+        border-radius: .25em;
+        font-size: 3em;
+    }
 }
-@media screen and (min-width: 700px), handheld{
+@media screen and (min-width: 610px), handheld{
+    div#headerbar{
+        width: calc(60% - 2em);
+    }
+    div.menubar{
+        width: calc(40% - 2em);
+    }
+
     #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
     }
+    p{
+        font-size: 1.25em;
+    }
     .half{ 
-        width: 50%; 
-        display: inline;
+        width: 100%; 
+    }
+    .third{
+        width: calc(100% - 22em);
+    }
+    .two-thirds{ 
+        width: 20em;
+        margin-left: calc(1em - 3px);
+        border-left: 3px solid rgb(0, 86, 144);
+    }
+    #clockin, #submit, #revert, #export{
+        margin: 10px auto 10px auto;
+        display: inline-block;
+        float: left;
+        width: 100%;
+        border-radius: .25em;
+        font-size: 3em;
+    }
+}
+@media screen and (min-width: 870px), handheld{
+    #page {
+        width: calc(100% - 12em);
+        margin: 1em 6em 1em 6em;
+    }
+    p{
+        font-size: 1.5em;
+    }
+    .half{ 
+        width: calc(50% - 2px); 
+        display: inline-block;
+        height: auto;
+    }
+    .third{ width: calc(100% - 42em); }
+    .two-thirds{ 
+        width: 40em;
+        margin-left: calc( 2em - 3px);
+        border-left: 3px solid rgb(0, 86, 144);
+    }
+    #clockin{
+        margin: 10px auto 10px auto;
+        display: inline-block;
+        float: left;
+        width: 100%;
+        border-radius: .25em;
+        font-size: 4em;
     }
 }
 @media screen and (min-width: 1025px){
     #page {
-        max-width: 950px;
-        width: calc(100% - 40em);
-        margin: 1em auto 1em auto;
-    }  
-    #pbanner{
-        margin-left: 10em;
-        height: 100%;
-        width: calc(100% - 20em);
-        background-image: url(image.jpg);
+        margin-left: auto;
+        margin-right: auto;
+        width: 830px;
+    }    
+    #banner{
+        display: inline-block;
     }
-    div#pbannerbar{
-        background-color: rgb(0 , 86 , 144);
-        width: calc(100% + 20em);
+    #pbanner{
+        height: 125px;
+        width: 100%;
         margin-top: 5px;
         margin-bottom: 5px;
-        margin-left: -10em;
-        height: 125px;
+        overflow: hidden;
     }
+    #clockin {
+        margin: 10px auto 10px auto;
+        display: inline-block;
+        float: left;
+        width: 100%;
+        border-radius: .25em;
+        font-size: 5em;
+    }
+
 }
 
 /*vblu - rounded table with blue header*/
@@ -251,7 +382,7 @@ img.logo{
 table.vblu {
     border-collapse: collapse;
     resize: none;
-    margin: auto;
+    margin: 0px 5px 0px 5px;
     display: inline-block;
     vertical-align:top;
 }
@@ -265,9 +396,35 @@ table.vblu th, table.vblu td {
     min-width: 5em;
 }
 
-table.vblu td {
-    border-top: 1px solid #cddcd9;
+table.vblu tr.evenrow {
+    background-color: #E6E6E6;
+}
+
+table.vblu tr.oddrow {
     background-color: #F5F5F5;
+}
+
+table.vblu  tr:nth-of-type(2n) {
+  background-color: #E6E6E6;
+}
+table.vblu  tr:nth-of-type(2n+1) {
+  background-color: #F5F5F5;
+}
+
+table.vblu tr:first-child  th:first-child{ 
+    border-top-left-radius: 12px;
+}
+
+table.vblu tr:first-child  th:last-child{ 
+    border-top-right-radius: 12px;
+}
+
+table.vblu tr:last-child  td:first-child{ 
+    border-bottom-left-radius: 12px;
+}
+
+table.vblu tr:last-child  td:last-child{ 
+    border-bottom-right-radius: 12px;
 }
 
 table.vblu td:first-child , table.vblu th:first-child{
@@ -279,11 +436,6 @@ table.vblu th {
     color: white;
     background-color: rgb(0, 86, 144);
 }
-
-table.vblu th.btopl{ border-top-left-radius: 12px; }
-table.vblu th.btopr{ border-top-right-radius: 12px; }
-table.vblu td.bbotl{ border-bottom-left-radius: 12px; }
-table.vblu td.bbotr{ border-bottom-right-radius: 12px; }
 
 table.vblu td.error{
     background-color: #F26D89;

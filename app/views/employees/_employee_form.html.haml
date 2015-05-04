@@ -5,9 +5,11 @@
     %ul
       - @employee.errors.full_messages.each do |error|
         %li=  error
-= label :employee , :name, 'Name'
-= text_field :employee, :name
-= label :employee , :email, "Email"
-= text_field :employee, :email
+%p
+  = label :employee , :name, 'Name:'
+  = text_field :employee, :name
+%p
+  = label :employee , :email, "Email:"
+  = text_field :employee, :email
 %br
 %br

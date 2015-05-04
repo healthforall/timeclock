@@ -2,26 +2,24 @@ TimeSheetCom = function(){
 
 };
 
-
 TimeSheetCom.getTimeSheet = function(){
-    var entries = $("table.vblu tbody tr")
-    var numdays    = $("table.vblu tbody tr.last_row").length;
-    var days = {};
-    var timesheet = {};
-    for ( var i =0; i < numdays; i ++) {
-        days[i] = [];
-    }
-
+    var entries = $("table.vblu tbody tr");
+    days = {};
     for ( var i =0; i < entries.length; i++) {
-
         var entry = $(entries[i]);
-        var nums  = $(entry).attr("class").match(/\d+/g);;
-        var day   = parseInt(nums[0]) -1;
+        var day   = parseInt($(entry).attr("class").match(/\d+/g)[0] - 1 );
+        if( !(day in days) ){
+         days[day] = [];
+        }
         var data  = $(entry).find("td");
-        var inandout = { "in" : $(data[2]).text() , "out" : $(data[3]).text()}
-        if( inandout['in'] || inandout['out'])
-            days[day].push(inandout)
+        var inandout = { "in" : $(data[1]).text() , "out" : $(data[2]).text()}
+        if( inandout['in'] || inandout['out']){
+            days[day].push(inandout);
+
+        }
+
     }
+    timesheet = {};
     timesheet['days'] = days;
     console.log(JSON.stringify(timesheet));
     return timesheet

@@ -32,7 +32,6 @@ end
 
 When(/^(?:|I )edit a time cell to (.+)$/) do |input|
   cell = "(//td[2])[1]"
-  find(:xpath, cell).double_click
   find(:xpath, cell).set(input)
 end
 
