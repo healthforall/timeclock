@@ -34,4 +34,3 @@
   %div.container.two-thirds
     = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
     %p.right Total: #{@total_hours} hours
-%button{:id => "submit", :style => "display: none"} Submit Changes

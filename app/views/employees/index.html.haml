@@ -5,10 +5,21 @@
   %div#headerbar
     %h1 All Employees
 %div.content
-  %table.vblu.employees#index
-    %thead
-      %tr
-        %th Name
-        %th Email
-    %tbody
-      = render :partial => 'employee' , :collection=>@employees
+  %div.container.third
+    %select{:name => "name_select", :id => "nameSelector"}
+      -@employees.each do |e|
+        -if not e.admin
+          %option{:value => e.id} #{e.name}
+      %option{:value => "All"} All
+    %select{:name => "period_select", :id => "periodSelector"}
+      -@payperiods.reverse_each do |p|
+        %option{:value => p.id} #{p.print}
+    %button{:id => "export", :onclick => "Employees.massExport()"} Export Timesheets
+  %div.container.two-thirds
+    %table.vblu.employees#index
+      %thead
+        %tr
+          %th Name
+          %th Email
+      %tbody
+        = render :partial => 'employee' , :collection=>@employees

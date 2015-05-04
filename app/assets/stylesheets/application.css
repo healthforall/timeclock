@@ -94,10 +94,12 @@ form label {
     color: black;
 }
 
-#periodSelector{
+#periodSelector, #nameSelector{
     width: 100%;
     float: left;
     display: block;
+    margin-top: .5em;
+    margin-bottom: .5em;
 }
 
 select {
@@ -160,9 +162,13 @@ div#headerbar{
     margin-left: 5px;
 }
 
-#submit {
+#submit, #revert{
     font-size: 1.5em;
 }
+#export{
+    font-size: 1em;
+}
+
 
 /* GOOGLE BUTTON */
 
@@ -272,7 +278,7 @@ img.logo{
     .third{ width: 100%; }
     .two-thirds{ width: 100%; }
     
-    #clockin, #submit, #revert{
+    #clockin, #submit, #revert, #export{
         margin: 10px auto 10px auto;
         display: inline-block;
         float: left;
@@ -307,7 +313,7 @@ img.logo{
         margin-left: calc(1em - 3px);
         border-left: 3px solid rgb(0, 86, 144);
     }
-    #clockin, #submit, #revert{
+    #clockin, #submit, #revert, #export{
         margin: 10px auto 10px auto;
         display: inline-block;
         float: left;

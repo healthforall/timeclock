@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "omniauth-google-oauth2"
 # Hide mailers data
 gem "figaro"
+# ZIP Files
+gem 'rubyzip'
 
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
