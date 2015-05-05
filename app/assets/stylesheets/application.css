@@ -237,7 +237,7 @@ div#headerbar{
 }
 
 img.logo{
-    z-index: ;
+    /*z-index: ;*/
     position:relative;
     margin-left: 12px; /*so you can see the 12px curved edge*/
     width: 213px;
@@ -391,7 +391,7 @@ table.vblu th, table.vblu td {
     padding: 4px;
     text-align: center;
     resize: none;
-    border-left: 1px solid #cddcd9;
+   /* border-left: 1px solid #cddcd9;*/
     text-align: center;
     min-width: 5em;
 }
