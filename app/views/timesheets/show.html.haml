@@ -8,8 +8,7 @@
       -if @current_user
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
   %div#headerbar
-    %h1 Payperiod for
-    %br
+    %h1.font Payperiod for
     %h1 #{@name}
 %div.content
   %div.container.third
