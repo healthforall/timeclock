@@ -300,14 +300,7 @@ img.logo{
 }
 @media screen and (min-width: 610px), handheld{
     .button.menu{
-        font-size: .75em;
-    }
-
-    div#headerbar{
-        width: calc(45% - 2em);
-    }
-    div.menubar{
-        width: calc(55% - 2em);
+        font-size: 1em;
     }
 
     #page {
@@ -338,9 +331,6 @@ img.logo{
     }
 }
 @media screen and (min-width: 870px), handheld{
-    .button.menu{
-        font-size: 1em;
-    }
     #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
