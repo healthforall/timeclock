@@ -33,7 +33,6 @@ class EmployeesController < ApplicationController
     #flash[:notice] = "#{@current_user.email}..."
     if (@employee.id == @current_user.id || @current_user.admin)
     else
-      flash[:notice] = "You do not have permission to view this page"
       redirect_to  "/employees/#{@employee.id}/timesheets/1/current"
     end
   end
@@ -41,7 +40,7 @@ class EmployeesController < ApplicationController
   # GET #new
   def new
     @employee = Employee.new
-    AdminMailer.admin_email(@current_user).deliver_now
+    #AdminMailer.admin_email(@current_user).deliver_now
   end
 
   # GET #edit
@@ -53,7 +52,6 @@ class EmployeesController < ApplicationController
     @employee = Employee.find params[:id]
     if @employee.update_attributes(employee_params)
       flash[:notice] = "#{@employee.name} was successfully updated."
-      #redirect_to employee_path(@employee)
       redirect_to employee_timesheet_current_path(@employee , timesheet_id: 1)
     else
       render 'edit'

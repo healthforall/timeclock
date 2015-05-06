@@ -42,6 +42,8 @@ h1{
     color: black;
     font-size: 3em;
     display: block;
+    width: 100%;
+    text-align: left;
 }
 
 h2{
@@ -73,6 +75,10 @@ p{
 
 .right{
     text-align: right;
+}
+
+h1.font{
+    font-size: 2em;
 }
 
 #logout{
@@ -255,6 +261,11 @@ img.logo{
 }
 
 @media screen, handheld{
+    
+    .button.menu{
+        font-size: .70em;
+    }
+
     div#headerbar{
         width: calc(100% - 2em);
     }
@@ -284,15 +295,12 @@ img.logo{
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 3em;
+        font-size: 2.5em;
     }
 }
 @media screen and (min-width: 610px), handheld{
-    div#headerbar{
-        width: calc(60% - 2em);
-    }
-    div.menubar{
-        width: calc(40% - 2em);
+    .button.menu{
+        font-size: 1em;
     }
 
     #page {
@@ -319,7 +327,7 @@ img.logo{
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 3em;
+        font-size: 2.5em;
     }
 }
 @media screen and (min-width: 870px), handheld{
@@ -347,7 +355,7 @@ img.logo{
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 4em;
+        font-size: 3em;
     }
 }
 @media screen and (min-width: 1025px){
@@ -372,7 +380,7 @@ img.logo{
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 5em;
+        font-size: 4.5em;
     }
 
 }

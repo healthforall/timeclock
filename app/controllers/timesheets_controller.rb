@@ -40,7 +40,7 @@ class TimesheetsController < ApplicationController
     @payperiod = Payperiod.find_payperiod(Date.today)
     @employee  = Employee.find_by_uid(session[:user_uid])
     @timesheet = Timesheet.find_by_id(params[:timesheet_id])
-    @newtimesheet = ActiveSupport::JSON.decode(request.body.read) #WTF I don't know why I had to resort to this
+    @newtimesheet = ActiveSupport::JSON.decode(request.body.read) #This resort is needed
     @newtimesheet = Timesheet.verifyAndCreate(@newtimesheet , @employee , @payperiod)
     if( @timesheet)
 

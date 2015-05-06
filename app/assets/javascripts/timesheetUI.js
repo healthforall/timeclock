@@ -115,6 +115,14 @@ TimeSheet.ready = function(){
              that causes the type check in delete to fail*/
         }
     });
+
+    $("td[contenteditable = 'true']").inputmask({
+        mask: "h:s t\\m",
+        placeholder: "hh:mm xm",
+        alias: "datetime",
+        hourFormat: "12"
+    });
+
     $("td[contenteditable = 'true']").keydown(function(e){
         var elem = this;
         var change = TimeSheet.check_charcount(elem , e);
