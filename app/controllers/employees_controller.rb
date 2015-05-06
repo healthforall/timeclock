@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_filter :logged_in?
   before_action :admin_user,      only: [:edit,:update,:show,:index,:new,:create,:destroy,:edit]
 
   # POST create
@@ -30,7 +31,6 @@ class EmployeesController < ApplicationController
     id = params[:id]
     @employee = Employee.find(id)
 
-    #flash[:notice] = "#{@current_user.email}..."
     if (@employee.id == @current_user.id || @current_user.admin)
     else
       redirect_to  "/employees/#{@employee.id}/timesheets/1/current"
@@ -78,5 +78,9 @@ class EmployeesController < ApplicationController
 
   def admin_user
     redirect_to  "/employees/#{@current_user.id}/timesheets/1/current" unless @current_user.admin?
+  end
+
+  def logged_in?
+    redirect_to '/login' if @current_user.nil?
   end
 end
