@@ -30,19 +30,4 @@ describe Timesheet do
     expect(@timesheet.totalHours).to eq(daycount + daycount/2)
   end
 
-  it "checks if there is a lingering check in" do
-    @timesheet = FactoryGirl.create(:timesheet)
-    @timesheet.days[0].in_and_outs << InAndOut.create( :in_time => DateTime.now() )
-    expect(@timesheet.clockin?).to eq(true)
-    @timesheet.days[0].in_and_outs[0].out= DateTime.now() + 5.hours
-    expect(@timesheet.clockin?).to eq(false)
-  end
-
-  #init - done in creating
-
-  #make_days - done in creating
-
-  #halves
-
-  #verifyAndCreate
 end
