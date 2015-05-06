@@ -38,20 +38,47 @@ a{
 
 h1{
     margin: 0;
-    background-color: white;
     float: left;
     color: black;
     font-size: 3em;
     display: block;
+    width: 100%;
+    text-align: left;
 }
 
 h2{
     margin: 0;
-    background-color: white;
     float: left;
     color: black;
     font-size: 1.5em;
     display: block;
+}
+
+h3{
+    margin: .5em 0 .5em 0;
+    width: 100%;
+    float: left;
+    color: black;
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+p{
+    margin: .5em 0 .5em 0;
+    width: 100%;
+    float: left;
+    color: black;
+    font-size: 1.5em;
+    display: inline-block;
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+}
+
+h1.font{
+    font-size: 2em;
 }
 
 #logout{
@@ -67,15 +94,18 @@ h2{
     padding: 4px;
 }
 form label {
-    display: block;
+    display: inline;
     line-height: 25px;
     font-weight: bold;
     color: black;
 }
 
-#periodSelector{
+#periodSelector, #nameSelector{
+    width: 100%;
     float: left;
     display: block;
+    margin-top: .5em;
+    margin-bottom: .5em;
 }
 
 select {
@@ -100,12 +130,12 @@ button, input[type=submit], .button {
 .button.menu{
     float: right;
     display: inline-block;
-    margin: 0px;
+    margin: 0px 0x 0px 5px;
     -webkit-border-radius: 0 0 5px 5px;
 }
 
-#content{
-    width: 100%;
+.content{
+    width: calc(100% - 2em);
     height: auto;
     padding: 0 1em 0 1em;
     display: inline-block;
@@ -133,17 +163,18 @@ div#headerbar{
     margin: -0 1em 0 1em;
 }
 
-.content{
-    display: block;
-}
-
-a.button {
+.button {
     padding: 5px;
+    margin-left: 5px;
 }
 
-#submit {
+#submit, #revert{
     font-size: 1.5em;
 }
+#export{
+    font-size: 1em;
+}
+
 
 /* GOOGLE BUTTON */
 
@@ -212,7 +243,7 @@ a.button {
 }
 
 img.logo{
-    z-index: 0;
+    /*z-index: ;*/
     position:relative;
     margin-left: 12px; /*so you can see the 12px curved edge*/
     width: 213px;
@@ -230,9 +261,23 @@ img.logo{
 }
 
 @media screen, handheld{
+    
+    .button.menu{
+        font-size: .70em;
+    }
+
+    div#headerbar{
+        width: calc(100% - 2em);
+    }
+    div.menubar{
+        width: calc(100% - 2em);
+    }
     #page {
         width: calc(100% - 2em);
         margin: 1em 1em 1em 1em;
+    }
+    p{
+        font-size: 1.25em;
     }
     #banner{
         display: none;
@@ -243,44 +288,64 @@ img.logo{
     .half{ width: 100%; }
     .third{ width: 100%; }
     .two-thirds{ width: 100%; }
-}
-@media screen and (min-width: 610px), handheld{
-    #page {
-        width: calc(100% - 12em);
-        margin: 1em 6em 1em 6em;
-    }
-    .half{ 
-        width: 100%; 
-    }
-    .third{
-        width: 15em;
-    }
-    .two-thirds{ 
-        width: calc(100% - 17em);
-        margin-left: calc(2em - 3px);
-        border-left: 3px solid rgb(0, 86, 144);
-    }
-    #clockin, #submit, #revert{
+    
+    #clockin, #submit, #revert, #export{
         margin: 10px auto 10px auto;
         display: inline-block;
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 3em;
+        font-size: 2.5em;
     }
 }
-@media screen and (min-width: 820px), handheld{
+@media screen and (min-width: 610px), handheld{
+    .button.menu{
+        font-size: 1em;
+    }
+
     #page {
         width: calc(100% - 12em);
         margin: 1em 6em 1em 6em;
     }
-    .half{ 
-        width: 50%; 
-        display: inline;
+    p{
+        font-size: 1.25em;
     }
-    .third{ width: calc(100% - 40em); }
+    .half{ 
+        width: 100%; 
+    }
+    .third{
+        width: calc(100% - 22em);
+    }
     .two-thirds{ 
-        width: 38em;
+        width: 20em;
+        margin-left: calc(1em - 3px);
+        border-left: 3px solid rgb(0, 86, 144);
+    }
+    #clockin, #submit, #revert, #export{
+        margin: 10px auto 10px auto;
+        display: inline-block;
+        float: left;
+        width: 100%;
+        border-radius: .25em;
+        font-size: 2.5em;
+    }
+}
+@media screen and (min-width: 870px), handheld{
+    #page {
+        width: calc(100% - 12em);
+        margin: 1em 6em 1em 6em;
+    }
+    p{
+        font-size: 1.5em;
+    }
+    .half{ 
+        width: calc(50% - 2px); 
+        display: inline-block;
+        height: auto;
+    }
+    .third{ width: calc(100% - 42em); }
+    .two-thirds{ 
+        width: 40em;
         margin-left: calc( 2em - 3px);
         border-left: 3px solid rgb(0, 86, 144);
     }
@@ -290,14 +355,14 @@ img.logo{
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 4em;
+        font-size: 3em;
     }
 }
 @media screen and (min-width: 1025px){
     #page {
         margin-left: auto;
         margin-right: auto;
-        width: 825px;
+        width: 830px;
     }    
     #banner{
         display: inline-block;
@@ -315,7 +380,7 @@ img.logo{
         float: left;
         width: 100%;
         border-radius: .25em;
-        font-size: 5em;
+        font-size: 4.5em;
     }
 
 }
@@ -325,7 +390,7 @@ img.logo{
 table.vblu {
     border-collapse: collapse;
     resize: none;
-    margin: auto;
+    margin: 0px 5px 0px 5px;
     display: inline-block;
     vertical-align:top;
 }
@@ -334,14 +399,40 @@ table.vblu th, table.vblu td {
     padding: 4px;
     text-align: center;
     resize: none;
-    border-left: 1px solid #cddcd9;
+   /* border-left: 1px solid #cddcd9;*/
     text-align: center;
     min-width: 5em;
 }
 
-table.vblu td {
-    border-top: 1px solid #cddcd9;
+table.vblu tr.evenrow {
+    background-color: #E6E6E6;
+}
+
+table.vblu tr.oddrow {
     background-color: #F5F5F5;
+}
+
+table.vblu  tr:nth-of-type(2n) {
+  background-color: #E6E6E6;
+}
+table.vblu  tr:nth-of-type(2n+1) {
+  background-color: #F5F5F5;
+}
+
+table.vblu tr:first-child  th:first-child{ 
+    border-top-left-radius: 12px;
+}
+
+table.vblu tr:first-child  th:last-child{ 
+    border-top-right-radius: 12px;
+}
+
+table.vblu tr:last-child  td:first-child{ 
+    border-bottom-left-radius: 12px;
+}
+
+table.vblu tr:last-child  td:last-child{ 
+    border-bottom-right-radius: 12px;
 }
 
 table.vblu td:first-child , table.vblu th:first-child{
@@ -354,13 +445,12 @@ table.vblu th {
     background-color: rgb(0, 86, 144);
 }
 
-table.vblu th.btopl{ border-top-left-radius: 12px; }
-table.vblu th.btopr{ border-top-right-radius: 12px; }
-table.vblu td.bbotl{ border-bottom-left-radius: 12px; }
-table.vblu td.bbotr{ border-bottom-right-radius: 12px; }
-
 table.vblu td.error{
     background-color: #F26D89;
+}
+
+table.vblu td.overlap{
+    background-color: #E6F55F;
 }
 
 

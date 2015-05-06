@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_filter :logged_in?
   before_action :admin_user,      only: [:edit,:update,:show,:index,:new,:create,:destroy,:edit]
 
   # POST create
@@ -21,7 +22,8 @@ class EmployeesController < ApplicationController
 
   # GET #index
   def index
-      @employees = Employee.all
+    @employees = Employee.all
+    @payperiods = Payperiod.all_cache
   end
 
   # GET #show
@@ -29,10 +31,8 @@ class EmployeesController < ApplicationController
     id = params[:id]
     @employee = Employee.find(id)
 
-    #flash[:notice] = "#{@current_user.email}..."
     if (@employee.id == @current_user.id || @current_user.admin)
     else
-      flash[:notice] = "You do not have permission to view this page"
       redirect_to  "/employees/#{@employee.id}/timesheets/1/current"
     end
   end
@@ -40,7 +40,7 @@ class EmployeesController < ApplicationController
   # GET #new
   def new
     @employee = Employee.new
-    AdminMailer.admin_email(@current_user).deliver_now
+    #AdminMailer.admin_email(@current_user).deliver_now
   end
 
   # GET #edit
@@ -52,7 +52,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find params[:id]
     if @employee.update_attributes(employee_params)
       flash[:notice] = "#{@employee.name} was successfully updated."
-      redirect_to employee_path(@employee)
+      redirect_to employee_timesheet_current_path(@employee , timesheet_id: 1)
     else
       render 'edit'
     end
@@ -78,5 +78,9 @@ class EmployeesController < ApplicationController
 
   def admin_user
     redirect_to  "/employees/#{@current_user.id}/timesheets/1/current" unless @current_user.admin?
+  end
+
+  def logged_in?
+    redirect_to '/login' if @current_user.nil?
   end
 end

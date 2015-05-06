@@ -39,6 +39,10 @@ class Payperiod < ActiveRecord::Base
     word = self.start_date.strftime("%B %d - ") + self.end_date.strftime("%d, %Y")
   end
 
+  def file_print()
+    word = self.start_date.strftime("%B_%d-") + self.end_date.strftime("%d_%Y")
+  end
+
   def self.all_cache
     self.all
   end

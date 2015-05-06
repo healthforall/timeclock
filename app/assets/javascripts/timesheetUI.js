@@ -30,14 +30,68 @@ TimeSheet.submitChanges = function(){
     var day = undefined;
     var firstDanglingIn = true;
     var firstDanglinInLoc = undefined;
+    var dailyInAndOuts = [];
     for (var i=0; i < entries.length; ++i){
         var data  = $(entries[i]).find("td");
-        if( $(data[0]).text() != "")
-            day = $(data[0]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/"
+
+
+
+        function compareEntries(a,b) {
+            if (a.time < b.time){
+                return -1;
+            }
+            if (a.time > b.time){
+                return 1;
+            }
+            return 0;
+        }
+
+        if( $(data[0]).text() != ""){
+            day = $(data[0]).text() + "/" + (new Date(Date.now()).getFullYear()) + "/";
+            var overlappingTimes = [];
+            for (var j=0; j < dailyInAndOuts.length; ++j){
+                var inandoutToCheck = dailyInAndOuts[j];
+                for (var k=0; k < dailyInAndOuts.length; ++k){
+                    if (k==j){
+                    }
+                    else{
+                        var firstCheckBool = inandoutToCheck.inandout.in < dailyInAndOuts[k].inandout.out;
+                        var secondCheckBool = dailyInAndOuts[k].inandout.in < inandoutToCheck.inandout.out;
+                        var overlap = firstCheckBool && secondCheckBool;
+                        if (overlap){
+                            overlappingTimes[inandoutToCheck.row] = true;
+                            overlappingTimes[dailyInAndOuts[k].row] = true;
+                            badtime = true;
+                        }
+                    }
+                }
+            }
+            for (var time=0; time < overlappingTimes.length; ++time){
+                if (overlappingTimes[time] == true){
+                    $($(entries[time]).find("td")[1]).addClass("overlap");
+                    $($(entries[time]).find("td")[2]).addClass("overlap");
+                }
+                else{
+                    $($(entries[time]).find("td")[1]).removeClass("overlap");
+                    $($(entries[time]).find("td")[2]).removeClass("overlap");
+                }
+            }
+        }
 
         var inandout = {
             "in" : new Date(Date.parse( day +$(data[1]).text())),
-            "out" : new Date(Date.parse(day +$(data[2]).text()))};
+            "out" : new Date(Date.parse(day +$(data[2]).text()))
+        };
+
+        var dailyInAndOut ={
+            "inandout" : inandout,
+            "row" : i
+        };
+
+        if($(data[1]).text() != '' || $(data[2]).text() != ''){
+            dailyInAndOuts.push(dailyInAndOut);
+        }
+
         if (inandout.in > inandout.out || $(data[1]).text() == '' || $(data[2]).text() == '') //Detect Errors
         {
             //Lonely In
@@ -50,24 +104,29 @@ TimeSheet.submitChanges = function(){
                 {
                     if( ((new Date(day)).getDate()) == new Date(Date.now()).getDate() )
                     {
-                        $(firstDanglinInLoc).toggleClass("error");
+                        $(firstDanglinInLoc).addClass("error");
                     }
                     else {
-                        $(data[2]).toggleClass('error')
-                        $(data[2]).toggleClass('error')
+                        $(data[2]).addClass('error');
                     }
                     badtime = true;
                 }
 
             }
+            else{
+                $(entries[i]).removeClass("error");
+            }
             //Danglin Out
             if ($(data[2]).text() != '') {
-                $(data[1]).toggleClass('error')
+                $(data[1]).addClass('error');
                 badtime = true;
+            }
+            else{
+                $(entries[i]).removeClass("error");
             }
         }
         else{
-            $(entries[i]).css("background-color", "");
+            $(entries[i]).removeClass("error");
         }
     }
     if (!badtime){
@@ -76,7 +135,7 @@ TimeSheet.submitChanges = function(){
         $("#revert").css("display" , "none");
     }
     else{
-        alert("There were time conflicts or missing fields (marked in red). Please fix these issues and resubmit.");
+        alert("There were time conflicts/missing fields (marked in red), or there was an overlap (marked in yellow). Please fix these issues and resubmit.");
     }
 };
 
@@ -109,12 +168,20 @@ TimeSheet.ready = function(){
                 name: "Delete Row",
                 callback: function(){
                     TimeSheet.deleteRow(this);
-                    }}
+                }}
             /*adding another class to the tr may cause this to break
              it's needed because the context menu adds a new class to the selected tr
              that causes the type check in delete to fail*/
         }
     });
+
+    $("td[contenteditable = 'true']").inputmask({
+        mask: "h:s t\\m",
+        placeholder: "hh:mm xm",
+        alias: "datetime",
+        hourFormat: "12"
+    });
+
     $("td[contenteditable = 'true']").keydown(function(e){
         var elem = this;
         var change = TimeSheet.check_charcount(elem , e);
@@ -127,7 +194,6 @@ TimeSheet.deleteRow = function(row){
 
     //context-menu-active is appended to row's class before delete is called, so need to only check first entry of class
     if($(row).attr("class").split(" ")[0] != $(next).attr("class")){
-        console.log($(row).attr("class")+" "+$(next).attr("class"));
         $($(row).find("td")[1]).text('');
         $($(row).find("td")[2]).text('');
         return;

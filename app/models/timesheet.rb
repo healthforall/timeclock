@@ -52,7 +52,6 @@ class Timesheet < ActiveRecord::Base
       self.days.build(day: day) if build
       self.days.create(day: day ) unless build
     end
-
   end
 
   def halves

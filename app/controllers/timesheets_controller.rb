@@ -20,7 +20,7 @@ class TimesheetsController < ApplicationController
     @total_hours = @timesheet.totalHours
     respond_to do |format|
       format.html
-      format.xls { headers["Content-Disposition"] = "attachment; filename=\"timesheet.xls\"" }
+      format.xls { headers["Content-Disposition"] = "attachment; filename=\"timesheet_" + @employee.name + "_" + @payperiod.file_print + ".xls\"" }
     end
   end
 
@@ -40,7 +40,7 @@ class TimesheetsController < ApplicationController
     @payperiod = Payperiod.find_payperiod(Date.today)
     @employee  = Employee.find_by_uid(session[:user_uid])
     @timesheet = Timesheet.find_by_id(params[:timesheet_id])
-    @newtimesheet = ActiveSupport::JSON.decode(request.body.read) #WTF I don't know why I had to resort to this
+    @newtimesheet = ActiveSupport::JSON.decode(request.body.read) #This resort is needed
     @newtimesheet = Timesheet.verifyAndCreate(@newtimesheet , @employee , @payperiod)
     if( @timesheet)
 
@@ -63,6 +63,35 @@ class TimesheetsController < ApplicationController
       format.html { redirect_to  employee_timesheet_show_path(@employee, @timesheet) }
       format.xls  { redirect_to  employee_timesheet_show_path(@employee, @timesheet, format: "xls") }
     end
+  end
+
+  def massExport
+    employees = Employee.all
+    payperiod = Payperiod.find_by_id(params[:pid])
+    zip_name = "timesheets_" + payperiod.file_print + ".zip"
+    zip = Tempfile.new(zip_name)
+    Zip::OutputStream.open(zip) do |zf|
+      employees.each do |e|
+        if e.admin
+          next
+        end
+        @employee = e
+        @timesheet = Timesheet.where("payperiod_id = ? AND employee_id = ?", payperiod.id, @employee.id)[0]
+        if(!@timesheet)
+          @timesheet = @employee.timesheets.create!(payperiod: payperiod)
+        end
+        data = render_to_string "show.xls"
+        filePath = "timesheet_" + @employee.name + "_" + payperiod.file_print + ".xls"
+        tf = Tempfile.new(filePath)
+        tf << data
+        tf.close
+        zf.put_next_entry(filePath)
+        zf.print IO.read(tf.path)
+      end
+    end
+    zip_data = File.read(zip.path)
+    send_data zip_data, :type => "application/zip", :filename => zip_name
+    zip.close
   end
 
 end

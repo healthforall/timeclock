@@ -6,6 +6,9 @@
 
 /workspace.xml
 /workspace.iml
+/.idea/runConfigurations/Development__timeclock.xml
+/.idea/timeclock.iml
+/.idea/workspace.xml
 
 # Ignore bundler config.
 /.bundle

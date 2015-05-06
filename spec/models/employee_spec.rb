@@ -20,12 +20,19 @@ describe Employee do
     expect(FactoryGirl.build(:employee, email: nil)).not_to be_valid
   end
 
-  it "assigns the google uid to employee the first time they log in"
-  # checking Employee.create_on_first_log_in(auth)
-  # how to set up a dummy auth?
+  it "creates an inandout when clocking in" do
+    @employee = FactoryGirl.create(:employee)
+    @employee.clock_in(true)
+    #expect(@employee.timesheets.current[0].days.current[0].in_and_outs[0]).to_not be_nil
 
-  it "creates an inandout when clocking in"
+    inandout = @employee.timesheets.current[0].days.current[0].in_and_outs.find_dangling_in[0]
+    expect(inandout).to_not be nil
+  end
   # checking clock_in(bool clockin)
+
+  it "adds an out_time to the correct inandout when clocking out"
   # check true and false paths
+      #false path is a clock out
+
 
 end

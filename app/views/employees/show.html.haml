@@ -2,6 +2,7 @@
   %h1 #{@employee.name}
 %div.menubar
   %div
+    %a= render :partial => '/sessions/logout'
     = link_to 'Back to employee list' , employees_path, :class => "button menu"
 %div.content
   %div#details
