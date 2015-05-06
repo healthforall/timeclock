@@ -449,4 +449,8 @@ table.vblu td.error{
     background-color: #F26D89;
 }
 
+table.vblu td.overlap{
+    background-color: #E6F55F;
+}
+
 
