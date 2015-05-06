@@ -9,19 +9,19 @@ describe Timesheet do
     expect(timesheet.payperiod).to_not eq(nil)
   end
 
-  it "every day of the payperiod is in the timesheet" do
+  it "contains every day of the payperiod" do
     @timesheet = FactoryGirl.create(:timesheet)
     @payperiod = @timesheet.payperiod
     start_date = @payperiod.start_date
     end_date   = @payperiod.end_date
-    (start_date.to_date..(end_date+ 1.day)).each do |day|
+    (start_date.to_date..(end_date.to_date)).each do |day|
       expect(@timesheet.days.where("day = :day" , day: day).length).to eq(1)
     end
-
   end
+
   it "calculates the total hours" do
     @timesheet = FactoryGirl.create(:timesheet)
-    daycount = 0
+    daycount = 0.0
     @timesheet.days.each do |day|
       daycount += 1
       day.in_and_outs << InAndOut.create( :in_time => DateTime.parse(day.day.to_s) , :out_time =>DateTime.parse(day.day.to_s) + 1.hours + 30.minutes)
@@ -38,4 +38,11 @@ describe Timesheet do
     expect(@timesheet.clockin?).to eq(false)
   end
 
+  #init - done in creating
+
+  #make_days - done in creating
+
+  #halves
+
+  #verifyAndCreate
 end

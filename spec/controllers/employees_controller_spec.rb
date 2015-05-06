@@ -1,14 +1,30 @@
 require 'rspec'
 require 'spec_helper'
+require 'rspec/expectations'
+require 'rails_helper'
 
 describe EmployeesController, type: :controller do
 
+  let(:employees) do
+    [
+        FactoryGirl.create(:employee),
+        FactoryGirl.create(:employee),
+        FactoryGirl.create(:employee)
+    ]
+  end
+
   context "as administrator/supervisor" do
+
     describe "GET #index" do
-      it "populates the employees table"
+      it "populates the employees table" do
+        employee = FactoryGirl.create(:employee)
+        get :index
+        expect(assigns(:employees).should eq([employee]))
+      end
+
       it "renders the :index view" do
         get :index
-        response.should render_template :index
+        expect(response).to render_template :index
       end
     end
 
@@ -20,7 +36,8 @@ describe EmployeesController, type: :controller do
       end
 
       it "renders the #show view" do
-        get :show, id: FactoryGirl.create(:employee)
+        employee = FactoryGirl.create(:employee)
+        get :show, id: employee.id
         response.should render_template :show
       end
     end
@@ -60,6 +77,26 @@ describe EmployeesController, type: :controller do
 
   context "as regular employee" do
     it "won't let you access this. what does it do?"  #TODO - steven, what is it supposed to do?
+  end
+
+  describe "clockin" do
+
+  end
+
+  describe "edit" do
+
+  end
+
+  describe "update" do
+
+  end
+
+  describe "destroy" do
+
+  end
+
+  describe "admin_user" do
+
   end
 
 end
