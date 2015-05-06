@@ -18,9 +18,10 @@
           %option{:value => p.id, :selected => "selected"} #{p.print}
         -else
           %option{:value => p.id} #{p.print}
-    -if @uid == session[:user_uid]
+    -if @uid == session[:user_uid] || @current_user.admin
       -if @current
-        %button.button{:id => "clockin"} Clock In
+        -if @uid == session[:user_uid]
+          %button.button{:id => "clockin"} Clock In
         %button{:id => "submit", :style => "display: none"} Submit Changes
         %button{:id => "revert", :style => "display: none"} Revert Changes
     -if @current_user.admin 

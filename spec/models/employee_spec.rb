@@ -20,11 +20,6 @@ describe Employee do
     expect(FactoryGirl.build(:employee, email: nil)).not_to be_valid
   end
 
-  #create_on_first_login
-  it "assigns the google uid to employee the first time they log in"
-  # checking Employee.create_on_first_log_in(auth)
-  # how to set up a dummy auth?
-
   it "creates an inandout when clocking in" do
     @employee = FactoryGirl.create(:employee)
     @employee.clock_in(true)
@@ -38,10 +33,6 @@ describe Employee do
   it "adds an out_time to the correct inandout when clocking out"
   # check true and false paths
       #false path is a clock out
-
-  it "checks if the employee is clocked in"
-
-
 
 
 end

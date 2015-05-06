@@ -1,19 +1,11 @@
 require 'rspec'
 require 'spec_helper'
 require 'rspec/expectations'
-require 'rails_helper'
 
 describe EmployeesController, type: :controller do
 
-  let(:employees) do
-    [
-        FactoryGirl.create(:employee),
-        FactoryGirl.create(:employee),
-        FactoryGirl.create(:employee)
-    ]
-  end
 
-  context "as administrator/supervisor" do
+  context "if logged in as administrator" do
 
     describe "GET #index" do
       it "populates the employees table" do
@@ -23,8 +15,10 @@ describe EmployeesController, type: :controller do
       end
 
       it "renders the :index view" do
-        get :index
-        expect(response).to render_template :index
+        @employee = FactoryGirl.create(:employee, :name =>'Employee', :email => "employee20156@gmail.com")
+        employee.admin = true
+        get :index, user_uid: employee.id
+        expect(response).to redirect_to(:action => 'index')
       end
     end
 
