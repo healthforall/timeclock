@@ -11,8 +11,8 @@
     -count = count + 1
     %tr{:class => "Day#{day.num}" }
       %td= day.print if i == 0
-      %td{:id => "Day#{day.num}In#{count}" ,contenteditable: 'true'}= inandout.print_in
-      %td{:id => "Day#{day.num}Out#{count}" ,contenteditable: 'true'}= inandout.print_out
+      %td{ contenteditable: 'true'}= inandout.print_in
+      %td{ contenteditable: 'true'}= inandout.print_out
       
   %tr{ :class =>"Day#{day.num}"}
     %td

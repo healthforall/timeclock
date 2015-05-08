@@ -209,22 +209,20 @@ TimeSheet.deleteRow = function(row){
 };
 
 TimeSheet.createNewRow = function(choice, item){
-    var newrow  = $(item).clone(true);
-    $($(newrow).find("td")[0]).text("");
+    var newrow  = $(item).clone();
     $(newrow).removeClass("context-menu-active");
+    $($(newrow).find("td")[1]).text("");
+    $($(newrow).find("td")[2]).text("");
 
-    if (choice == 'above'){ //Copy current row's times to a new row below and blank out the current row.
-        $($(newrow).find("td")[1]).text($($(item).find("td")[1]).text());
-        $($(newrow).find("td")[2]).text($($(item).find("td")[2]).text());
-        $($(item).find("td")[1]).text("");
-        $($(item).find("td")[2]).text("");
-        $(item).after($(newrow));
+    if (choice == 'above'){ //Add blank row above current row
+        $($(item).find("td")[0]).text("");
+        $(item).before($(newrow));
     }
     else { //Add a blank row below the current row
-        $($(newrow).find("td")[1]).text("");
-        $($(newrow).find("td")[2]).text("");
+        $($(newrow).find("td")[0]).text("");
         $(item).after($(newrow));
     }
+    TimeSheet.ready();
 };
 
 TimeSheet.changed = function(change ,e ){
