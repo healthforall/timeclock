@@ -82,6 +82,7 @@ class TimesheetsController < ApplicationController
           @timesheet = @employee.timesheets.create!(payperiod: payperiod)
         end
         data = render_to_string "show.xls"
+        puts "I havent opened the fucking fillllleeee"
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\".xls"
         tf = File.new("/tmp/#{filePath}")
         puts "I opened the fucking fillllleeee"
