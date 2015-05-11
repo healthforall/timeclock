@@ -91,7 +91,7 @@ class TimesheetsController < ApplicationController
         #zf.put_next_entry(filePath)
         #zf.print IO.read(tf.pat
         print filePath
-        zipfile.add(filePath , "#{Rails.root}/tmp/") if filePath.present?
+        #zipfile.add(filePath , "#{Rails.root/tmp/}") if filePath.present?
       end
     end
     #zip = Tempfile.new(zip_name)
