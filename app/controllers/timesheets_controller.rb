@@ -72,7 +72,7 @@ class TimesheetsController < ApplicationController
     zip_name = "timesheets_" + payperiod.file_print + ".zip"
     #File.delete("#{Rails.root}/tmp/#{zip_name}")
     Zip::File.open("./tmp/#{zip_name}", Zip::File::CREATE) do |zipfile|
-      employees.each do |e|
+      employees.each_with_index do |e , i|
         if e.admin
           next
         end
@@ -83,7 +83,7 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         puts "I havent opened the fucking fillllleeee"
-        filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\""
+        filePath = "timesheet_" + i + "_" + payperiod.file_print + "1"
         tf = Tempfile.new([filePath , ".xls"])
         puts "I opened the fucking fillllleeee"
         tf << data
