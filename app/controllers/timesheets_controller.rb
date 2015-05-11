@@ -84,7 +84,7 @@ class TimesheetsController < ApplicationController
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
         tf = Tempfile.new("#{Rails.root}/tmp/#{filePath}")
         tf << data
-        tf.close
+        #tf.close
         #zf.put_next_entry(filePath)
         #zf.print IO.read(tf.pat
         print filePath
