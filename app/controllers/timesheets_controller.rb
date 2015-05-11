@@ -83,7 +83,7 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         puts "I havent opened the fucking fillllleeee"
-        filePath = "timesheet_" + i.to_s + "_" + payperiod.file_print + "1.xls"
+        filePath = "timesheet_" + i.to_s + "_" + payperiod.file_print + ".xls"
         #tf = Tempfile.new([filePath , ".xls"])
         tf = File.open("#{Rails.root}/tmp/myfile_#{filePath}",'w')
         puts "I opened the fucking fillllleeee"
@@ -122,7 +122,7 @@ class TimesheetsController < ApplicationController
     #zip.close
     #File.delete("#{Rails.root}/tmp/#{zip_name}"
     send_file "./tmp/#{zip_name}", :type => 'application/zip', :filename => "#{zip_name}"
-    File.delete("./tmp/#{zip_name}")
+    #File.delete("./tmp/#{zip_name}")
   end
 
 end
