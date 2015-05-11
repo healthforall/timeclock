@@ -92,7 +92,7 @@ class TimesheetsController < ApplicationController
         #zf.put_next_entry(filePath)
         #zf.print IO.read(tf.pat
         print filePath
-        zipfile.add(filePath , tf.path) pa if filePath.present?
+        zipfile.add(filePath , tf.path) if filePath.present?
         tf.close
         tf.unlink
       end
