@@ -114,7 +114,7 @@ class TimesheetsController < ApplicationController
     zip_data = File.read(zip.path)
     send_data zip_data, :type => "application/zip", :filename => zip_name
     zip.close
-    File.delete("#{Rails.root}/tmp/#{zip_name}")
+    File.delete("/tmp/#{zip_name}")
     #send_file "/tmp/#{zip_name}", :type => 'application/zip', :filename => "#{zip_name}"
     #File.delete("/tmp/#{zip_name}")
   end
