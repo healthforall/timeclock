@@ -83,7 +83,8 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\".xls"
-        tf = File.new("/tmp/#{filePath})
+        tf = File.new("/tmp/#{filePath}")
+        puts "I opened the fucking fillllleeee"
         tf << data
         puts filePath
         puts tf.path
