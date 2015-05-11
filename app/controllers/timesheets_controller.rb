@@ -84,14 +84,12 @@ class TimesheetsController < ApplicationController
         data = render_to_string "show.xls"
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
         tf = Tempfile.new(filePath)
-        Logger.log(filePath)
-        Logger.log(tf.path)
         tf << data
-        tf.close
         #zf.put_next_entry(filePath)
         #zf.print IO.read(tf.pat
         print filePath
-        #zipfile.add(filePath , "#{Rails.root/tmp/}") if filePath.present?
+        zipfile.add(filePath , tf.path) if filePath.present?
+        tf.close
       end
     end
     #zip = Tempfile.new(zip_name)
