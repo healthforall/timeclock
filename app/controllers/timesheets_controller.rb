@@ -71,7 +71,7 @@ class TimesheetsController < ApplicationController
     payperiod = Payperiod.find_by_id(params[:pid])
     zip_name = "timesheets_" + payperiod.file_print + ".zip"
     #File.delete("#{Rails.root}/tmp/#{zip_name}")
-    Zip::File.open("#{Rails.root}/tmp/#{zip_name}", Zip::File::CREATE) do |zipfile|
+    Zip::File.open("./tmp/#{zip_name}", Zip::File::CREATE) do |zipfile|
       employees.each do |e|
         if e.admin
           next
@@ -83,7 +83,7 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
-        tf = File.new("#{Rails.root}/tmp/#{filePath}")
+        tf = File.new("./tmp/#{filePath}")
         Logger.log(filePath)
         Logger.log(tf.path)
         tf << data
