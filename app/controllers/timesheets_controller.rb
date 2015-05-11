@@ -85,8 +85,8 @@ class TimesheetsController < ApplicationController
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\".xls"
         tf = Tempfile.new(filePath)
         tf << data
-        logger.info tf.path
-        logger.info filePath
+        puts filePath
+        puts tf.path
         #zf.put_next_entry(filePath)
         #zf.print IO.read(tf.pat
         print filePath
