@@ -90,8 +90,6 @@ class TimesheetsController < ApplicationController
         print filePath
         zipfile.add(filePath , tf.path) if filePath.present?
       end
-      zipfile.close
-      send_file "#{Rails.root}/tmp/#{zip_name}", :type => 'application/zip', :filename => "#{zip_name}", :x_sendfile => true
     end
     #zip = Tempfile.new(zip_name)
     #Zip::OutputStream.open(zip) do |zf|
@@ -117,6 +115,7 @@ class TimesheetsController < ApplicationController
     #send_data zip_data, :type => "application/zip", :filename => zip_name
     #zip.close
     #File.delete("#{Rails.root}/tmp/#{zip_name}"
+    send_file "#{Rails.root}/tmp/#{zip_name}", :type => 'application/zip', :filename => "#{zip_name}"
   end
 
 end
