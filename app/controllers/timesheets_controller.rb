@@ -82,11 +82,9 @@ class TimesheetsController < ApplicationController
           @timesheet = @employee.timesheets.create!(payperiod: payperiod)
         end
         data = render_to_string "show.xls"
-        puts "I havent opened the fucking fillllleeee"
-        filePath = "timesheet_" + i.to_s + "_" + payperiod.file_print + ".xls"
+        filePath = "timesheet_" + @employee.names + "_" + payperiod.file_print + ".xls"
         #tf = Tempfile.new([filePath , ".xls"])
         tf = File.open("#{Rails.root}/tmp/myfile_#{filePath}",'w')
-        puts "I opened the fucking fillllleeee"
         tf << data
         puts filePath
         puts tf.path
