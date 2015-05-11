@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.0'
 
 # use Haml for templates
 gem 'haml'
@@ -25,7 +26,7 @@ gem "omniauth-google-oauth2"
 # Hide mailers data
 gem "figaro"
 # ZIP Files
-gem 'rubyzip'
+gem 'rubyzip' , :require => "zip"
 
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
