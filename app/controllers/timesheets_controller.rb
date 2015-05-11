@@ -95,7 +95,6 @@ class TimesheetsController < ApplicationController
         print filePath
         zipfile.add(filePath , tf.path) if filePath.present?
         tf.close
-        tf.unlink
       end
     end
     #zip = Tempfile.new(zip_name)
