@@ -85,7 +85,7 @@ class TimesheetsController < ApplicationController
         puts "I havent opened the fucking fillllleeee"
         filePath = "timesheet_" + i.to_s + "_" + payperiod.file_print + "1.xls"
         #tf = Tempfile.new([filePath , ".xls"])
-        tf = File.open("#{RAILS_ROOT}/tmp/myfile_#{filePath}",'w')
+        tf = File.open("#{Rails.root}/tmp/myfile_#{filePath}",'w')
         puts "I opened the fucking fillllleeee"
         tf << data
         puts filePath
