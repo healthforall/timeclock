@@ -82,8 +82,7 @@ class TimesheetsController < ApplicationController
           @timesheet = @employee.timesheets.create!(payperiod: payperiod)
         end
         data = render_to_string "show.xls"
-        filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
-        File.delete("./tmp/#{filePath}")
+        filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\".xls"
         tf = Tempfile.new(filePath)
         tf << data
         #zf.put_next_entry(filePath)
@@ -91,6 +90,7 @@ class TimesheetsController < ApplicationController
         print filePath
         zipfile.add(filePath , tf.path) if filePath.present?
         tf.close
+        tf.unlink
       end
     end
     #zip = Tempfile.new(zip_name)
