@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
-
 # use Haml for templates
 gem 'haml'
 #To make time calculaitons easier
@@ -26,6 +25,7 @@ gem "omniauth-google-oauth2"
 # Hide mailers data
 gem "figaro"
 # ZIP Files
+<<<<<<< HEAD
 gem 'rubyzip' , :require => "zip"
 
 group :development, :test do
