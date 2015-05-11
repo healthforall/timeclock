@@ -70,8 +70,8 @@ class TimesheetsController < ApplicationController
     employees = Employee.all
     payperiod = Payperiod.find_by_id(params[:pid])
     zip_name = "timesheets_" + payperiod.file_print + ".zip"
-    zip = Tempfile.new(zip_name)
-    Zip::OutputStream.open(zip) do |zf|
+    #File.delete("#{Rails.root}/tmp/#{zip_name}")
+    Zip::File.open("#{Rails.root}/tmp/#{zip_name}", Zip::File::CREATE) do |zipfile|
       employees.each do |e|
         if e.admin
           next
@@ -86,14 +86,53 @@ class TimesheetsController < ApplicationController
         tf = Tempfile.new(filePath)
         tf << data
         tf.close
-        zf.put_next_entry(filePath)
-        zf.print IO.read(tf.path)
+        #zf.put_next_entry(filePath)
+        #zf.print IO.read(tf.pat
+        print filePath
+        zipfile.add(filePath , tf.path) if filePath.present?
       end
     end
-    zip_data = File.read(zip.path)
-    send_data zip_data, :type => "application/zip", :filename => zip_name
-    zip.close
+    #zip = Tempfile.new(zip_name)
+    #Zip::OutputStream.open(zip) do |zf|
+    #  employees.each do |e|
+    #    if e.admin
+    #      next
+    #    end
+    #    @employee = e
+    #    @timesheet = Timesheet.where("payperiod_id = ? AND employee_id = ?", payperiod.id, @employee.id)[0]
+    #    if(!@timesheet)
+    #      @timesheet = @employee.timesheets.create!(payperiod: payperiod)
+    #    end
+    #    data = render_to_string "show.xls"
+    #    filePath = "timesheet_" + @employee.name + "_" + payperiod.file_print + ".xls"
+    #    tf = Tempfile.new(filePath)
+    #    tf << data
+    #    tf.close
+    #    zf.put_next_entry(filePath)
+    #    zf.print IO.read(tf.path)
+    #  end
+    #end
+    #zip_data = File.read(zip.path)
+    #send_data zip_data, :type => "application/zip", :filename => zip_name
+    #zip.close
+    #File.delete("#{Rails.root}/tmp/#{zip_name}"
+    send_file "#{Rails.root}/tmp/#{zip_name}", :type => 'application/zip', :filename => "#{zip_name}"
   end
 
 end
 
+
+#def get_stream(contractors)
+#  begin
+##    Zip::File.open("#{Rails.root}/tmp/zipfile_name.zip", Zip::File::CREATE) do |zipfile|
+ #     contractors.each_with_index do |filename, index|
+  #      zipfile.add(filename.try(:cv_file_name), filename.try(:cv).try(:path)) if filename.present?
+   #   end
+   # end
+
+    #send_file "#{Rails.root}/tmp/zipfile_name.zip", :type => 'application/zip', :filename => "Contractor_cvs.zip", :x_sendfile => true
+    #File.delete("#{Rails.root}/tmp/zipfile_name.zip")
+
+#  rescue
+ # end
+#end
