@@ -83,6 +83,7 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
+        File.delete("./tmp/#{filePath}")
         tf = Tempfile.new(filePath)
         tf << data
         #zf.put_next_entry(filePath)
