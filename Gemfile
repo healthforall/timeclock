@@ -25,7 +25,6 @@ gem "omniauth-google-oauth2"
 # Hide mailers data
 gem "figaro"
 # ZIP Files
-<<<<<<< HEAD
 gem 'rubyzip' , :require => "zip"
 
 group :development, :test do
