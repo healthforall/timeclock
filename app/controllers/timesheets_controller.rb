@@ -70,7 +70,7 @@ class TimesheetsController < ApplicationController
     payperiod = Payperiod.find_by_id(params[:pid])
     zip_name = "timesheets_" + payperiod.file_print + ".zip"
     #File.delete("#{Rails.root}/tmp/#{zip_name}")
-    Zip::File.open("#{Rails.root}/tmp/#{zip_name}", Zip::File::CREATE) do |zipfile|
+    File.open("#{Rails.root}/tmp/#{zip_name}", File::CREATE) do |zipfile|
       employees.each do |e|
         if e.admin
           next
