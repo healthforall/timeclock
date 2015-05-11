@@ -81,7 +81,7 @@ class TimesheetsController < ApplicationController
           @timesheet = @employee.timesheets.create!(payperiod: payperiod)
         end
         data = render_to_string "show.xls"
-        filePath = "timesheet_" + @employee.name + "_" + payperiod.file_print + ".xls"
+        filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
         tf = Tempfile.new(filePath)
         tf << data
         tf.close
