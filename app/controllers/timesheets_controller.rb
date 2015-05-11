@@ -82,7 +82,7 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "\".xls"
-        tf = Tempfile.new(filePath)
+        tf = Tempfile.new("#{Rails.root}/tmp/#{filePath}")
         tf << data
         tf.close
         #zf.put_next_entry(filePath)
