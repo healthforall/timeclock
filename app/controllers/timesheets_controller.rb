@@ -83,8 +83,8 @@ class TimesheetsController < ApplicationController
         end
         data = render_to_string "show.xls"
         puts "I havent opened the fucking fillllleeee"
-        filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\".xls"
-        tf = Tempfile.new(filePath)
+        filePath = "\"timesheet_" + @employee.name + "_" + payperiod.file_print + "1\""
+        tf = Tempfile.new([filePath , ".xls"])
         puts "I opened the fucking fillllleeee"
         tf << data
         puts filePath
@@ -92,7 +92,7 @@ class TimesheetsController < ApplicationController
         #zf.put_next_entry(filePath)
         #zf.print IO.read(tf.pat
         print filePath
-        zipfile.add(filePath , tf.path) if filePath.present?
+        zipfile.add(filePath , tf.path) pa if filePath.present?
         tf.close
         tf.unlink
       end
