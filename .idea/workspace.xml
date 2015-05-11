@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29926816-0464-415a-9313-684639b5422b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/runConfigurations/All_specs_in_controllers__timeclock.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Development__timeclock.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Production__timeclock.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Run_spec__employees_controller_spec___timeclock.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/runConfigurations/spec__timeclock.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/runConfigurations/test__timeclock.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/timeclock/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/timesheets_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/timesheets_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -29,7 +20,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/timeclock@db_seed__timeclock.coverage" NAME="db:seed: timeclock Coverage Results" MODIFIED="1431310856981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="timeclock" />
     <SUITE FILE_PATH="coverage/timeclock@db_migrate__timeclock.coverage" NAME="db:migrate: timeclock Coverage Results" MODIFIED="1431310847618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="timeclock" />
-    <SUITE FILE_PATH="coverage/timeclock@Development__timeclock.coverage" NAME="Development: timeclock Coverage Results" MODIFIED="1431312232477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="timeclock" />
+    <SUITE FILE_PATH="coverage/timeclock@Development__timeclock.coverage" NAME="Development: timeclock Coverage Results" MODIFIED="1431313654813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="timeclock" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -46,8 +37,8 @@
       <file leaf-file-name="timesheets_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/timesheets_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8484849" vertical-offset="1221" max-vertical-offset="2115">
-              <caret line="115" column="101" selection-start-line="115" selection-start-column="101" selection-end-line="115" selection-end-column="101" />
+            <state vertical-scroll-proportion="2.2222223" vertical-offset="0" max-vertical-offset="2145">
+              <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -425,6 +416,13 @@
       <option name="number" value="Default" />
       <updated>1431310538651</updated>
     </task>
+    <task id="LOCAL-00001" summary="Zip change">
+      <created>1431312285803</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1431312285803</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -468,6 +466,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Zip change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zip change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -476,8 +476,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/controllers/timesheets_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8484849" vertical-offset="1221" max-vertical-offset="2115">
-          <caret line="115" column="101" selection-start-line="115" selection-start-column="101" selection-end-line="115" selection-end-column="101" />
+        <state vertical-scroll-proportion="2.2222223" vertical-offset="0" max-vertical-offset="2145">
+          <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
           <folding />
         </state>
       </provider>
