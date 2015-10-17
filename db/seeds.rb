@@ -26,6 +26,8 @@ team = [   {:name =>'Zach'    , :email => "brownzach125@gmail.com" } ,    {:name
 admin = { :name =>'admin' , :email => 'admit20156@gmail.com' , :admin => true}
 admin = Employee.create!(admin)
 
+admin = {:name =>'health4all', :email => "healthforall606@gmail.com", :admin=>true}
+admin = Employee.create!(admin)
 supervisor = { :name =>'Im a supervisor' , :email => 'suadhealth@gmail.com' }
 Employee.create!(supervisor)
 
