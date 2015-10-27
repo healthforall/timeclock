@@ -40,6 +40,6 @@ class SessionsController < ApplicationController
   def send_email
     AdminMailer.admin_email.deliver_now
     flash[:notice] = 'Email has been sent successfully.'
-    redirect_to '/login'
+    redirect_to redirect_to  "/employees/#{session[:user_uid]}/timesheets/1/current"
   end
 end
