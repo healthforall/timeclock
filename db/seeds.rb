@@ -23,7 +23,7 @@ team = [   {:name =>'Zach'    , :email => "brownzach125@gmail.com" } ,    {:name
            {:name =>'Garret'  , :email => "swamp.fox076@gmail.com"}  ,    {:name =>'Steven'    , :email => "redynsnevets@gmail.com", :admin => true},
 		       {:name =>'Employee', :email => "employee20156@gmail.com"}  ,   {:name =>'Xiangpeng' , :email => 'wxp2002@gmail.edu'} ,{:name =>'Jingcheng' , :email => '190745439@qq.com'} ]
 
-admin = { :name =>'admin' , :email => 'wxp200222@tamu.edu' , :admin => true}
+admin = { :name =>'admin' , :email => 'wxp2002@tamu.edu' , :admin => true}
 admin = Employee.create!(admin)
 
 supervisor = { :name =>'Im a supervisor' , :email => 'suadhealth@gmail.com' }
