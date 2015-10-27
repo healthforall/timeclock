@@ -3,7 +3,7 @@ class AdminMailer < ActionMailer::Base
 
   def admin_email
 
-      mail(to: "wxp2002@gmail.edu", subject: 'Admin Email')
+      mail(to: "wxp2002@gmail.com", subject: 'Admin Email')
 
   end
 end
