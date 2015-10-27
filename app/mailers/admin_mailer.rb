@@ -1,8 +1,9 @@
 class AdminMailer < ActionMailer::Base
-  default from: "healthforallautomessage@gmail.com"
+  default from: "wxp2002@gmail.com"
 
-  def admin_email(employee)
-      @employee = employee
-      mail(to: @employee.email, subject: 'Admin Email')
+  def admin_email
+
+      mail(to: "wxp2002@tamu.edu", subject: 'Admin Email')
+
   end
 end

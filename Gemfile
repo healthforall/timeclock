@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 # use Haml for templates
 gem 'haml'
 #To make time calculaitons easier
@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Authorization
 gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
 # Hide mailers data
 gem "figaro"
 # ZIP Files

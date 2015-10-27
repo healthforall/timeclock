@@ -35,6 +35,21 @@ When (/I follow "Log in with your gmail account"/) do
   click_link('Log in with your gmail account')
 end
 
+
+
+When (/I follow "Send email to request vacation"/) do
+  find_link('Send email to request vacation')[:href].include?('/email').should == true
+  click_link('Send email to request vacation')
+end
+
+Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
 And (/I enter my email and password/) do
   fill_in('Email', with: 'employee20156@gmail.com')
   fill_in('Passwd', with: 'WalkerTheProf')

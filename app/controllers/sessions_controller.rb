@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         redirect_to  "/employees/#{user.id}/timesheets/1/current"
       end
     else
-      flash[:notice] =  auth['info']['email'] + " is not registered to an employee "
+      flash[:notice] =  auth['info'] #+ " is not registered to an employee "
       redirect_to '/login'
     end
   end
@@ -35,5 +35,11 @@ class SessionsController < ApplicationController
   def fakelogin
     session[:user_uid] = params[:uid]
     redirect_to "/"
+  end
+
+  def send_email
+    AdminMailer.admin_email.deliver_now
+    flash[:notice] = 'Email has been sent successfully.'
+    redirect_to '/login'
   end
 end

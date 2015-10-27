@@ -25,7 +25,7 @@ Timeclock::Application.routes.draw do
   post 'employees/clockin/:clockingin' => 'employees#clockin'
 
   get  'fakelogin/:uid' => 'sessions#fakelogin' #this is for capybara testing purposes and should be deleted upon deployment
-
+  get 'email' => 'sessions#send_email'
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
