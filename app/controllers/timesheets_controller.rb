@@ -37,10 +37,10 @@ class TimesheetsController < ApplicationController
     end
   end
 
-  def send_email
+  def email
     AdminMailer.admin_email.deliver_now
     flash[:notice] = 'Email has been sent successfully.'
-    redirect_to  "/employees/#{session[:user_uid]}/timesheets/1/current"
+    redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
   end
 
   def update
