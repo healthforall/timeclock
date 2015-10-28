@@ -37,9 +37,4 @@ class SessionsController < ApplicationController
     redirect_to "/"
   end
 
-  def send_email
-    AdminMailer.admin_email.deliver_now
-    flash[:notice] = 'Email has been sent successfully.'
-    redirect_to "/login"
-  end
 end
