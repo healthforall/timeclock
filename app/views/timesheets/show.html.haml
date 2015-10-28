@@ -22,7 +22,7 @@
       -if @current
         -if @uid == session[:user_uid]
           %button.button{:id => "clockin"} Clock In
-          %p= link_to "Send email" , 'employees/:eid/payperiods/:pid/send_email',:class => "button menu"
+          %p= link_to "Send email" , '/send_email',:class => "button menu"
         %button{:id => "submit", :style => "display: none"} Submit Changes
         %button{:id => "revert", :style => "display: none"} Revert Changes
     -if @current_user.admin 
