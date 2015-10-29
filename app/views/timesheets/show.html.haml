@@ -4,8 +4,10 @@
     %a= render :partial => '/sessions/logout'
     -if @current_user.admin 
       = link_to 'Back to employee list' , employees_path, :class => "button menu"
-    -if @current_user.admin
+    -if @current_user.admin and !@timesheet.approved
       = link_to 'Approve this timesheet' , employee_timesheet_approve_path(@employee, @timesheet),:class => "button menu"
+    -if @current_user.admin and @timesheet.approved
+      = link_to 'Disapprove this timesheet' , employee_timesheet_disapprove_path(@employee, @timesheet),:class => "button menu"
     -if !@current_user.admin
       = link_to "Send email" , employee_timesheet_email_path(@employee, @timesheet),:class => "button menu"
     -if @uid == session[:user_uid] || @current_user.admin

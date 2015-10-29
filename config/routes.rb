@@ -9,6 +9,7 @@ Timeclock::Application.routes.draw do
       post 'update'
       get 'email'
       get 'approve'
+      get 'disapprove'
 
     end
   end

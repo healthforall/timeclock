@@ -51,6 +51,14 @@ class TimesheetsController < ApplicationController
     redirect_to  employee_timesheet_show_path(@employee, @timesheet)
   end
 
+  def disapprove
+    @employee  = Employee.find_by_id(params[:employee_id])
+    @timesheet = Timesheet.find_by_id(params[:timesheet_id])
+    @timesheet.update_attribute(:approved,false)
+    flash[:notice] = "This timesheet has been disapproved"
+    redirect_to  employee_timesheet_show_path(@employee, @timesheet)
+  end
+
   def update
     @payperiod = Payperiod.find_payperiod(Date.today)
     @employee  = Employee.find_by_uid(session[:user_uid])
