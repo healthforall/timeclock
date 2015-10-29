@@ -8,6 +8,8 @@ Timeclock::Application.routes.draw do
       get 'show'
       post 'update'
       get 'email'
+      get 'approve'
+
     end
   end
 

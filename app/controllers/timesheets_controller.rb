@@ -43,6 +43,12 @@ class TimesheetsController < ApplicationController
     redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
   end
 
+  def approve
+    @timesheet = Timesheet.find_by_id(params[:timesheet_id])
+    @timesheet.approved = true
+    redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
+  end
+
   def update
     @payperiod = Payperiod.find_payperiod(Date.today)
     @employee  = Employee.find_by_uid(session[:user_uid])

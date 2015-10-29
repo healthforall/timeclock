@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421213027) do
+ActiveRecord::Schema.define(version: 20151029024507) do
 
   create_table "days", force: :cascade do |t|
     t.date    "day"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150421213027) do
   create_table "timesheets", force: :cascade do |t|
     t.integer "payperiod_id"
     t.integer "employee_id"
+    t.boolean "approved"
   end
 
 end

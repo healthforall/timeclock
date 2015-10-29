@@ -4,6 +4,8 @@
     %a= render :partial => '/sessions/logout'
     -if @current_user.admin 
       = link_to 'Back to employee list' , employees_path, :class => "button menu"
+    -if @current_user.admin
+      = link_to 'Approve this timesheet' , employee_timesheet_approve_path(@employee, @timesheet),:class => "button menu"
     -if !@current_user.admin
       = link_to "Send email" , employee_timesheet_email_path(@employee, @timesheet),:class => "button menu"
     -if @uid == session[:user_uid] || @current_user.admin
@@ -39,3 +41,4 @@
   %div.container.two-thirds
     = render :partial => "timesheet" , :locals => { :first_week => @first_week , :second_week => @second_week , :middle => (@timesheet.days.length/2)+1 }
     %p.right Total: #{@total_hours} hours
+    %p.right Approved: #{@timesheet.approved}
