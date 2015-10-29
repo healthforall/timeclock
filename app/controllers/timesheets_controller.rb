@@ -19,6 +19,7 @@ class TimesheetsController < ApplicationController
     @name = @employee.name
     @uid  = @employee.uid
     @total_hours = @timesheet.totalHours
+    @approved = @timesheet.approved
     respond_to do |format|
       format.html
       format.xls { headers["Content-Disposition"] = "attachment; filename=\"timesheet_" + @employee.name + "_" + @payperiod.file_print + ".xls\"" }
