@@ -43,3 +43,5 @@
     %p.right Total: #{@total_hours} hours
     -if @timesheet.approved
       %p.right Approved
+    -else
+      %p.right NOT Approved

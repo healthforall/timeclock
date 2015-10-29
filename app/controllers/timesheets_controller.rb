@@ -47,7 +47,7 @@ class TimesheetsController < ApplicationController
     @employee  = Employee.find_by_id(params[:employee_id])
     @timesheet = Timesheet.find_by_id(params[:timesheet_id])
     @timesheet.update_attribute(:approved,true)
-    flash[:notice] = @timesheet.approved
+    flash[:notice] = "This timesheet has been approved"
     redirect_to  employee_timesheet_show_path(@employee, @timesheet)
   end
 
