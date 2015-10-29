@@ -4,11 +4,12 @@
     %a= render :partial => '/sessions/logout'
     -if @current_user.admin 
       = link_to 'Back to employee list' , employees_path, :class => "button menu"
+    -if !@current_user.admin
+      = link_to "Send email" , employee_timesheet_email_path(@employee, @timesheet),:class => "button menu"
     -if @uid == session[:user_uid] || @current_user.admin
       -if @current_user
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"
-      -if @current_user
-        = link_to "Send email" , employee_timesheet_email_path(@employee, @timesheet),:class => "button menu"
+
   %div#headerbar
     %h1.font Payperiod for
     %h1 #{@name}

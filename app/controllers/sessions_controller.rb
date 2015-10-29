@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         redirect_to  "/employees/#{user.id}/timesheets/1/current"
       end
     else
-      flash[:notice] =  auth['info'] #+ " is not registered to an employee "
+      flash[:notice] =  auth['info']['email']+ " is not registered to an employee "
       redirect_to '/login'
     end
   end
