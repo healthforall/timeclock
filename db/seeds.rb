@@ -21,9 +21,10 @@ payperiod = Payperiod.create!(payperiod)
 team = [   {:name =>'Zach'    , :email => "brownzach125@gmail.com" } ,    {:name =>'Elizabeth' , :email => "bookworm920@gmail.com"},
            {:name =>'Jon'     , :email => "jtgoen@gmail.com"}        ,    {:name =>'Michael'   , :email => "md.stephens9@gmail.com"},
            {:name =>'Garret'  , :email => "swamp.fox076@gmail.com"}  ,    {:name =>'Steven'    , :email => "redynsnevets@gmail.com", :admin => true},
-		       {:name =>'Employee', :email => "employee20156@gmail.com"}  ,   {:name =>'Xiangpeng' , :email => 'wxp2002@gmail.com',:admin => true} ,
+		       {:name =>'Employee', :email => "employee20156@gmail.com"}  ,   {:name =>'Xiangpeng' , :email => 'wxp2002@gmail.com'} ,
            {:name =>'JingchengHuang' , :email => 'huang155439@gmail.com'},{:name =>'wutongzhang' , :email => 'wutongzhang@tamu.edu'} ,
-            {:name => 'Tianshu', :email => "cts2003258@gmail.com"},       {:name => 'mona', :email => "ohnarya@gmail.com"}]
+           {:name => 'Tianshu', :email => "cts2003258@gmail.com"},       {:name => 'mona', :email => "ohnarya@gmail.com"},
+           {:name => 'Tianshu', :email => "chutianshu@tamu.edu", :admin => true}]
 
 admin = { :name =>'admin' , :email => 'wxp2002@tamu.edu' , :admin => true}
 admin = Employee.create!(admin)
