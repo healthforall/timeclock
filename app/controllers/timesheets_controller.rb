@@ -44,6 +44,7 @@ class TimesheetsController < ApplicationController
   end
 
   def approve
+    @employee  = Employee.find_by_id(params[:employee_id])
     @timesheet = Timesheet.find_by_id(params[:timesheet_id])
     @timesheet.approved = true
     flash[:notice] = @timesheet.approved
