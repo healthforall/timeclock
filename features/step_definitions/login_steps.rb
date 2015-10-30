@@ -37,9 +37,8 @@ end
 
 
 
-When (/I follow "Send email to request vacation"/) do
-  find_link('Send email to request vacation')[:href].include?('/email').should == true
-  click_link('Send email to request vacation')
+When (/I click "Send email"/) do
+  click_link('Send email')
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
