@@ -37,10 +37,6 @@ end
 
 
 
-When (/I click "Send email"/) do
-  click_link('Send email')
-end
-
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
   if page.respond_to? :should
     page.should have_content(text)

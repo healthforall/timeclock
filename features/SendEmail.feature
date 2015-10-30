@@ -7,5 +7,5 @@ Feature: Send email
   Scenario: Successful Login
     Given I am logged in
     Given I am on current timesheet
-    When I click on "Send email"
+    When I click "Send email"
     Then I should see "Email has been sent successfully"
