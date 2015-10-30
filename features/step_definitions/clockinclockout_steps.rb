@@ -17,7 +17,7 @@ def employee
  return @employee
 end
 
-Given(/I am logged in/) do
+Given(/^I am logged in$/) do
   employee
   visit "/fakelogin/#{@employee.uid}"
 end
