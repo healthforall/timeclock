@@ -25,7 +25,8 @@ team = [   {:name =>'Zach'    , :email => "brownzach125@gmail.com" } ,    {:name
            {:name =>'JingchengHuang' , :email => 'huang155439@gmail.com'},{:name =>'wutongzhang' , :email => 'wutongzhang@tamu.edu'} ,
            {:name => 'Tianshu', :email => "cts2003258@gmail.com"},       {:name => 'mona', :email => "ohnarya@gmail.com"},
            {:name => 'Tianshu', :email => "chutianshu@tamu.edu", :admin => true},
-           {:name => 'Wutongzhang', :email => "wtzshuati@gmail.com", :admin => true}]
+           {:name => 'Wutongzhang', :email => "wtzshuati@gmail.com", :admin => true},
+           {:name => 'JingchengHuang', :email => "huang155439@tamu.edu", :admin => true}]
 
 admin = { :name =>'admin' , :email => 'wxp2002@tamu.edu' , :admin => true}
 admin = Employee.create!(admin)
