@@ -4,19 +4,22 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "app", "m
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
+def supervisor
+  @supervisor = FactoryGirl.create(:employee,:admin => true)
+  @supervisor.save
+  return @supervisor
+end
 Given /^I am logged in as a supervisor$/ do
-  visit employees_path()
+  employee
+  supervisor
+  visit "/fakelogin/#{@supervisor.uid}"
 end
 
 Given /^I am viewing (.*)'s timesheet$/ do |employee_name|
-  visit "/employees/3/timesheets/5/show"
+  visit path_to("current timesheet",@employee)
 end
 
-When /^I follow Approve this timesheet$/ do
-  #find_link('Edit info')
-  page.should have_content("Edit info")
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
 end
 
-Then /^I should see the status turn to be approved/ do
-
-end

@@ -5,6 +5,6 @@ Feature: Approve Timesheet
 
   Scenario:
     Given I am logged in as a supervisor
-    And I am viewing Zach's timesheet
-    When I follow Approve this timesheet
-    Then I should see the status turn to be approved
+    When I am viewing employee's timesheet
+    When I follow "Approve this timesheet"
+    Then I should see "Approved"
