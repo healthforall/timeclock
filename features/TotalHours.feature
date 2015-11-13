@@ -9,5 +9,5 @@ Feature: Total hours
     When I edit a time cell to 10:00 AM
     And I edit another time cell to 11:00 AM
     Then I should see the Submit Changes button
-    When I follow "Submit Changes"
+    When I click the Submit Changes button
     Then I should see "Total: 1.0 hours"
