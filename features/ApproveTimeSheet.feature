@@ -8,3 +8,5 @@ Feature: Approve Timesheet
     When I am viewing employee's timesheet
     When I follow "Approve this timesheet"
     Then I should see "Approved"
+    When I follow "Disapprove this timesheet"
+    Then I should see "NOT Approved"
