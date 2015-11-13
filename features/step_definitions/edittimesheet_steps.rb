@@ -35,6 +35,11 @@ When(/^(?:|I )edit a time cell to (.+)$/) do |input|
   find(:xpath, cell).set(input)
 end
 
+When(/^(?:|I )edit another time cell to (.+)$/) do |input|
+  cell = "(//td[3])[1]"
+  find(:xpath, cell).set(input)
+end
+
 Then(/^(?:|The )cell should be editable$/) do
   expect(find(:xpath, "(//td[2])[1]")['contenteditable']).to eq('true')
 end
