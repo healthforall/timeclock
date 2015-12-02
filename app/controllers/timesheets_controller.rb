@@ -38,7 +38,8 @@ class TimesheetsController < ApplicationController
   end
 
   def email
-    AdminMailer.admin_email.deliver_now
+    @employee  = Employee.find_by_id(session[:user_uid])
+    AdminMailer.admin_email(@employee).deliver_now
     flash[:notice] = 'Email has been sent successfully.'
     redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
   end
