@@ -3,7 +3,8 @@ require 'factory_girl_rails'
 
 
 describe Employee do
-  it "has a valid factory" do
+  # green
+  it "has a valid factory" do 
     @employee = FactoryGirl.create(:employee)
     expect(@employee).to be_valid
     expect(@employee.name).to  be_a_kind_of(String)
@@ -12,10 +13,12 @@ describe Employee do
     expect(@employee.timesheets).not_to be_empty
   end
 
+  # green
   it "is invalid without a name" do
     expect(FactoryGirl.build(:employee, name: nil)).not_to be_valid
   end
 
+  # green
   it "is invalid without an email" do
     expect(FactoryGirl.build(:employee, email: nil)).not_to be_valid
   end
@@ -23,14 +26,16 @@ describe Employee do
   it "creates an inandout when clocking in" do
     @employee = FactoryGirl.create(:employee)
     @employee.clock_in(true)
-    #expect(@employee.timesheets.current[0].days.current[0].in_and_outs[0]).to_not be_nil
+    #expect(@employee.timesheets.current[0].days.current[0].in_and_outs.find_dangling_in).to_not be_nil
 
-    inandout = @employee.timesheets.current[0].days.current[0].in_and_outs.find_dangling_in[0]
+    inandout = @employee.timesheets.current[0].days.current[0].in_and_outs.find_dangling_in
+    
     expect(inandout).to_not be nil
+    
   end
   # checking clock_in(bool clockin)
 
-  it "adds an out_time to the correct inandout when clocking out"
+  # it "adds an out_time to the correct inandout when clocking out"
   # check true and false paths
       #false path is a clock out
 

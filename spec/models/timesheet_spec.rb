@@ -30,4 +30,11 @@ describe Timesheet do
     expect(@timesheet.totalHours).to eq(daycount + daycount/2)
   end
 
+  it "has approved" do
+    @employee  = FactoryGirl.create(:employee)
+    @timesheet = FactoryGirl.create(:timesheet)
+    @timesheet.update_attribute(:approved,true)
+    expect(@timesheet.approved).to eq(true)    
+  end
+
 end
