@@ -1,6 +1,12 @@
 class SessionsController < ApplicationController
   skip_before_filter :set_current_user
   def create
+    @auth = request.env['omniauth.auth']['credentials']
+    Token.create(
+        access_token: @auth['token'],
+        refresh_token: @auth['refresh_token'],
+        expires_at: Time.at(@auth['expires_at']).to_datetime)
+
     auth= request.env["omniauth.auth"]
     user= Employee.find_by_uid( auth["uid"] ) || Employee.create_on_first_login(auth)
     if ( user )
