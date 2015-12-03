@@ -16,6 +16,6 @@ FactoryGirl.define do
   end
 
   factory :invalid_contact, parent: :employee do |f|
-    f.email nil
+    f.email nil  
   end  
 end
