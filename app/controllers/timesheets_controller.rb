@@ -48,7 +48,7 @@ class TimesheetsController < ApplicationController
 
   def sendEmail
     @employee  = Employee.find_by_id(params[:employee_id])
-    @date = params[:movie][:release_date]
+    @date = params[:movie]
     AdminMailer.admin_email(@employee,@date).deliver_now
     flash[:notice] = 'Email has been sent successfully.'
     redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
