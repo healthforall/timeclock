@@ -50,7 +50,7 @@ class TimesheetsController < ApplicationController
     #@vacation = Vacation.create!(params[:vacation])
     @name = params[:vacation][:name]
     @vacation_type = params[:vacation][:vacation_type]
-    @date = params[:vacation][:date]
+    @date = params[:vacation][:date].to_s
     @hours = params[:vacation][:hours]
     AdminMailer.admin_email(@name,@vacation_type,@date,@hours).deliver_now
     flash[:notice] = 'Email has been sent successfully.'
