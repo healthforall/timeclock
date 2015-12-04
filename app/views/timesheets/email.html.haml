@@ -2,23 +2,12 @@
 %h2 Employee Leave Form
 %p © <%= Date.today.year %> ELECTRON.
 
-%p Name:
-<%= text_field "person", "Name", "size" => 20 %>
+= label :movie, :title, 'Name'
+= text_field :movie, 'title'
 
-<p>Date(s) of Leave:</p>
-<%= text_field "person", "Dateofleave", "size" => 20 %>
+= label :movie, :rating, 'Type of Leave'
+= select :movie, :rating, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
 
-<p># of Hours:</p>
-<%= text_field "person", "hours", "size" => 20 %>
+= label :movie, :release_date, 'Date(s) of Leave'
+= date_select :movie, :release_date
 
-<p>Type of Leave:</p>
-<%= radio_button_tag(:type,"Vacation") %>
-<%= label_tag(:type_Vacation, "Vacation") %>
-<%= radio_button_tag(:type,"Sick_Leave") %>
-<%= label_tag(:type_Sick_Leave, "Sick Leave") %>
-<%= radio_button_tag(:type,"Bereavement") %>
-<%= label_tag(:type_Bereavement, "Bereavement") %>
-<%= radio_button_tag(:type,"Jury_Duty") %>
-<%= label_tag(:type_Jury_Duty, "Jury Duty") %>
-<%= radio_button_tag(:type,"Leave_without_Pay") %>
-<%= label_tag(:type_Leave_without_Pay, "Leave without Pay") %>
