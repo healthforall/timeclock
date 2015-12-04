@@ -1,14 +1,18 @@
-%div.content
-  %h1 Health For All
-  %h2 Employee Leave Form
-  %p © ELECTRON
-  %p
-  = label :movie, :title, 'Name'
-  = text_field :movie, 'title'
-  %p
-  = label :movie, :rating, 'Type of Leave'
-  = select :movie, :rating, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
-  %p
-  = label :movie, :release_date, 'Date(s) of Leave'
-  = date_select :movie, :release_date
 
+%h1 Health For All
+%h2 Employee Leave Form
+%p © ELECTRON
+%div.content
+  %p
+  = label :name, 'Name:'
+  = text_field :name, 'name'
+  %p
+  = label :type, 'Type of Leave:'
+  = select :type, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
+  %p
+  = label :date_lable, 'Date of Leave:'
+  = date_select :movie, :release_date
+  %p
+  = label :movie, :title, 'Leave hours:'
+  = text_field :movie, 'title'
+  %p :name
