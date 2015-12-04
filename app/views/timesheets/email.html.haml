@@ -18,4 +18,4 @@
       = text_field :vacation,'hours'
     %p
       = submit_tag 'Send email to supervisor'
-      = link_to 'Back to timesheet' , employee_timesheet_show_path(@employee, @timesheet)
+      = link_to 'Back to timesheet' , employee_timesheet_show_path(@employee, @timesheet), :class => "button menu"
