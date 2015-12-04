@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204174012) do
+ActiveRecord::Schema.define(version: 20151204175727) do
 
   create_table "days", force: :cascade do |t|
     t.date    "day"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20151204174012) do
     t.string   "name"
     t.string   "vacation_type"
     t.datetime "date"
-    t.integer  "hours"
+    t.string   "hours"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
