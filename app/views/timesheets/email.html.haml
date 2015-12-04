@@ -9,8 +9,8 @@
   = label :vacation, :name, 'Title'
   = text_field :vacation,'name'
 
-  = label :vacation, :type, 'Rating'
-  = select :vacation, :type, ['G','PG','PG-13','R','NC-17']
+  = label :vacation, :vacation_type, 'Rating'
+  = select :vacation, :vacation_type, ['G','PG','PG-13','R','NC-17']
 
   = label :vacation, :date, 'Released On'
   = date_select :vacation, :date
