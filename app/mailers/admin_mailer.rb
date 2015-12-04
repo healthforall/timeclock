@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  default from: "wxp2002@gmail.com"
+  default from: ENV['gmail_username']
 
   def admin_email(name,vacation_type,date,hours)
       @name = name
