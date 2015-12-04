@@ -2,12 +2,12 @@
 %h2 Employee Leave Form
 %p © <%= Date.today.year %> ELECTRON.
 %p
-  = label :movie, :title, 'Name'
-  = text_field :movie, 'title'
+= label :movie, :title, 'Name'
+= text_field :movie, 'title'
 %p
-  = label :movie, :rating, 'Type of Leave'
-  = select :movie, :rating, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
+= label :movie, :rating, 'Type of Leave'
+= select :movie, :rating, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
 %p
-  = label :movie, :release_date, 'Date(s) of Leave'
-  = date_select :movie, :release_date
+= label :movie, :release_date, 'Date(s) of Leave'
+= date_select :movie, :release_date
 
