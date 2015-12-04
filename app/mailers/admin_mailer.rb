@@ -3,6 +3,7 @@ class AdminMailer < ActionMailer::Base
 
   def admin_email(employee)
       @employee = employee
+
       mail(to: "wxp2002@gmail.com", subject: 'Request vacation from '+@employee.name)
 
   end
