@@ -7,7 +7,7 @@
 = form_tag employee_timesheet_email_path(@employee, @timesheet) do
 
   = label :vacation, :name, 'Title'
-  = text_field :vacation,:name, @employee.name
+  = text_field :vacation,'name', value=@employee.name
 
   = label :vacation, :type, 'Rating'
   = select :vacation, :type, ['G','PG','PG-13','R','NC-17']
