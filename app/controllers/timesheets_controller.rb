@@ -47,9 +47,9 @@ class TimesheetsController < ApplicationController
   end
 
   def sendEmail
-    @vacation = Vacation.create!(params[:vacation])
-
-    AdminMailer.admin_email(@vacation).deliver_now
+    #@vacation = Vacation.create!(params[:vacation])
+    @name = params[:vacation][:name]
+    AdminMailer.admin_email(@name).deliver_now
     flash[:notice] = 'Email has been sent successfully.'
     redirect_to  "/employees/#{params[:eid]}/timesheets/1/current"
   end
