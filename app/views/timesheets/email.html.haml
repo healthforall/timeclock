@@ -1,23 +1,22 @@
 %div#contentheader
   %h1 Health For All
   %h2 Employee Leave Form
-  %p © ELECTRON
-  %div.container.third
-  = link_to 'Back to timesheet' , employee_timesheet_show_path(@employee, @timesheet), :class => "button menu"
+
 %div.content
   = form_tag employee_timesheet_email_path(@employee, @timesheet) do
 
     %p
       Name:
       = @employee.name
-    %br
-    = label :vacation, :vacation_type, 'Type of Leave'
-    = select :vacation, :vacation_type, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
-    %br
-    = label :vacation, :date, 'Date of leave'
-    = date_select :vacation, :date
-    %br
-    = label :vacation, :hours, 'Number of Hours'
-    = text_field :vacation,'hours'
-    %br
-    = submit_tag 'Send email to supervisor'
+    %p
+      = label :vacation, :vacation_type, 'Type of Leave'
+      = select :vacation, :vacation_type, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
+    %p
+      = label :vacation, :date, 'Date of leave'
+      = date_select :vacation, :date
+    %p
+      = label :vacation, :hours, 'Number of Hours'
+      = text_field :vacation,'hours'
+    %p
+      = submit_tag 'Send email to supervisor'
+      = link_to 'Back to timesheet' , employee_timesheet_show_path(@employee, @timesheet), :class => "button menu"
