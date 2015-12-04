@@ -9,7 +9,7 @@
     -if @current_user.admin and @timesheet.approved
       = link_to 'Disapprove this timesheet' , employee_timesheet_disapprove_path(@employee, @timesheet),:class => "button menu"
     -if !@current_user.admin
-      = link_to "Send email" , employee_timesheet_email_path(@employee, @timesheet),:class => "button menu"
+      = link_to "Vacation request" , employee_timesheet_email_path(@employee, @timesheet),:class => "button menu"
     -if @uid == session[:user_uid] || @current_user.admin
       -if @current_user
         = link_to 'Export Timesheet', employee_timesheet_show_path(@employee, @timesheet, format: "xls"), :class => "button menu"

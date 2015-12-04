@@ -40,9 +40,23 @@ class TimesheetsController < ApplicationController
 
   def email
     @employee  = Employee.find_by_id(params[:employee_id])
-    AdminMailer.admin_email(@employee).deliver_now
+    @timesheet = @employee.timesheets.current[0]
+    #AdminMailer.admin_email(@employee).deliver_now
+    #flash[:notice] = 'Email has been sent successfully.'
+    #redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
+  end
+
+  def sendEmail
+    #@vacation = Vacation.create!(params[:vacation])
+    @employee  = Employee.find_by_id(params[:eid])
+    @name = @employee.name
+    @vacation_type = params[:vacation][:vacation_type]
+    date = Date.new params[:vacation]["date(1i)"].to_i, params[:vacation]["date(2i)"].to_i, params[:vacation]["date(3i)"].to_i
+    @date = date.to_s
+    @hours = params[:vacation][:hours]
+    AdminMailer.admin_email(@name,@vacation_type,@date,@hours).deliver_now
     flash[:notice] = 'Email has been sent successfully.'
-    redirect_to  "/employees/#{params[:employee_id]}/timesheets/1/current"
+    redirect_to  "/employees/#{params[:eid]}/timesheets/1/current"
   end
 
   def approve
