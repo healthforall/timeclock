@@ -1,13 +1,13 @@
 %h1 Health For All
 %h2 Employee Leave Form
-%p © <%= Date.today.year %> ELECTRON.
-%p
-= label :movie, :title, 'Name'
-= text_field :movie, 'title'
+%p © ELECTRON
+%div.content
+  - label :movie, :title, 'Name'
+  - text_field :movie, 'title'
 %p
 = label :movie, :rating, 'Type of Leave'
 = select :movie, :rating, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
-%p
+%br
 = label :movie, :release_date, 'Date(s) of Leave'
 = date_select :movie, :release_date
 
