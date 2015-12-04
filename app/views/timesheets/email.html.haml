@@ -6,13 +6,13 @@
 
 = form_tag employee_timesheet_email_path(@employee, @timesheet) do
 
-  = label :movie, :title, 'Title'
-  = text_field :movie, 'title'
+  = label :vacation, :name, 'Title'
+  = text_field :vacation,:name, @employee.name
 
-  = label :movie, :rating, 'Rating'
-  = select :movie, :rating, ['G','PG','PG-13','R','NC-17']
+  = label :vacation, :type, 'Rating'
+  = select :vacation, :type, ['G','PG','PG-13','R','NC-17']
 
-  = label :movie, :release_date, 'Released On'
-  = date_select :movie, :release_date
+  = label :vacation, :date, 'Released On'
+  = date_select :vacation, :date
 
   = submit_tag 'Save Changes'
