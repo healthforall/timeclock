@@ -3,16 +3,16 @@
 %h2 Employee Leave Form
 %p © ELECTRON
 %div.content
-  %p
-  = label :name, 'Name:'
-  = text_field :name, 'name'
-  %p
-  = label :type, 'Type of Leave:'
-  = select :type, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
-  %p
-  = label :date_lable, 'Date of Leave:'
-  = date_select :movie, :release_date
-  %p
-  = label :movie, :title, 'Leave hours:'
+
+= form_tag employee_timesheet_email_path(@employee, @timesheet) do
+
+  = label :movie, :title, 'Title'
   = text_field :movie, 'title'
-  %p :name
+
+  = label :movie, :rating, 'Rating'
+  = select :movie, :rating, ['G','PG','PG-13','R','NC-17']
+
+  = label :movie, :release_date, 'Released On'
+  = date_select :movie, :release_date
+
+  = submit_tag 'Save Changes'
