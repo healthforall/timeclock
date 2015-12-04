@@ -6,16 +6,16 @@
 
 = form_tag employee_timesheet_email_path(@employee, @timesheet) do
 
-  = label :vacation, :name, 'Title'
+  = label :vacation, :name, 'Name'
   = text_field :vacation,'name'
 
-  = label :vacation, :vacation_type, 'Rating'
-  = select :vacation, :vacation_type, ['G','PG','PG-13','R','NC-17']
+  = label :vacation, :vacation_type, 'Type of Leave'
+  = select :vacation, :vacation_type, ['Vacation','Sick Leave','Bereavement','Jury Duty','Leave without Pay']
 
-  = label :vacation, :date, 'Released On'
+  = label :vacation, :date, 'Date of leave'
   = date_select :vacation, :date
 
-  = label :vacation, :hours, 'Hours'
+  = label :vacation, :hours, 'Number of Hours'
   = text_field :vacation,'hours'
 
-  = submit_tag 'Save Changes'
+  = submit_tag 'Send email to supervisor'
