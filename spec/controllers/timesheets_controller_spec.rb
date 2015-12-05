@@ -3,25 +3,32 @@ require 'spec_helper'
 require 'rspec-rails'
 
 describe TimesheetsController, type: :controller do
-  # context "if logged in as administrator" do
-  #   # Green
-  #   before do
-  #       @admin = FactoryGirl.create(:employee, :name =>'Employee', :email => "employee20156@gmail.com", :admin=>true)
-  #       session[:user_uid] = @admin.uid    
-  #       expect(@admin.admin).to eq(true)
-  #   end
-  #   # describe "Approve time sheet" do
-  #   #   if "check "
-  #   # end
-  # end
+  context "if logged in as administrator" do
+    # Green
+    before do
+        @admin    = FactoryGirl.create(:employee, :name =>'Admin', :email => "employee20156@gmail.com", :admin=>true)
+        @employee = FactoryGirl.create(:employee, :name =>'Employee', :email => "employee20157@gmail.com")
+        session[:user_uid] = @admin.uid    
+        expect(@admin.admin).to eq(true)
+    end
+    describe "Approve time sheet" do
+      it "shows a employee timesheet" do
+        get :show,:employee_id=> @employee.id, :timesheet_id=> 1 
+        expect(response).to have_http_status(200)
+      end 
+    end
+  end
 
   context "if logged in as regular employee" do
     before(:each) do
+      @employee = FactoryGirl.create(:employee, :name =>'User', :email => "employee20156@gmail.com")
+      @vacation = FactoryGirl.create(:vacation, :name=>'Sick Leave',:date=>'20151204', :type=>'1', :hour=>8)
       ActionMailer::Base.delivery_method = :test
       ActionMailer::Base.perform_deliveries = true
       ActionMailer::Base.deliveries = []
+
     end
-    
+
     after(:each) do
       ActionMailer::Base.deliveries.clear
     end
@@ -49,19 +56,31 @@ describe TimesheetsController, type: :controller do
     end
 
 
-    describe "send an email" do
-      it "send an email" do
-        @employee = FactoryGirl.create(:employee, :name =>'Employee', :email => "employee20156@gmail.com")
-        AdminMailer.admin_email( @employee ).deliver_now
-        expect(ActionMailer::Base.deliveries.count).to eq(1)
+    describe "send an email", type: :mailer do
+      it "has right parameters from the view" do
+        expect(@employee.name).not_to eq(nil)
+        expect(@vacation.hour).not_to eq(nil)
+        expect(@vacation.type).not_to eq(nil)
+        expect(@vacation.date).not_to eq(nil)
       end
 
-      # it "" do
-      # end
+      let(:mail) { AdminMailer.admin_email_test(@employee.name, @vacation.type, @vacation.date, @vacation.hour ) }
       
-      # it "sends email sucessfully" do
-      #   expect(response).to redirect_to "/employees/:employee.id/timesheets/1/current"
-      # end
+      it "send an email" do
+        mail.deliver_now
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+      end
+  
+      it "has a right email header" do
+        expect(mail.content_type).to start_with('multipart/alternative')
+      end
+      it "has a right subject" do
+        expect(mail.subject).to start_with('Request vacation from')
+      end
+
+      it 'renders the receiver email' do
+        expect(mail.to).to include("wxp2002@gmail.com")
+      end
     end   
     
   end
