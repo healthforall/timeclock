@@ -8,7 +8,14 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "sel
 
 
 
-When (/I click "Send email"/) do
-  click_link('Send email')
+When (/I click "Vacation request"/) do
+  click_link('Vacation request')
 end
+
+When (/I press the "Send email to supervisor"/) do 
+  click_button('Send email to supervisor')
+end
+
+
+
 
