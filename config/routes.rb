@@ -26,6 +26,8 @@ Timeclock::Application.routes.draw do
 
   get  'fakelogin/:uid' => 'sessions#fakelogin' #this is for capybara testing purposes and should be deleted upon deployment
 
+
+  get ':action' => 'static#:action'
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
