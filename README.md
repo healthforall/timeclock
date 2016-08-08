@@ -13,6 +13,8 @@ Non-profit health clinic.
 
 --Be a good developer and don't overwrite the production database! (or at the very least create a backup of it before you screw up)
 
+--Commit messages should be useful!!!!
+
 --Maintain Documentation, a wiki would be nice:)
 
 
