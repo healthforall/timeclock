@@ -10,5 +10,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            :scope=> 'email',
            :info_fields=> 'name,email'
 
-
 end
